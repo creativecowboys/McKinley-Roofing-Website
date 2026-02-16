@@ -1,0 +1,7 @@
+{
+  "name": "McKinley Roofing",
+  "description": "Premium roofing services website for McKinley Roofing, based in West Georgia, featuring a modern red-themed design with service listings, portfolio, and contact options.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
