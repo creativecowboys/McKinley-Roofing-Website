@@ -92,14 +92,14 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Your Email Address"
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg py-4 px-6 focus:outline-none focus:border-red-600 transition-all text-slate-200"
+                className="w-full bg-slate-500/20 border border-slate-500/40 rounded-lg py-4 px-6 focus:outline-none focus:border-red-600 transition-all text-slate-200 placeholder-slate-400"
               />
               <button className="absolute right-2 top-2 bg-red-600 text-white p-2 rounded hover:bg-red-700 transition-all">
                 <Send size={20} />
               </button>
             </div>
 
-            <div className="mt-8 bg-slate-800 p-6 rounded-xl border border-slate-700">
+            <div className="mt-8 bg-slate-500/20 p-6 rounded-xl border border-slate-500/40">
               <h5 className="font-bold mb-4 flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                 Working Hours
