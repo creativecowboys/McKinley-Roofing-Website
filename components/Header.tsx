@@ -36,11 +36,10 @@ const Header: React.FC = () => {
               <span className="hidden sm:inline">Douglasville, Georgia</span>
             </a>
           </div>
-          {/* Phone */}
-          <a href="tel:+16789834455" className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold">
-            <Phone size={16} />
-            <span>(678) 983-4455</span>
-          </a>
+          {/* CTA */}
+          <Link to="/contact" className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold">
+            <span>Get A Free Roof Inspection Today!</span>
+          </Link>
         </div>
       </div>
 
