@@ -1,9 +1,94 @@
 
-import React from 'react';
-// Added Home to the imports from lucide-react
-import { Send, Home } from 'lucide-react';
+import React, { useState } from 'react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import ServiceAreaMap from './ServiceAreaMap';
+
+interface FormData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  newClient: string;
+  message: string;
+}
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    newClient: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    setErrorMessage('');
+
+    try {
+      // Using Web3Forms for email delivery
+      // This is a free service that sends emails without requiring backend setup
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'f0edb404-1cef-4cbd-a52c-4a2ba56b98b3',
+          subject: `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          new_client: formData.newClient,
+          message: formData.message,
+          to_email: 'josh@creativecowboys.co',
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          newClient: '',
+          message: ''
+        });
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 5000);
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+      setErrorMessage('Failed to send message. Please try calling us directly or emailing josh@creativecowboys.co');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
@@ -17,86 +102,94 @@ const Contact: React.FC = () => {
               We're here to provide you with the best roofing solutions tailored to your needs. Whether you're looking for a free estimate, need a roof inspection, or have urgent repairs, our West Georgia team is ready to help.
             </p>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {submitStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg flex items-center gap-3">
+                  <CheckCircle size={20} className="flex-shrink-0" />
+                  <p className="font-medium">Thank you! Your message has been sent successfully. We'll get back to you soon!</p>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg flex items-center gap-3">
+                  <AlertCircle size={20} className="flex-shrink-0" />
+                  <p className="font-medium">{errorMessage}</p>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 gap-4">
                 <input
                   type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                   placeholder="First Name"
+                  required
                   className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition-all"
                 />
                 <input
                   type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
                   placeholder="Last Name"
+                  required
                   className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition-all"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email Address"
+                  required
                   className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition-all"
                 />
                 <input
                   type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="Phone Number"
+                  required
                   className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition-all"
                 />
               </div>
-              <select className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 appearance-none transition-all">
+              <select
+                name="newClient"
+                value={formData.newClient}
+                onChange={handleChange}
+                required
+                className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 appearance-none transition-all"
+              >
                 <option value="">Are you a new client?</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
               </select>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="How can we help you?"
                 rows={4}
+                required
                 className="w-full px-6 py-4 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 transition-all"
               ></textarea>
               <button
                 type="submit"
-                className="w-full bg-red-600 text-white font-bold py-5 rounded-lg hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-red-600/20"
+                disabled={isSubmitting}
+                className="w-full bg-red-600 text-white font-bold py-5 rounded-lg hover:bg-red-700 transition-all flex items-center justify-center gap-2 shadow-xl shadow-red-600/20 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                SEND NOW
+                {isSubmitting ? 'SENDING...' : 'SEND NOW'}
                 <Send size={18} />
               </button>
             </form>
           </div>
 
           <div className="relative">
-            {/* Visual representation of a map area centered around West Georgia */}
-            <div className="bg-slate-200 rounded-3xl h-[600px] w-full overflow-hidden shadow-2xl relative border-8 border-white">
-              <img
-                src="https://picsum.photos/id/15/800/800?grayscale"
-                alt="Map area"
-                className="w-full h-full object-cover opacity-50"
-              />
-              <div className="absolute inset-0 bg-red-900/10 pointer-events-none"></div>
-              
-              {/* Marker simulation */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
-                <div className="relative">
-                  <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center border-4 border-white shadow-xl">
-                    <Home className="text-white" size={20} />
-                  </div>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap bg-white px-4 py-2 rounded-lg shadow-xl font-bold text-slate-900">
-                    McKinley Roofing HQ
-                  </div>
-                </div>
-              </div>
-              
-              {/* Stats overlay */}
-              <div className="absolute bottom-10 left-10 right-10 bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/50">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600">
-                    <Home size={24} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900">Servicing West Georgia</h4>
-                    <p className="text-slate-600 text-sm">Carrollton, Villa Rica, Newnan, Douglasville & Beyond</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ServiceAreaMap />
           </div>
         </div>
       </div>

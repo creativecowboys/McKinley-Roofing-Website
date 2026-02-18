@@ -24,7 +24,7 @@ const About: React.FC = () => {
     <section id="about" className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-center">
-          
+
           {/* Column 1: Text Content */}
           <div className="flex flex-col items-start">
             <span className="bg-orange-50 text-red-600 px-4 py-1.5 rounded-md font-bold text-sm tracking-wider mb-6">
@@ -45,8 +45,8 @@ const About: React.FC = () => {
           <div className="relative group">
             <div className="rounded-2xl overflow-hidden shadow-2xl h-[550px]">
               <img
-                src="https://images.unsplash.com/photo-1632759162353-01270d48c051?auto=format&fit=crop&q=80&w=1000"
-                alt="Roofers working on a modern metal roof"
+                src="/about_roofers_working.png"
+                alt="McKinley Roofing professionals working on a residential roof"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
             </div>
@@ -56,19 +56,17 @@ const About: React.FC = () => {
 
           {/* Column 3: Accordion Cards */}
           <div className="flex flex-col gap-4">
-            
+
             {/* Our Mission */}
-            <div 
+            <div
               onClick={() => setActiveTab('mission')}
-              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${
-                activeTab === 'mission' ? 'bg-red-600 text-white' : 'bg-white text-slate-900'
-              }`}
+              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${activeTab === 'mission' ? 'bg-red-600 text-white' : 'bg-white text-slate-900'
+                }`}
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-2xl font-bold">{accordionData.mission.title}</h3>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                  activeTab === 'mission' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
-                }`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeTab === 'mission' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
+                  }`}>
                   {activeTab === 'mission' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
               </div>
@@ -80,17 +78,15 @@ const About: React.FC = () => {
             </div>
 
             {/* Our Vision */}
-            <div 
+            <div
               onClick={() => setActiveTab('vision')}
-              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${
-                activeTab === 'vision' ? 'bg-red-600 text-white' : 'bg-white text-slate-900 hover:shadow-2xl'
-              }`}
+              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${activeTab === 'vision' ? 'bg-red-600 text-white' : 'bg-white text-slate-900 hover:shadow-2xl'
+                }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-2xl font-bold">{accordionData.vision.title}</h3>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                  activeTab === 'vision' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
-                }`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeTab === 'vision' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
+                  }`}>
                   {activeTab === 'vision' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
               </div>
@@ -102,17 +98,15 @@ const About: React.FC = () => {
             </div>
 
             {/* Our Value */}
-            <div 
+            <div
               onClick={() => setActiveTab('value')}
-              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${
-                activeTab === 'value' ? 'bg-red-600 text-white' : 'bg-white text-slate-900 hover:shadow-2xl'
-              }`}
+              className={`cursor-pointer p-8 rounded-2xl transition-all duration-300 shadow-xl ${activeTab === 'value' ? 'bg-red-600 text-white' : 'bg-white text-slate-900 hover:shadow-2xl'
+                }`}
             >
               <div className="flex items-center justify-between mb-2">
                 <h3 className="text-2xl font-bold">{accordionData.value.title}</h3>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                  activeTab === 'value' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
-                }`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${activeTab === 'value' ? 'bg-white text-red-600' : 'bg-red-600 text-white'
+                  }`}>
                   {activeTab === 'value' ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                 </div>
               </div>
@@ -126,7 +120,7 @@ const About: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }

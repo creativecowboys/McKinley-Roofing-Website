@@ -23,8 +23,8 @@ const Testimonials: React.FC = () => {
               {/* Top Half: Image */}
               <div className="h-64 relative">
                 <img
-                  src="https://images.unsplash.com/photo-1626084300762-5f7a34632424?auto=format&fit=crop&q=80&w=800"
-                  alt="House with red roof"
+                  src="/testimonial_red_roof_home.png"
+                  alt="Beautiful West Georgia home with McKinley Roofing installation"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -34,7 +34,7 @@ const Testimonials: React.FC = () => {
                 {[1, 2, 3, 4].map((i) => (
                   <img
                     key={i}
-                    src={`https://i.pravatar.cc/150?u=${i + 20}`}
+                    src={`/testimonial_avatar_${i}.png`}
                     alt="User"
                     className="w-14 h-14 rounded-full border-4 border-white shadow-lg object-cover"
                   />
@@ -77,7 +77,7 @@ const Testimonials: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                 <div className="flex items-center gap-5">
                   <img
-                    src="https://i.pravatar.cc/150?u=sheldon"
+                    src="/testimonial_avatar_sheldon.png"
                     alt="Sheldon Jackson"
                     className="w-14 h-14 rounded-full object-cover shadow-md"
                   />
@@ -86,7 +86,7 @@ const Testimonials: React.FC = () => {
                     <p className="text-slate-500 font-medium text-sm">Project Manager</p>
                   </div>
                 </div>
-                
+
                 {/* Google Logo */}
                 <div className="flex items-center gap-1">
                   <span className="text-2xl font-bold tracking-tight">
@@ -103,10 +103,10 @@ const Testimonials: React.FC = () => {
 
             {/* Vertical Navigation Buttons */}
             <div className="hidden sm:flex flex-col gap-4">
-              <button className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-all shadow-lg shadow-red-600/30">
+              <button className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-all shadow-lg shadow-red-600/30 cursor-pointer">
                 <ChevronUp size={24} />
               </button>
-              <button className="w-12 h-12 rounded-full bg-slate-950 text-white flex items-center justify-center hover:bg-slate-800 transition-all shadow-lg">
+              <button className="w-12 h-12 rounded-full bg-slate-950 text-white flex items-center justify-center hover:bg-slate-800 transition-all shadow-lg cursor-pointer">
                 <ChevronDown size={24} />
               </button>
             </div>

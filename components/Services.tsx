@@ -1,41 +1,75 @@
 
 import React, { useState } from 'react';
-import { CloudRain, Home, Hammer, Leaf, Fan, ArrowRight } from 'lucide-react';
+import { Wrench, RefreshCw, CloudRain, Shield, Droplets, ArrowRight } from 'lucide-react';
 
 const Services: React.FC = () => {
   const [activeService, setActiveService] = useState(0);
 
   const services = [
     {
-      title: 'Storm Damage Assessment',
+      title: 'Roof Repair Services',
+      icon: <Wrench size={24} />,
+      description: 'Comprehensive repair services designed to address damage quickly and effectively, preventing minor issues from becoming major problems.',
+      image: '/service_roof_repair.png',
+      bullets: [
+        'Thorough inspection to assess the full extent of damage',
+        'Professional leak detection and repair',
+        'Shingle replacement for damaged or missing shingles',
+        'Flashing repair around chimneys, vents, and valleys',
+        'Emergency roof repair services for urgent situations'
+      ],
+    },
+    {
+      title: 'Roof Replacement Services',
+      icon: <RefreshCw size={24} />,
+      description: 'Complete replacement services for both residential and commercial properties when repairs are no longer cost-effective or when a roof has reached the end of its useful life.',
+      image: '/service_asphalt_shingles.png',
+      bullets: [
+        'Comprehensive inspection to assess existing roof condition',
+        'Customized replacement plan tailored to your needs and budget',
+        'High-quality materials from trusted manufacturers',
+        'Professional installation by skilled craftsmen',
+        'Both manufacturer and labor warranties for peace of mind'
+      ],
+    },
+    {
+      title: 'Storm Damage Restoration',
       icon: <CloudRain size={24} />,
-      description: 'Comprehensive inspection after severe weather to identify leaks and structural issues.',
-      image: 'https://picsum.photos/id/163/800/600',
+      description: 'Expert assistance recovering from storm damage, including hail and wind damage. We work directly with insurance companies to ensure you receive maximum benefits.',
+      image: '/service_storm_damage.png',
+      bullets: [
+        'Detailed damage assessment and documentation',
+        'Direct coordination with insurance companies',
+        'Assistance with claims process and paperwork',
+        'Expert testimony on damage extent when needed',
+        'Complete restoration to pre-damage condition or better'
+      ],
     },
     {
-      title: 'Asphalt Shingle Roofing',
-      icon: <Home size={24} />,
-      description: 'Asphalt shingles remain the popular choice for their affordability and reliability. We offer expert installation.',
-      image: 'https://picsum.photos/id/124/800/600',
-      bullets: ['Gutter Installation and Maintenance', 'Skylight Installation and Repair', 'Chimney Flashing and Repair'],
+      title: 'Proactive Roof Maintenance',
+      icon: <Shield size={24} />,
+      description: 'Preventive maintenance services help protect your roofing investment and extend the lifespan of your roof by identifying and addressing small issues before they develop into expensive repairs.',
+      image: '/service_maintenance.png',
+      bullets: [
+        'Regular inspections to identify potential issues early',
+        'Cleaning gutters and downspouts to prevent water buildup',
+        'Repairing minor issues before they escalate',
+        'Applying protective coatings to extend roof life',
+        'Expert advice on roof care and maintenance best practices'
+      ],
     },
     {
-      title: 'Metal Roofing Services',
-      icon: <Hammer size={24} />,
-      description: 'Durable, long-lasting metal roofs that provide excellent protection and energy efficiency.',
-      image: 'https://picsum.photos/id/162/800/600',
-    },
-    {
-      title: 'Green Roof Installation',
-      icon: <Leaf size={24} />,
-      description: 'Eco-friendly roofing options that incorporate vegetation to improve insulation and aesthetics.',
-      image: 'https://picsum.photos/id/164/800/600',
-    },
-    {
-      title: 'Roof Ventilation Services',
-      icon: <Fan size={24} />,
-      description: 'Optimizing attic airflow to prevent moisture buildup and extend the life of your roof.',
-      image: 'https://picsum.photos/id/165/800/600',
+      title: 'Gutter Installation Services',
+      icon: <Droplets size={24} />,
+      description: 'Professional seamless gutter system installation designed to effectively channel water away from your structure, protecting both your roof and foundation.',
+      image: '/service_gutter_installation.png',
+      bullets: [
+        'Customized gutter design for your property specifications',
+        'High-quality, durable gutter materials',
+        'Professional installation by experienced technicians',
+        'Downspout installation and strategic water redirection',
+        'Maintenance tips to keep systems functioning optimally'
+      ],
     },
   ];
 
@@ -56,11 +90,10 @@ const Services: React.FC = () => {
               <button
                 key={index}
                 onClick={() => setActiveService(index)}
-                className={`flex items-center gap-4 p-5 rounded-xl transition-all text-left border ${
-                  activeService === index 
-                  ? 'bg-red-600 border-red-600 text-white shadow-xl shadow-red-600/20 translate-x-2' 
+                className={`flex items-center gap-4 p-5 rounded-xl transition-all text-left border cursor-pointer ${activeService === index
+                  ? 'bg-red-600 border-red-600 text-white shadow-xl shadow-red-600/20 translate-x-2'
                   : 'bg-white border-slate-200 text-slate-700 hover:border-red-300 hover:bg-red-50'
-                }`}
+                  }`}
               >
                 <div className={`${activeService === index ? 'bg-white/20' : 'bg-slate-100'} p-3 rounded-lg`}>
                   {service.icon}
@@ -97,7 +130,7 @@ const Services: React.FC = () => {
                     ))}
                   </ul>
                 )}
-                <button className="bg-red-600 text-white px-8 py-4 rounded-md font-bold hover:bg-red-700 transition-all flex items-center gap-2">
+                <button className="bg-red-600 text-white px-8 py-4 rounded-md font-bold hover:bg-red-700 transition-all flex items-center gap-2 cursor-pointer">
                   LEARN MORE
                   <ArrowRight size={18} />
                 </button>

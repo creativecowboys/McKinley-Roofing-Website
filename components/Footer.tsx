@@ -1,27 +1,23 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Twitter, Mail, MapPin, Phone, Send } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-900 text-white pt-24 pb-12">
+    <footer className="text-white pt-24 pb-12" style={{ backgroundColor: '#242525' }}>
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-4 gap-12 mb-20">
           {/* Brand Info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-8 group cursor-pointer">
-              <div className="w-10 h-10 bg-red-600 rounded flex items-center justify-center rotate-45 group-hover:rotate-0 transition-transform duration-300">
-                <div className="-rotate-45 group-hover:rotate-0 transition-transform duration-300">
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                  </svg>
-                </div>
-              </div>
-              <span className="text-2xl font-bold tracking-tight">
-                McKinley<span className="text-red-600">Roofing</span>
-              </span>
+            <div className="mb-8">
+              <img
+                src="/McKinley_logo.png"
+                alt="McKinley Roofing Logo"
+                className="h-16 w-auto"
+              />
             </div>
             <p className="text-slate-400 mb-8 leading-relaxed">
               We're committed to delivering top-quality roofing service that protects your home & enhances value. With years of expertise focus customer.
@@ -46,11 +42,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-xl font-bold mb-8">Top Links</h4>
             <ul className="space-y-4 text-slate-400">
-              <li><a href="#about" className="hover:text-red-600 transition-colors">About Us</a></li>
-              <li><a href="#services" className="hover:text-red-600 transition-colors">Our Services</a></li>
-              <li><a href="#blog" className="hover:text-red-600 transition-colors">Recent Blog</a></li>
-              <li><a href="#portfolio" className="hover:text-red-600 transition-colors">Our Team</a></li>
-              <li><a href="#contact" className="hover:text-red-600 transition-colors">Contact Us</a></li>
+              <li><Link to="/about" className="hover:text-red-600 transition-colors">About Us</Link></li>
+              <li><Link to="/services" className="hover:text-red-600 transition-colors">Our Services</Link></li>
+              <li><Link to="/" className="hover:text-red-600 transition-colors">Recent Blog</Link></li>
+              <li><Link to="/" className="hover:text-red-600 transition-colors">Our Team</Link></li>
+              <li><Link to="/contact" className="hover:text-red-600 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -64,7 +60,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-500 uppercase">Call Anytime</p>
-                  <p className="text-lg font-bold text-slate-200">+1 (770) 555-0123</p>
+                  <p className="text-lg font-bold text-slate-200">(678) 983-4455</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -73,7 +69,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-500 uppercase">Our Address</p>
-                  <p className="text-lg font-bold text-slate-200">421 Allen, Carrollton, GA 30117</p>
+                  <p className="text-lg font-bold text-slate-200">Douglasville, Georgia</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -82,7 +78,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-slate-500 uppercase">Email Us</p>
-                  <p className="text-lg font-bold text-slate-200">office@mckinleyroofing.com</p>
+                  <p className="text-lg font-bold text-slate-200">mckinleyrandr@gmail.com</p>
                 </div>
               </li>
             </ul>
@@ -102,20 +98,20 @@ const Footer: React.FC = () => {
                 <Send size={20} />
               </button>
             </div>
-            
+
             <div className="mt-8 bg-slate-800 p-6 rounded-xl border border-slate-700">
-               <h5 className="font-bold mb-4 flex items-center gap-2">
-                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                 Working Hours
-               </h5>
-               <div className="flex justify-between text-sm text-slate-400 mb-2">
-                 <span>Mon-Fri</span>
-                 <span className="text-white">9:00 AM - 6:00 PM</span>
-               </div>
-               <div className="flex justify-between text-sm text-slate-400">
-                 <span>Sat-Sun</span>
-                 <span className="text-white italic">Emergency Calls Only</span>
-               </div>
+              <h5 className="font-bold mb-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                Working Hours
+              </h5>
+              <div className="flex justify-between text-sm text-slate-400 mb-2">
+                <span>Mon-Fri</span>
+                <span className="text-white">9:00 AM - 6:00 PM</span>
+              </div>
+              <div className="flex justify-between text-sm text-slate-400">
+                <span>Sat-Sun</span>
+                <span className="text-white italic">Emergency Calls Only</span>
+              </div>
             </div>
           </div>
         </div>

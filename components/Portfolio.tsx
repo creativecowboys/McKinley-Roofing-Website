@@ -7,23 +7,23 @@ const Portfolio: React.FC = () => {
     {
       title: 'Everguard Roofing Co.',
       location: 'Carrollton, GA',
-      image: 'https://picsum.photos/id/115/600/800',
+      image: '/portfolio_carrollton.png',
     },
     {
       title: 'Pinnacle Roof Pros',
       location: 'Douglasville, GA',
       description: 'This project involved upgrading a traditional roof to a modern design using high-quality materials.',
-      image: 'https://picsum.photos/id/116/600/800',
+      image: '/portfolio_douglasville.png',
     },
     {
       title: 'Ironclad Roof Works',
       location: 'Villa Rica, GA',
-      image: 'https://picsum.photos/id/117/600/800',
+      image: '/portfolio_villarica.png',
     },
     {
       title: 'Blue Horizon Estates',
       location: 'Newnan, GA',
-      image: 'https://picsum.photos/id/118/600/800',
+      image: '/portfolio_newnan.png',
     },
   ];
 
@@ -56,17 +56,17 @@ const Portfolio: React.FC = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-90"></div>
-              
+
               <div className="absolute bottom-0 left-0 w-full p-8 text-white transform transition-transform duration-300 group-hover:-translate-y-4">
                 <span className="text-red-400 font-medium text-sm block mb-2">{project.location}</span>
                 <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                
+
                 {project.description && (
                   <p className="text-slate-300 text-sm mb-4 line-clamp-2">
                     {project.description}
                   </p>
                 )}
-                
+
                 <button className="flex items-center gap-2 text-white font-bold text-sm bg-red-600/80 hover:bg-red-600 px-4 py-2 rounded transition-all">
                   READ MORE
                   <ExternalLink size={14} />
