@@ -5,7 +5,7 @@ const AboutPage: React.FC = () => {
     return (
         <main className="pt-24">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-slate-50 to-slate-100 py-20">
+            <section className="bg-gradient-to-br from-slate-50 to-slate-100 py-36">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6">
