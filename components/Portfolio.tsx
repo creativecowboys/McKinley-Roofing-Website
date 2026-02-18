@@ -23,7 +23,7 @@ const Portfolio: React.FC = () => {
     {
       title: 'Blue Horizon Estates',
       location: 'Newnan, GA',
-      image: '/portfolio_newnan.png',
+      image: '/portfolio_newnan_project.png',
     },
   ];
 
