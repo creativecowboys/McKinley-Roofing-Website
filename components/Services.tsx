@@ -7,19 +7,6 @@ const Services: React.FC = () => {
 
   const services = [
     {
-      title: 'Roof Repair Services',
-      icon: <Wrench size={24} />,
-      description: 'Comprehensive repair services designed to address damage quickly and effectively, preventing minor issues from becoming major problems.',
-      image: '/service_roof_repair.png',
-      bullets: [
-        'Thorough inspection to assess the full extent of damage',
-        'Professional leak detection and repair',
-        'Shingle replacement for damaged or missing shingles',
-        'Flashing repair around chimneys, vents, and valleys',
-        'Emergency roof repair services for urgent situations'
-      ],
-    },
-    {
       title: 'Roof Replacement Services',
       icon: <RefreshCw size={24} />,
       description: 'Complete replacement services for both residential and commercial properties when repairs are no longer cost-effective or when a roof has reached the end of its useful life.',
@@ -43,6 +30,19 @@ const Services: React.FC = () => {
         'Assistance with claims process and paperwork',
         'Expert testimony on damage extent when needed',
         'Complete restoration to pre-damage condition or better'
+      ],
+    },
+    {
+      title: 'Roof Repair Services',
+      icon: <Wrench size={24} />,
+      description: 'Comprehensive repair services designed to address damage quickly and effectively, preventing minor issues from becoming major problems.',
+      image: '/service_roof_repair.png',
+      bullets: [
+        'Thorough inspection to assess the full extent of damage',
+        'Professional leak detection and repair',
+        'Shingle replacement for damaged or missing shingles',
+        'Flashing repair around chimneys, vents, and valleys',
+        'Emergency roof repair services for urgent situations'
       ],
     },
     {
