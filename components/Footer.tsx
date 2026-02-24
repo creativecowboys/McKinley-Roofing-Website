@@ -104,13 +104,9 @@ const Footer: React.FC = () => {
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                 Working Hours
               </h5>
-              <div className="flex justify-between text-sm text-slate-400 mb-2">
-                <span>Mon-Fri</span>
-                <span className="text-white">9:00 AM - 6:00 PM</span>
-              </div>
               <div className="flex justify-between text-sm text-slate-400">
-                <span>Sat-Sun</span>
-                <span className="text-white italic">Emergency Calls Only</span>
+                <span>7 Days a Week</span>
+                <span className="text-white">7:00 AM - 9:00 PM</span>
               </div>
             </div>
           </div>

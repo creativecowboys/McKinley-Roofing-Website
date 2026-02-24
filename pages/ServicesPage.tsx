@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrench, Home, CloudRain, Calendar, Droplets, PaintBucket, Shield, CheckCircle, Phone } from 'lucide-react';
+import { Wrench, Home, CloudRain, Calendar, Droplets, PaintBucket, Layers, Shield, CheckCircle, Phone } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
     const services = [
@@ -83,6 +83,20 @@ const ServicesPage: React.FC = () => {
                 'Professional application techniques for flawless results'
             ],
             color: 'orange'
+        },
+        {
+            icon: Layers,
+            title: 'Siding Installation & Repair',
+            description: 'Professional siding services that protect your home from the elements while dramatically boosting curb appeal and long-term property value.',
+            features: [
+                'Expert installation of vinyl, fiber cement, and wood siding',
+                'Siding repair and replacement for damaged or aging sections',
+                'Complete removal and disposal of existing siding',
+                'Weatherproofing and insulation upgrades during installation',
+                'Color and style consultation to complement your home\'s exterior',
+                'Seamless integration with roofing and gutter systems'
+            ],
+            color: 'teal'
         }
     ];
 
@@ -116,6 +130,11 @@ const ServicesPage: React.FC = () => {
             bg: 'bg-orange-100',
             text: 'text-orange-600',
             hover: 'hover:border-orange-600'
+        },
+        teal: {
+            bg: 'bg-teal-100',
+            text: 'text-teal-600',
+            hover: 'hover:border-teal-600'
         }
     };
 
@@ -254,7 +273,7 @@ const ServicesPage: React.FC = () => {
                             <Wrench className="w-12 h-12 text-red-600 mb-4" />
                             <h3 className="text-xl font-bold text-slate-900 mb-3">Comprehensive Services</h3>
                             <p className="text-slate-600">
-                                One-stop solution for roofing, gutters, painting, and maintenance—consistency across all projects.
+                                One-stop solution for roofing, siding, gutters, painting, and maintenance—consistency across all projects.
                             </p>
                         </div>
                     </div>

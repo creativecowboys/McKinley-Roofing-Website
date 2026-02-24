@@ -13,6 +13,7 @@ import {
     Calendar,
     Droplets,
     PaintBucket,
+    Layers,
     ArrowRight,
     Award,
     Users,
@@ -92,6 +93,11 @@ const LocationPage: React.FC = () => {
             icon: PaintBucket,
             title: 'Interior & Exterior Painting',
             description: `Full-service painting for ${location.city} properties. Interior and exterior applications with complete surface prep and custom color consultation.`,
+        },
+        {
+            icon: Layers,
+            title: 'Siding Installation & Repair',
+            description: `Professional siding services for ${location.city} homeowners. We install and repair vinyl, fiber cement, and wood siding — boosting curb appeal and protecting your home's exterior.`,
         },
     ];
 

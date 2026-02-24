@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Wrench, RefreshCw, CloudRain, Shield, Droplets, ArrowRight } from 'lucide-react';
+import { Wrench, RefreshCw, CloudRain, Shield, Droplets, Layers, ArrowRight } from 'lucide-react';
 
 const Services: React.FC = () => {
   const [activeService, setActiveService] = useState(0);
@@ -69,6 +69,19 @@ const Services: React.FC = () => {
         'Professional installation by experienced technicians',
         'Downspout installation and strategic water redirection',
         'Maintenance tips to keep systems functioning optimally'
+      ],
+    },
+    {
+      title: 'Siding Installation & Repair',
+      icon: <Layers size={24} />,
+      description: 'Professional siding services that protect your home from the elements while dramatically boosting curb appeal and property value.',
+      image: '/service_gutter_installation.png',
+      bullets: [
+        'Expert installation of vinyl, fiber cement, and wood siding',
+        'Siding repair and replacement for damaged or aging sections',
+        'Complete removal and disposal of existing siding',
+        'Weatherproofing and insulation upgrades during installation',
+        'Color and style consultation to complement your home\'s exterior'
       ],
     },
   ];
