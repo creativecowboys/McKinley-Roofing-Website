@@ -110,21 +110,21 @@ const LocationPage: React.FC = () => {
 
     const testimonials = [
         {
-            name: 'James R.',
+            name: 'Tee Davis',
             location: `${location.city}, GA`,
-            text: `McKinley Roofing did an outstanding job on our home. The crew was professional, cleaned up completely, and the roof looks incredible. Highly recommend to anyone in ${location.city}.`,
+            text: `McKinley Roofing did an awesome job on replacing our roof, gutters and downspouts. Everything looks wonderful and best of all we are leak free now. The guys are very friendly with great customer service. We were even greeted by the owner and he made sure all of our questions were answered. They were very thorough on cleaning up after they were done. We would definitely recommend using McKinley Roofing.`,
             rating: 5,
         },
         {
-            name: 'Sandra M.',
+            name: 'Latasha Burns',
             location: `${location.county}`,
-            text: 'After the storm, they worked directly with our insurance company and made the whole process stress-free. Quality work and honest pricing — exactly what you want in a roofing contractor.',
+            text: 'McKinley Roofing & Restoration did an awesome job on our roof. From day one, Tyler Bowman was great. He came out and inspected our roof and worked with our insurance company who also came out and saw damage. Tyler kept us informed throughout the process and the crew was very professional and cleaned up everything.',
             rating: 5,
         },
         {
-            name: 'David K.',
+            name: 'Ben Leak',
             location: `${location.city}, GA`,
-            text: "From the free inspection to the final walkthrough, McKinley Roofing was communicative and thorough. They truly live by their 'Quality over Quantity' motto.",
+            text: "I've had Jacob & McKinley Roofing and Restoration do work on several of my commercial properties, my own home, and my seventy-six year old mother's home as well. I have always been exceptionally satisfied with the professionalism and high-quality work from Jacob and the team.",
             rating: 5,
         },
     ];
