@@ -61,6 +61,9 @@ const VideoCard: React.FC<VideoCardProps> = ({ project }) => {
         preload="metadata"
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
+
+      {/* Dark gradient — visible by default, fades out on hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
     </div>
   );
 };
