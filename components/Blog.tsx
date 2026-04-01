@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 
 const Blog: React.FC = () => {
@@ -7,9 +8,10 @@ const Blog: React.FC = () => {
     {
       title: 'Protect Your Home with Expert Roofing Services',
       excerpt: 'Your roof is the first line of defense against the elements. Our expert services...',
-      author: 'Susie Connell',
-      date: '23 August 2025',
-      image: '/blog_expert_roofing_services.png',
+      author: 'McKinley Roofing',
+      date: 'August 23, 2025',
+      image: '/blog_hero_roofing.png',
+      link: '/blog/protect-your-home-with-expert-roofing-services',
     },
     {
       title: 'Protect Your Investment with Our Roofing Expertise',
@@ -65,10 +67,17 @@ const Blog: React.FC = () => {
                 <p className="text-slate-600 mb-8 flex-grow">
                   {post.excerpt}
                 </p>
-                <button className="flex items-center gap-2 font-bold text-red-600 group/btn">
-                  READ MORE
-                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                </button>
+                {post.link ? (
+                  <Link to={post.link} className="flex items-center gap-2 font-bold text-red-600 group/btn">
+                    READ MORE
+                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </Link>
+                ) : (
+                  <button className="flex items-center gap-2 font-bold text-red-600 group/btn">
+                    READ MORE
+                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                  </button>
+                )}
               </div>
             </article>
           ))}
