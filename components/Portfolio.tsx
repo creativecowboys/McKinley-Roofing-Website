@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const projects = [
@@ -26,49 +26,49 @@ const projects = [
   },
 ];
 
-interface VideoCardProps {
-  project: typeof projects[0];
-}
-
-const VideoCard: React.FC<VideoCardProps> = ({ project }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
-
-  return (
-    <div
-      className="group relative overflow-hidden rounded-2xl h-[450px] cursor-pointer"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <video
-        ref={videoRef}
-        src={project.video}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-
-      {/* Dark gradient — visible by default, fades out on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-500 group-hover:opacity-0" />
-    </div>
-  );
-};
-
 const Portfolio: React.FC = () => {
+  // -1 means no arrow-selected video; hover still works independently
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  const stopAll = useCallback((exceptIndex?: number) => {
+    videoRefs.current.forEach((v, i) => {
+      if (v && i !== exceptIndex) {
+        v.pause();
+        v.currentTime = 0;
+      }
+    });
+  }, []);
+
+  const activateVideo = useCallback((index: number) => {
+    stopAll(index);
+    setActiveIndex(index);
+    const v = videoRefs.current[index];
+    if (v) v.play();
+  }, [stopAll]);
+
+  const handleNext = () => {
+    const next = (activeIndex + 1) % projects.length;
+    activateVideo(next);
+  };
+
+  const handlePrev = () => {
+    const prev = (activeIndex - 1 + projects.length) % projects.length;
+    activateVideo(prev);
+  };
+
+  // Hover handlers — only apply when no arrow-controlled video is active
+  const handleMouseEnter = (idx: number) => {
+    if (activeIndex !== -1) return; // arrows are in control
+    videoRefs.current[idx]?.play();
+  };
+
+  const handleMouseLeave = (idx: number) => {
+    if (activeIndex !== -1) return;
+    const v = videoRefs.current[idx];
+    if (v) { v.pause(); v.currentTime = 0; }
+  };
+
   return (
     <section id="portfolio" className="py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -80,19 +80,55 @@ const Portfolio: React.FC = () => {
             </h2>
           </div>
           <div className="flex gap-3">
-            <button className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all">
+            <button
+              onClick={handlePrev}
+              className="w-14 h-14 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all"
+            >
               <ChevronLeft size={24} />
             </button>
-            <button className="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-all shadow-lg shadow-red-600/20">
+            <button
+              onClick={handleNext}
+              className="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 transition-all shadow-lg shadow-red-600/20"
+            >
               <ChevronRight size={24} />
             </button>
           </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {projects.map((project, idx) => (
-            <VideoCard key={idx} project={project} />
-          ))}
+          {projects.map((project, idx) => {
+            const isActive = activeIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-2xl h-[450px] cursor-pointer"
+                onMouseEnter={() => handleMouseEnter(idx)}
+                onMouseLeave={() => handleMouseLeave(idx)}
+              >
+                <video
+                  ref={(el) => { videoRefs.current[idx] = el; }}
+                  src={project.video}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-105' : 'group-hover:scale-105'}`}
+                />
+
+                {/* Gradient — hidden when arrow-active, fades on hover otherwise */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-500 ${
+                    isActive ? 'opacity-0' : 'group-hover:opacity-0'
+                  }`}
+                />
+
+                {/* Active indicator dot */}
+                {isActive && (
+                  <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-red-500 shadow-lg shadow-red-500/50 animate-pulse" />
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
