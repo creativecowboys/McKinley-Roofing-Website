@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           <div className="hidden lg:flex items-center gap-4">
             {/* Google Reviews Badge */}
             <a
-              href="https://www.google.com/search?q=McKinley+Roofing+Douglasville+GA"
+              href="https://www.google.com/maps/place/McKinley+Roofing+and+Restoration/@33.6633281,-84.7910462,17z/data=!4m8!3m7!1s0x6e2df0c5254f6d55:0x331003fbf6778710!8m2!3d33.6633281!4d-84.7910462!9m1!1b1!16s%2Fg%2F11s0r5rgh1"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 bg-white border border-slate-200 px-4 py-2.5 rounded-xl hover:bg-slate-50 transition-all shadow-sm cursor-pointer"
