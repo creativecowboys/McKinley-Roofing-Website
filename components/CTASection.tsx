@@ -1,7 +1,8 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const CTASection: React.FC = () => {
+const CTASection: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
   return (
     <section className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
@@ -26,17 +27,17 @@ const CTASection: React.FC = () => {
             </p>
             <div className="flex flex-wrap gap-4">
               <button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={onOpenModal}
                 className="bg-white text-red-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-slate-100 transition-all shadow-lg cursor-pointer"
               >
                 START YOUR JOURNEY
               </button>
-              <button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="bg-transparent text-white border-2 border-white/30 px-8 py-4 rounded-md font-bold text-lg hover:bg-white/10 transition-all cursor-pointer"
+              <Link
+                to="/contact"
+                className="bg-transparent text-white border-2 border-white/30 px-8 py-4 rounded-md font-bold text-lg hover:bg-white/10 transition-all cursor-pointer inline-block"
               >
                 CONTACT US
-              </button>
+              </Link>
             </div>
           </div>
         </div>

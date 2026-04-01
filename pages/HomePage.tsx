@@ -22,7 +22,7 @@ const HomePage: React.FC<HomePageProps> = ({ onOpenModal }) => {
             <Services onOpenModal={onOpenModal} />
             <Testimonials />
             <Portfolio />
-            <CTASection />
+            <CTASection onOpenModal={onOpenModal} />
             <ServiceAreaMap />
             <Blog />
         </main>
