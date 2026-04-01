@@ -2,7 +2,11 @@
 import React from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onOpenModal: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
   return (
     <section className="relative px-4 lg:px-8 pt-40 pb-12 overflow-hidden bg-white">
       <div className="container mx-auto">
@@ -61,7 +65,7 @@ const Hero: React.FC = () => {
 
                 {/* Button */}
                 <button
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={onOpenModal}
                   className="bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-sm lg:text-base hover:bg-red-700 transition-all shadow-xl shadow-red-600/30 flex items-center justify-center gap-2 group w-full lg:w-auto uppercase tracking-wider cursor-pointer"
                 >
                   GET FREE ROOF INSPECTION

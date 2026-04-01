@@ -9,10 +9,14 @@ import CTASection from '../components/CTASection';
 import Blog from '../components/Blog';
 import ServiceAreaMap from '../components/ServiceAreaMap';
 
-const HomePage: React.FC = () => {
+interface HomePageProps {
+    onOpenModal: () => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ onOpenModal }) => {
     return (
         <main>
-            <Hero />
+            <Hero onOpenModal={onOpenModal} />
             <Certifications />
             <About />
             <Services />

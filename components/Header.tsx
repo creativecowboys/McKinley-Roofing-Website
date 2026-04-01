@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, MapPin, FileText } from 'lucide-react';
-import InspectionModal from './InspectionModal';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenModal: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -28,9 +30,6 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {/* Free Inspection Modal */}
-      <InspectionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
       {/* Top Info Bar - Red Background */}
       <div className="fixed w-full z-50 bg-red-600 text-white py-2">
         <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between text-sm">
@@ -43,7 +42,7 @@ const Header: React.FC = () => {
           </div>
           {/* CTA — opens modal */}
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={onOpenModal}
             className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold cursor-pointer bg-transparent border-none"
           >
             <span>Get A Free Roof Inspection Today!</span>
@@ -81,7 +80,7 @@ const Header: React.FC = () => {
           <div className="hidden lg:flex items-center gap-4">
             {/* Free Quote Button — opens modal */}
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={onOpenModal}
               className="flex items-center gap-2 bg-white text-red-600 px-6 py-3.5 rounded-xl font-extrabold text-sm tracking-widest hover:bg-red-50 transition-all border-2 border-red-600 cursor-pointer"
             >
               <FileText size={18} />
@@ -123,7 +122,7 @@ const Header: React.FC = () => {
               ))}
               {/* Mobile Free Inspection CTA */}
               <button
-                onClick={() => { setIsMenuOpen(false); setIsModalOpen(true); }}
+                onClick={() => { setIsMenuOpen(false); onOpenModal(); }}
                 className="flex items-center justify-center gap-2 bg-white text-red-600 border-2 border-red-600 px-5 py-4 rounded-2xl font-black text-base shadow cursor-pointer"
               >
                 <FileText size={20} />
