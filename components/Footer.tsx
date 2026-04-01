@@ -23,9 +23,9 @@ const Footer: React.FC = () => {
               We're committed to delivering top-quality roofing service that protects your home & enhances value. With years of expertise focus customer.
             </p>
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
+              <a href="https://www.facebook.com/mckinleyroofing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
                 <Facebook size={20} />
-              </div>
+              </a>
               <div className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
                 <Instagram size={20} />
               </div>
