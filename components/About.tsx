@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 
 const About: React.FC = () => {
@@ -36,9 +37,9 @@ const About: React.FC = () => {
             <p className="text-slate-500 text-lg leading-relaxed mb-10">
               From repairs to full roof replacements, we treat each home as our own, providing personalized solutions tailored to meet the unique needs of our clients.
             </p>
-            <button className="bg-red-600 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/30">
+            <Link to="/about" className="bg-red-600 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/30 inline-block">
               LEARN MORE
-            </button>
+            </Link>
           </div>
 
           {/* Column 2: Featured Image */}
