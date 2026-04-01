@@ -19,7 +19,7 @@ const HomePage: React.FC<HomePageProps> = ({ onOpenModal }) => {
             <Hero onOpenModal={onOpenModal} />
             <Certifications />
             <About />
-            <Services />
+            <Services onOpenModal={onOpenModal} />
             <Testimonials />
             <Portfolio />
             <CTASection />

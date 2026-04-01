@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Wrench, RefreshCw, CloudRain, Shield, Droplets, Layers, ArrowRight } from 'lucide-react';
 
-const Services: React.FC = () => {
+const Services: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
   const [activeService, setActiveService] = useState(0);
 
   const services = [
@@ -143,8 +143,11 @@ const Services: React.FC = () => {
                     ))}
                   </ul>
                 )}
-                <button className="bg-red-600 text-white px-8 py-4 rounded-md font-bold hover:bg-red-700 transition-all flex items-center gap-2 cursor-pointer">
-                  LEARN MORE
+                <button
+                  onClick={onOpenModal}
+                  className="bg-red-600 text-white px-8 py-4 rounded-md font-bold hover:bg-red-700 transition-all flex items-center gap-2 cursor-pointer"
+                >
+                  GET FREE INSPECTION
                   <ArrowRight size={18} />
                 </button>
               </div>
