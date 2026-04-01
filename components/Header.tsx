@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Phone, Menu, X, MapPin, FileText } from 'lucide-react';
+import InspectionModal from './InspectionModal';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,6 +28,9 @@ const Header: React.FC = () => {
 
   return (
     <>
+      {/* Free Inspection Modal */}
+      <InspectionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
       {/* Top Info Bar - Red Background */}
       <div className="fixed w-full z-50 bg-red-600 text-white py-2">
         <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between text-sm">
@@ -36,10 +41,13 @@ const Header: React.FC = () => {
               <span className="hidden sm:inline">Douglasville, Georgia</span>
             </a>
           </div>
-          {/* CTA */}
-          <Link to="/contact" className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold">
+          {/* CTA — opens modal */}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold cursor-pointer bg-transparent border-none"
+          >
             <span>Get A Free Roof Inspection Today!</span>
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -71,14 +79,14 @@ const Header: React.FC = () => {
 
           {/* Contact CTA Buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Free Quote Button */}
-            <Link
-              to="/contact"
+            {/* Free Quote Button — opens modal */}
+            <button
+              onClick={() => setIsModalOpen(true)}
               className="flex items-center gap-2 bg-white text-red-600 px-6 py-3.5 rounded-xl font-extrabold text-sm tracking-widest hover:bg-red-50 transition-all border-2 border-red-600 cursor-pointer"
             >
               <FileText size={18} />
               FREE QUOTE
-            </Link>
+            </button>
             {/* Phone Button */}
             <a
               href="tel:+16789834455"
@@ -113,6 +121,14 @@ const Header: React.FC = () => {
                   {link.name}
                 </Link>
               ))}
+              {/* Mobile Free Inspection CTA */}
+              <button
+                onClick={() => { setIsMenuOpen(false); setIsModalOpen(true); }}
+                className="flex items-center justify-center gap-2 bg-white text-red-600 border-2 border-red-600 px-5 py-4 rounded-2xl font-black text-base shadow cursor-pointer"
+              >
+                <FileText size={20} />
+                FREE INSPECTION
+              </button>
               <a
                 href="tel:+16789834455"
                 className="flex items-center justify-center gap-3 bg-red-600 text-white px-5 py-5 rounded-2xl font-black text-lg shadow-xl cursor-pointer"
@@ -129,4 +145,3 @@ const Header: React.FC = () => {
 };
 
 export default Header;
-
