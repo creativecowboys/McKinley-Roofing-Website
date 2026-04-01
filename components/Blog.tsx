@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 const Blog: React.FC = () => {
   const posts = [
@@ -51,15 +51,9 @@ const Blog: React.FC = () => {
                 />
               </div>
               <div className="p-8 flex flex-col flex-grow">
-                <div className="flex items-center gap-6 mb-4 text-sm font-semibold text-slate-500">
-                  <div className="flex items-center gap-2">
-                    <Calendar size={16} className="text-red-600" />
-                    {post.date}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <User size={16} className="text-red-600" />
-                    {post.author}
-                  </div>
+                <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-slate-500">
+                  <Calendar size={16} className="text-red-600" />
+                  {post.date}
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-red-600 transition-colors">
                   {post.title}

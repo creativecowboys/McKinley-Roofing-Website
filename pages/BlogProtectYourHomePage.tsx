@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, User, ArrowLeft, Phone, MapPin } from 'lucide-react';
+import { Calendar, ArrowLeft, Phone, MapPin } from 'lucide-react';
 
 const BlogProtectYourHomePage: React.FC = () => {
   return (
@@ -23,7 +23,6 @@ const BlogProtectYourHomePage: React.FC = () => {
             </h1>
             <div className="flex flex-wrap items-center gap-6 mt-4 text-slate-300 text-sm">
               <span className="flex items-center gap-2"><Calendar size={14} /> August 23, 2025</span>
-              <span className="flex items-center gap-2"><User size={14} /> McKinley Roofing & Restoration</span>
               <span className="flex items-center gap-2"><MapPin size={14} /> Douglasville, GA</span>
             </div>
           </div>
