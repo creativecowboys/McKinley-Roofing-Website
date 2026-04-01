@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Youtube, Twitter, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Facebook, Mail, MapPin, Phone, Send } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -26,15 +26,7 @@ const Footer: React.FC = () => {
               <a href="https://www.facebook.com/mckinleyroofing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
                 <Facebook size={20} />
               </a>
-              <div className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
-                <Instagram size={20} />
-              </div>
-              <div className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
-                <Youtube size={20} />
-              </div>
-              <div className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
-                <Twitter size={20} />
-              </div>
+
             </div>
           </div>
 
