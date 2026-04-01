@@ -23,7 +23,11 @@ const HomePage: React.FC<HomePageProps> = ({ onOpenModal }) => {
             <Testimonials />
             <Portfolio />
             <CTASection onOpenModal={onOpenModal} />
-            <ServiceAreaMap />
+            <section className="py-10 bg-white">
+              <div className="mx-auto px-4" style={{ maxWidth: 'min(1300px, 75vw)' }}>
+                <ServiceAreaMap />
+              </div>
+            </section>
             <Blog />
         </main>
     );
