@@ -109,7 +109,6 @@ const Portfolio: React.FC = () => {
                   ref={(el) => { videoRefs.current[idx] = el; }}
                   src={project.video}
                   muted
-                  loop
                   playsInline
                   preload="metadata"
                   className={`w-full h-full object-cover transition-transform duration-700 ${isActive ? 'scale-105' : 'group-hover:scale-105'}`}
