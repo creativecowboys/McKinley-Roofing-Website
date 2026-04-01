@@ -75,7 +75,7 @@ const Services: React.FC = () => {
       title: 'Siding Installation & Repair',
       icon: <Layers size={24} />,
       description: 'Professional siding services that protect your home from the elements while dramatically boosting curb appeal and property value.',
-      image: '/service_gutter_installation.png',
+      image: '/service_siding_installation.png',
       bullets: [
         'Expert installation of vinyl, fiber cement, and wood siding',
         'Siding repair and replacement for damaged or aging sections',
