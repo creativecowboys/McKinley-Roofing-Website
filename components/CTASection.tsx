@@ -6,13 +6,13 @@ const CTASection: React.FC = () => {
     <section className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="bg-red-600 rounded-[2rem] overflow-hidden shadow-2xl relative">
-          <div className="absolute top-0 right-0 w-1/3 h-full hidden lg:block">
+          <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block">
             <img
               src="/portfolio_carrollton.png"
               alt="Beautiful West Georgia home with premium McKinley roofing installation"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-600/40 to-transparent"></div>
           </div>
 
           <div className="p-10 lg:p-20 relative z-10 lg:max-w-3xl">
