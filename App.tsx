@@ -11,6 +11,8 @@ import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
 import ServiceAreasPage from './pages/ServiceAreasPage';
 import LocationPage from './pages/LocationPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +31,8 @@ const App: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/locations" element={<ServiceAreasPage />} />
             <Route path="/locations/:slug" element={<LocationPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
           </Routes>
           <Footer />
         </div>

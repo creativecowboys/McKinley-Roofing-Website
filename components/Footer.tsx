@@ -110,8 +110,8 @@ const Footer: React.FC = () => {
             Copyright © {currentYear} McKinley Roofing. All Rights Reserved
           </p>
           <div className="flex items-center gap-8 text-sm text-slate-500">
-            <a href="#" className="hover:text-red-600 transition-colors">Terms & Conditions</a>
-            <a href="#" className="hover:text-red-600 transition-colors">Privacy Policy</a>
+            <Link to="/terms" className="hover:text-red-600 transition-colors">Terms & Conditions</Link>
+            <Link to="/privacy" className="hover:text-red-600 transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
