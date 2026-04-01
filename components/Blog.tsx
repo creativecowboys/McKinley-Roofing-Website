@@ -15,10 +15,10 @@ const Blog: React.FC = () => {
     },
     {
       title: 'Protect Your Investment with Our Roofing Expertise',
-      excerpt: 'We understand the importance of a keeping your home safe and secure...',
-      author: 'Wilbur Huels',
-      date: '24 August 2025',
-      image: '/blog_roofing_investment.png',
+      excerpt: 'We understand the importance of keeping your home safe and secure. Learn how expert roofing protects your biggest investment.',
+      date: 'August 24, 2025',
+      image: '/blog_investment_hero.png',
+      link: '/blog/protect-your-investment-with-our-roofing-expertise',
     },
     {
       title: 'The Benefits of Upgrading to an Energy-Efficient Roof',
