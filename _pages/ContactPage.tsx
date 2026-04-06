@@ -1,7 +1,13 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
+import dynamic from 'next/dynamic';
 import ContactForm from '../components/ContactForm';
-import ServiceAreaMap from '../components/ServiceAreaMap';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+
+// Leaflet accesses window at module load — must be client-only
+const ServiceAreaMap = dynamic(() => import('../components/ServiceAreaMap'), { ssr: false });
 
 const ContactPage: React.FC = () => {
     return (

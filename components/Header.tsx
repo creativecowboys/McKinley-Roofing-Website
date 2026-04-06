@@ -1,16 +1,16 @@
+'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Phone, Menu, X, MapPin, FileText } from 'lucide-react';
+import { useModal } from '@/contexts/ModalContext';
 
-interface HeaderProps {
-  onOpenModal: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
+const Header: React.FC = () => {
+  const { openModal } = useModal();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
           </div>
           {/* CTA — opens modal */}
           <button
-            onClick={onOpenModal}
+            onClick={openModal}
             className="flex items-center gap-2 hover:text-red-100 transition-colors font-semibold cursor-pointer bg-transparent border-none"
           >
             <span>Get A Free Roof Inspection Today!</span>
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
       <header className={`fixed w-full z-50 transition-all duration-300 shadow ${isScrolled ? 'bg-white shadow-md py-4' : 'bg-white py-6'}`} style={{ top: '36px' }}>
         <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between">
           {/* Logo - McKinley Roofing */}
-          <Link to="/" className="flex items-center gap-3 group cursor-pointer">
+          <Link href="/" className="flex items-center gap-3 group cursor-pointer">
             <img
               src="/McKinley_Logo_Dark.png"
               alt="McKinley Roofing"
@@ -67,9 +67,8 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.href}
-                className={`text-slate-900 text-sm font-bold uppercase tracking-wider hover:text-red-600 transition-colors ${location.pathname === link.href ? 'text-red-600' : ''
-                  }`}
+                href={link.href}
+                className={`text-slate-900 text-sm font-bold uppercase tracking-wider hover:text-red-600 transition-colors ${pathname === link.href ? 'text-red-600' : ''}`}
               >
                 {link.name}
               </Link>
@@ -123,9 +122,8 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  to={link.href}
-                  className={`text-xl font-bold text-slate-900 border-b border-slate-50 pb-4 hover:text-red-600 transition-colors uppercase tracking-widest ${location.pathname === link.href ? 'text-red-600' : ''
-                    }`}
+                  href={link.href}
+                  className={`text-xl font-bold text-slate-900 border-b border-slate-50 pb-4 hover:text-red-600 transition-colors uppercase tracking-widest ${pathname === link.href ? 'text-red-600' : ''}`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
@@ -133,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({ onOpenModal }) => {
               ))}
               {/* Mobile Free Inspection CTA */}
               <button
-                onClick={() => { setIsMenuOpen(false); onOpenModal(); }}
+                onClick={() => { setIsMenuOpen(false); openModal(); }}
                 className="flex items-center justify-center gap-2 bg-white text-red-600 border-2 border-red-600 px-5 py-4 rounded-2xl font-black text-base shadow cursor-pointer"
               >
                 <FileText size={20} />

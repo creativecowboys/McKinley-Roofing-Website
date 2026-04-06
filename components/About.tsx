@@ -1,6 +1,7 @@
+'use client';
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 
 const About: React.FC = () => {
@@ -37,7 +38,7 @@ const About: React.FC = () => {
             <p className="text-slate-500 text-lg leading-relaxed mb-10">
               From repairs to full roof replacements, we treat each home as our own, providing personalized solutions tailored to meet the unique needs of our clients.
             </p>
-            <Link to="/about" className="bg-red-600 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/30 inline-block">
+            <Link href="/about" className="bg-red-600 text-white px-10 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/30 inline-block">
               LEARN MORE
             </Link>
           </div>
@@ -122,15 +123,6 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,8 +1,11 @@
+'use client';
 
 import React, { useState } from 'react';
 import { Wrench, RefreshCw, CloudRain, Shield, Droplets, Layers, ArrowRight } from 'lucide-react';
+import { useModal } from '@/contexts/ModalContext';
 
-const Services: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
+const Services: React.FC = () => {
+  const { openModal } = useModal();
   const [activeService, setActiveService] = useState(0);
 
   const services = [
@@ -81,7 +84,7 @@ const Services: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
         'Siding repair and replacement for damaged or aging sections',
         'Complete removal and disposal of existing siding',
         'Weatherproofing and insulation upgrades during installation',
-        'Color and style consultation to complement your home\'s exterior'
+        "Color and style consultation to complement your home's exterior"
       ],
     },
   ];
@@ -144,7 +147,7 @@ const Services: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
                   </ul>
                 )}
                 <button
-                  onClick={onOpenModal}
+                  onClick={openModal}
                   className="bg-red-600 text-white px-8 py-4 rounded-md font-bold hover:bg-red-700 transition-all flex items-center gap-2 cursor-pointer"
                 >
                   GET FREE INSPECTION

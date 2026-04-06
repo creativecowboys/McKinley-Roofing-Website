@@ -1,3 +1,4 @@
+// @ts-nocheck — Legacy Vite SPA entrypoint, not used by Next.js App Router
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';

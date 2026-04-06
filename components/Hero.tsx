@@ -1,12 +1,13 @@
+'use client';
 
 import React from 'react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { useModal } from '@/contexts/ModalContext';
 
-interface HeroProps {
-  onOpenModal: () => void;
-}
+interface HeroProps {}
 
-const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
+const Hero: React.FC<HeroProps> = () => {
+  const { openModal } = useModal();
+
   return (
     <section className="relative px-4 lg:px-8 pt-40 pb-12 overflow-hidden bg-white">
       <div className="container mx-auto">
@@ -35,10 +36,10 @@ const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
           {/* Navigation Arrows (Matching the Design Screenshot) */}
           <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
             <button className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-all shadow-lg hover:scale-110 active:scale-95 cursor-pointer">
-              <ChevronRight size={28} />
+              ›
             </button>
             <button className="w-12 h-12 bg-white text-slate-900 rounded-full flex items-center justify-center hover:bg-slate-100 transition-all shadow-lg hover:scale-110 active:scale-95 cursor-pointer">
-              <ChevronLeft size={28} />
+              ‹
             </button>
           </div>
 
@@ -65,7 +66,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
 
                 {/* Button */}
                 <button
-                  onClick={onOpenModal}
+                  onClick={openModal}
                   className="bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-sm lg:text-base hover:bg-red-700 transition-all shadow-xl shadow-red-600/30 flex items-center justify-center gap-2 group w-full lg:w-auto uppercase tracking-wider cursor-pointer"
                 >
                   GET FREE ROOF INSPECTION
@@ -75,22 +76,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenModal }) => {
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(60px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-slideUp {
-          animation: slideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-      `}</style>
     </section>
   );
 };

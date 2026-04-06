@@ -1,3 +1,6 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
 import { Wrench, Home, CloudRain, Calendar, Droplets, PaintBucket, Layers, Shield, CheckCircle, Phone } from 'lucide-react';
 

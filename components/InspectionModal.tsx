@@ -1,10 +1,8 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle, AlertCircle, Phone, Shield } from 'lucide-react';
-
-interface InspectionModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { useModal } from '@/contexts/ModalContext';
 
 interface FormData {
   firstName: string;
@@ -15,7 +13,8 @@ interface FormData {
   message: string;
 }
 
-const InspectionModal: React.FC<InspectionModalProps> = ({ isOpen, onClose }) => {
+const InspectionModal: React.FC = () => {
+  const { isModalOpen: isOpen, closeModal: onClose } = useModal();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',

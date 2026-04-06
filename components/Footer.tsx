@@ -1,6 +1,7 @@
+'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Facebook, Mail, MapPin, Phone, Send } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -20,13 +21,12 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-slate-400 mb-8 leading-relaxed">
-              We're committed to delivering top-quality roofing service that protects your home & enhances value. With years of expertise focus customer.
+              We're committed to delivering top-quality roofing service that protects your home &amp; enhances value. With years of expertise focus customer.
             </p>
             <div className="flex items-center gap-4 mb-6">
               <a href="https://www.facebook.com/mckinleyroofing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
                 <Facebook size={20} />
               </a>
-
             </div>
           </div>
 
@@ -34,11 +34,11 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-xl font-bold mb-8">Top Links</h4>
             <ul className="space-y-4 text-slate-400">
-              <li><Link to="/" className="hover:text-red-600 transition-colors">Home</Link></li>
-              <li><Link to="/about" className="hover:text-red-600 transition-colors">About Us</Link></li>
-              <li><Link to="/services" className="hover:text-red-600 transition-colors">Services</Link></li>
-              <li><Link to="/locations" className="hover:text-red-600 transition-colors">Service Areas</Link></li>
-              <li><Link to="/contact" className="hover:text-red-600 transition-colors">Contact Us</Link></li>
+              <li><Link href="/" className="hover:text-red-600 transition-colors">Home</Link></li>
+              <li><Link href="/about" className="hover:text-red-600 transition-colors">About Us</Link></li>
+              <li><Link href="/services" className="hover:text-red-600 transition-colors">Services</Link></li>
+              <li><Link href="/locations" className="hover:text-red-600 transition-colors">Service Areas</Link></li>
+              <li><Link href="/contact" className="hover:text-red-600 transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -110,8 +110,8 @@ const Footer: React.FC = () => {
             Copyright © {currentYear} McKinley Roofing. All Rights Reserved
           </p>
           <div className="flex items-center gap-8 text-sm text-slate-500">
-            <Link to="/terms" className="hover:text-red-600 transition-colors">Terms & Conditions</Link>
-            <Link to="/privacy" className="hover:text-red-600 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-red-600 transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/privacy" className="hover:text-red-600 transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>

@@ -1,48 +1,16 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import Link from 'next/link';
 import { MapPin, Phone, ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { locations } from '../data/locations';
-import ServiceAreaMap from '../components/ServiceAreaMap';
+import dynamic from 'next/dynamic';
+const ServiceAreaMap = dynamic(() => import('../components/ServiceAreaMap'), { ssr: false });
 
 const ServiceAreasPage: React.FC = () => {
     return (
-        <>
-            <Helmet>
-                <title>Roofing Service Areas in West Georgia | McKinley Roofing</title>
-                <meta
-                    name="description"
-                    content="McKinley Roofing serves Carrollton, Douglasville, Villa Rica, Newnan, Bremen, Dallas, and surrounding West Georgia communities. Owens Corning Preferred contractor. Free inspections."
-                />
-                <link rel="canonical" href="https://mckinleyroofing.com/locations" />
-                <meta property="og:title" content="Roofing Service Areas in West Georgia | McKinley Roofing" />
-                <meta
-                    property="og:description"
-                    content="McKinley Roofing serves Carrollton, Douglasville, Villa Rica, Newnan, Bremen, Dallas, and surrounding West Georgia communities."
-                />
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'RoofingContractor',
-                        name: 'McKinley Roofing',
-                        url: 'https://mckinleyroofing.com',
-                        telephone: '+16789834455',
-                        areaServed: locations.map((loc) => ({
-                            '@type': 'City',
-                            name: loc.city,
-                            containedInPlace: { '@type': 'State', name: 'Georgia' },
-                        })),
-                        address: {
-                            '@type': 'PostalAddress',
-                            addressLocality: 'Carrollton',
-                            addressRegion: 'GA',
-                            addressCountry: 'US',
-                        },
-                    })}
-                </script>
-            </Helmet>
-
-            <main className="pt-24">
+        <main className="pt-24">
                 {/* ── Hero ── */}
                 <section className="relative py-28 overflow-hidden">
                     {/* Real photo background */}
@@ -72,7 +40,7 @@ const ServiceAreasPage: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
-                                to="/contact"
+                                href="/contact"
                                 className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wide hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-red-600/30 cursor-pointer"
                             >
                                 Get a Free Inspection
@@ -103,7 +71,7 @@ const ServiceAreasPage: React.FC = () => {
                             {locations.map((loc) => (
                                 <Link
                                     key={loc.slug}
-                                    to={`/locations/${loc.slug}`}
+                                    href={`/locations/${loc.slug}`}
                                     className="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:border-red-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
                                 >
                                     <div className="flex items-start justify-between mb-4">
@@ -205,7 +173,7 @@ const ServiceAreasPage: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
-                                to="/contact"
+                                href="/contact"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-red-600 font-bold rounded-xl hover:bg-slate-50 transition-colors duration-200 shadow-lg cursor-pointer"
                             >
                                 Contact Us
@@ -221,8 +189,7 @@ const ServiceAreasPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
-            </main>
-        </>
+        </main>
     );
 };
 

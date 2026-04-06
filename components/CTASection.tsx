@@ -1,44 +1,55 @@
+'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import { useModal } from '@/contexts/ModalContext';
 
-const CTASection: React.FC<{ onOpenModal?: () => void }> = ({ onOpenModal }) => {
+const CTASection: React.FC = () => {
+  const { openModal } = useModal();
+
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="bg-red-600 rounded-[2rem] overflow-hidden shadow-2xl relative">
-          <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block">
-            <img
-              src="/portfolio_carrollton.png"
-              alt="Beautiful West Georgia home with premium McKinley roofing installation"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-600/40 to-transparent"></div>
-          </div>
+    <section
+      className="relative py-24 overflow-hidden text-white"
+      style={{
+        backgroundImage: 'url(/cta-house.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Dark overlay + red gradient only on the LEFT side */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(185, 28, 28, 0.88) 0%, rgba(185, 28, 28, 0.65) 40%, rgba(0,0,0,0.10) 70%, transparent 100%)',
+        }}
+      />
 
-          <div className="p-10 lg:p-20 relative z-10 lg:max-w-3xl">
-            <h2 className="text-3xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">
-              Get in Touch with Our <br />
-              <span className="text-red-100">Roofing Experts Today</span>
-            </h2>
-            <p className="text-xl text-white/90 mb-10 max-w-lg leading-relaxed">
-              Ready to protect your home with a strong, reliable roof?
-              Whether you're in need of a complete roof replacement or a quick repair, we've got you covered.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={onOpenModal}
-                className="bg-white text-red-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-slate-100 transition-all shadow-lg cursor-pointer"
-              >
-                START YOUR JOURNEY
-              </button>
-              <Link
-                to="/contact"
-                className="bg-transparent text-white border-2 border-white/30 px-8 py-4 rounded-md font-bold text-lg hover:bg-white/10 transition-all cursor-pointer inline-block"
-              >
-                CONTACT US
-              </Link>
-            </div>
+      <div className="relative container mx-auto px-4 lg:px-8">
+        <div className="max-w-xl">
+          <span className="text-red-200 font-bold uppercase tracking-widest text-sm mb-4 block">
+            READY TO GET STARTED?
+          </span>
+          <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
+            Protect Your Home with Expert Roofing
+          </h2>
+          <p className="text-red-100 text-lg mb-10 leading-relaxed">
+            Don't wait for a small issue to become a costly problem. Our team is ready to assess, repair, or replace your roof with precision and care.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={openModal}
+              className="bg-white text-red-600 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition-all shadow-xl text-sm tracking-widest uppercase cursor-pointer"
+            >
+              START YOUR JOURNEY
+            </button>
+            <Link
+              href="/contact"
+              className="border-2 border-white text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-sm tracking-widest uppercase text-center"
+            >
+              CONTACT US
+            </Link>
           </div>
         </div>
       </div>

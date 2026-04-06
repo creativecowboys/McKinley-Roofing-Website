@@ -1,6 +1,7 @@
+'use client';
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
 
 const Blog: React.FC = () => {
@@ -62,7 +63,7 @@ const Blog: React.FC = () => {
                   {post.excerpt}
                 </p>
                 {post.link ? (
-                  <Link to={post.link} className="flex items-center gap-2 font-bold text-red-600 group/btn">
+                  <Link href={post.link} className="flex items-center gap-2 font-bold text-red-600 group/btn">
                     READ MORE
                     <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                   </Link>

@@ -1,6 +1,9 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
-import { useParams, Link, Navigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
     MapPin,
     Phone,
@@ -49,12 +52,16 @@ const SIDE_PHOTOS = [
     '/MckInley Roofing Photos/McKinley_Roofing_18.jpg',
 ];
 
-const LocationPage: React.FC = () => {
-    const { slug } = useParams<{ slug: string }>();
+const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
     const location = slug ? getLocationBySlug(slug) : undefined;
 
     if (!location) {
-        return <Navigate to="/locations" replace />;
+        return (
+            <main className="pt-40 text-center">
+                <h1 className="text-2xl font-bold mb-4">Location Not Found</h1>
+                <Link href="/locations" className="text-red-600 underline">View All Service Areas</Link>
+            </main>
+        );
     }
 
     // Pick photos based on location index for variety
@@ -129,45 +136,10 @@ const LocationPage: React.FC = () => {
         },
     ];
 
-    return (
-        <>
-            <Helmet>
-                <title>{location.metaTitle}</title>
-                <meta name="description" content={location.metaDescription} />
-                <link rel="canonical" href={`https://mckinleyroofing.com/locations/${location.slug}`} />
-                <meta property="og:title" content={location.metaTitle} />
-                <meta property="og:description" content={location.metaDescription} />
-                <meta property="og:type" content="website" />
-                <meta name="geo.region" content={`US-GA`} />
-                <meta name="geo.placename" content={`${location.city}, Georgia`} />
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        '@context': 'https://schema.org',
-                        '@type': 'RoofingContractor',
-                        name: 'McKinley Roofing',
-                        description: location.metaDescription,
-                        url: `https://mckinleyroofing.com/locations/${location.slug}`,
-                        telephone: '+16789834455',
-                        areaServed: {
-                            '@type': 'City',
-                            name: location.city,
-                            containedInPlace: {
-                                '@type': 'State',
-                                name: 'Georgia',
-                            },
-                        },
-                        address: {
-                            '@type': 'PostalAddress',
-                            addressLocality: 'Carrollton',
-                            addressRegion: 'GA',
-                            addressCountry: 'US',
-                        },
-                    })}
-                </script>
-            </Helmet>
 
-            <main className="pt-24">
-                {/* ── Hero ── */}
+    return (
+        <main className="pt-24">
+            {/* ── Hero ── */}
                 <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-24 overflow-hidden">
                     {/* Decorative background accent */}
                     <div className="absolute inset-0 pointer-events-none">
@@ -178,9 +150,9 @@ const LocationPage: React.FC = () => {
                     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         {/* Breadcrumb */}
                         <nav className="flex items-center gap-2 text-sm text-slate-400 mb-8">
-                            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
                             <span>/</span>
-                            <Link to="/locations" className="hover:text-white transition-colors">Service Areas</Link>
+                            <Link href="/locations" className="hover:text-white transition-colors">Service Areas</Link>
                             <span>/</span>
                             <span className="text-white">{location.city}, {location.state}</span>
                         </nav>
@@ -213,7 +185,7 @@ const LocationPage: React.FC = () => {
 
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <Link
-                                        to="/contact"
+                                        href="/contact"
                                         className="inline-flex items-center justify-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-bold text-sm tracking-wide hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-red-600/30 cursor-pointer"
                                     >
                                         Get a Free Inspection
@@ -453,9 +425,9 @@ const LocationPage: React.FC = () => {
                             {locations
                                 .filter((loc) => loc.slug !== location.slug)
                                 .map((loc) => (
-                                    <Link
+                    <Link
                                         key={loc.slug}
-                                        to={`/locations/${loc.slug}`}
+                                        href={`/locations/${loc.slug}`}
                                         className="flex items-center gap-2 bg-slate-50 border border-slate-200 text-slate-700 px-5 py-3 rounded-full text-sm font-semibold hover:border-red-300 hover:text-red-600 hover:bg-red-50 transition-all duration-200 cursor-pointer"
                                     >
                                         <MapPin className="w-4 h-4" />
@@ -477,7 +449,7 @@ const LocationPage: React.FC = () => {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link
-                                to="/contact"
+                                href="/contact"
                                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-red-600 font-bold rounded-xl hover:bg-slate-50 transition-colors duration-200 shadow-lg cursor-pointer"
                             >
                                 Request Free Inspection
@@ -493,8 +465,7 @@ const LocationPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
-            </main>
-        </>
+        </main>
     );
 };
 

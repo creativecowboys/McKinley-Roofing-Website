@@ -1,3 +1,6 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
 import { Shield, Award, Users, TrendingUp, CheckCircle, Heart } from 'lucide-react';
 

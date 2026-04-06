@@ -1,3 +1,6 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
+'use client';
+
 import React from 'react';
 import Hero from '../components/Hero';
 import Certifications from '../components/Certifications';
@@ -7,7 +10,8 @@ import Testimonials from '../components/Testimonials';
 import Portfolio from '../components/Portfolio';
 import CTASection from '../components/CTASection';
 import Blog from '../components/Blog';
-import ServiceAreaMap from '../components/ServiceAreaMap';
+import dynamic from 'next/dynamic';
+const ServiceAreaMap = dynamic(() => import('../components/ServiceAreaMap'), { ssr: false });
 
 interface HomePageProps {
     onOpenModal: () => void;

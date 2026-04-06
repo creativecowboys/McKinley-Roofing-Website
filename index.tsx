@@ -1,3 +1,4 @@
+// @ts-nocheck — Legacy Vite file, not used by Next.js App Router
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
