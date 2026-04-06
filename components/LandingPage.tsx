@@ -266,6 +266,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
       {/* ── Intro + Trust Bar ──────────────────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+          {/* Fix #7 — Entity clarity paragraph for AI search engines */}
+          <div className="mb-12 max-w-3xl bg-white border border-slate-200 rounded-2xl px-8 py-6 shadow-sm">
+            <p className="text-slate-700 text-base leading-relaxed">
+              <strong>McKinley Roofing</strong> is a Douglasville, GA-based roofing contractor
+              serving {cityName} and all of West Georgia. As an{' '}
+              <strong>Owens Corning Preferred Contractor</strong>, we specialize in{' '}
+              <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
+              fully licensed and insured in the state of Georgia, rated{' '}
+              <strong>4.9 stars across 70+ verified Google reviews</strong>, and backed by a{' '}
+              <strong>Lifetime Workmanship Warranty</strong> on every job we complete.
+            </p>
+          </div>
+
           {/* Trust badges */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
             {[
@@ -291,6 +304,20 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">{introParagraph}</p>
             <p className="text-slate-600 text-lg leading-relaxed">{content.expandedContent(cityName)}</p>
+
+            {/* Fix #8 — Crawlable trust signals as plain text */}
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <p className="text-slate-500 text-sm leading-relaxed">
+                <strong className="text-slate-700">Why {cityName} homeowners trust McKinley Roofing:</strong>{' '}
+                McKinley Roofing holds <strong>Owens Corning Preferred Contractor</strong> status —
+                one of a select group of contractors in West Georgia to earn this designation.
+                We are fully <strong>licensed and insured in Georgia</strong>, carry both general
+                liability and workers&apos; compensation coverage, and have maintained a{' '}
+                <strong>4.9-star rating across more than 70 verified Google reviews</strong>.
+                Every project we complete in {cityName} is backed by our{' '}
+                <strong>Lifetime Workmanship Warranty</strong>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
