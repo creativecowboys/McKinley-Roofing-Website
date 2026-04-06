@@ -106,9 +106,23 @@ const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 text-sm">
-            Copyright © {currentYear} McKinley Roofing. All Rights Reserved
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6">
+            <p className="text-slate-500 text-sm">
+              Copyright © {currentYear} McKinley Roofing. All Rights Reserved
+            </p>
+            <span className="hidden sm:block text-slate-700">|</span>
+            <p className="text-slate-500 text-sm">
+              Website by{' '}
+              <a
+                href="https://www.creativecowboys.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-slate-400 hover:text-red-500 transition-colors font-medium"
+              >
+                Creative Cowboys
+              </a>
+            </p>
+          </div>
           <div className="flex items-center gap-8 text-sm text-slate-500">
             <Link href="/terms" className="hover:text-red-600 transition-colors">Terms &amp; Conditions</Link>
             <Link href="/privacy" className="hover:text-red-600 transition-colors">Privacy Policy</Link>
