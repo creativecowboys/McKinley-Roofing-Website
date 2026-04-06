@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing`,
       description: page.metaDescription,
-      url: `https://mckinleyroofing.com/${page.slug}`,
+      url: `https://mckinleyroofing.net/${page.slug}`,
     },
     alternates: {
-      canonical: `https://mckinleyroofing.com/${page.slug}`,
+      canonical: `https://mckinleyroofing.net/${page.slug}`,
     },
     keywords: [
       `${page.serviceName.toLowerCase()} ${page.cityName} GA`,

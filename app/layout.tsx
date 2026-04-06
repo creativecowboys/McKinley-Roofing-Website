@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   description:
     'Expert roofing services in Douglasville, GA. Roof repair, replacement, and storm damage restoration. Serving Douglasville and the greater West Georgia area.',
-  metadataBase: new URL('https://mckinleyroofing.com'),
+  metadataBase: new URL('https://mckinleyroofing.net'),
   openGraph: {
     siteName: 'McKinley Roofing & Restoration',
     locale: 'en_US',
