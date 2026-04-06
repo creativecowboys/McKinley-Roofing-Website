@@ -33,15 +33,7 @@ const Hero: React.FC<HeroProps> = () => {
           {/* Subtle Gradient Overlay to ensure the white text box is perfectly legible */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/30"></div>
 
-          {/* Navigation Arrows (Matching the Design Screenshot) */}
-          <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20">
-            <button className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center hover:bg-red-700 transition-all shadow-lg hover:scale-110 active:scale-95 cursor-pointer">
-              ›
-            </button>
-            <button className="w-12 h-12 bg-white text-slate-900 rounded-full flex items-center justify-center hover:bg-slate-100 transition-all shadow-lg hover:scale-110 active:scale-95 cursor-pointer">
-              ‹
-            </button>
-          </div>
+
 
           {/* Floating Content Box - Compact Version */}
           <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-auto lg:max-w-2xl z-10">
