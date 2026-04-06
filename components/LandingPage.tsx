@@ -1,14 +1,24 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useModal } from '@/contexts/ModalContext';
 import type { LandingPageConfig } from '@/lib/landing-pages';
+import type { FAQ } from '@/lib/landing-page-faqs';
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 const CheckIcon = () => (
   <svg className="w-5 h-5 text-red-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+  </svg>
+);
+
+const ChevronIcon = ({ open }: { open: boolean }) => (
+  <svg
+    className={`w-5 h-5 text-red-600 shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
   </svg>
 );
 
@@ -29,6 +39,7 @@ const PhoneIcon = () => (
 interface ServiceContent {
   tagline: string;
   introParagraph: (city: string) => string;
+  expandedContent: (city: string) => string;
   included: string[];
   whyMckinley: string[];
 }
@@ -38,6 +49,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'Built to Last — Done Right the First Time',
     introParagraph: (city) =>
       `When it's time for a full roof replacement in ${city}, GA, McKinley Roofing delivers the craftsmanship and materials your home deserves. We work with Owens Corning shingles and follow manufacturer-approved installation methods so your new roof qualifies for the strongest warranties available. Whether your current roof is showing its age or suffered serious storm damage, our West Georgia team will complete your replacement efficiently — with zero shortcuts and zero surprises.`,
+    expandedContent: (city) =>
+      `Choosing the right roofing contractor in ${city} matters more than most homeowners realize. The difference between a roof that lasts 15 years and one that lasts 30+ often comes down to installation quality — not just materials. McKinley Roofing is one of a select number of contractors in West Georgia awarded Owens Corning Preferred Contractor status, which means we're trained and certified to install their products correctly. Every replacement we complete in ${city} includes full tear-off and disposal, proper ventilation assessment, new underlayment and ice-and-water shield, and a thorough final inspection before we leave your property. We don't cut corners on the details that protect your home long-term, and we back every job with our Lifetime Workmanship Warranty so you can have confidence your investment is protected.`,
     included: [
       'Full tear-off and disposal of old roofing materials',
       'Owens Corning shingles (multiple style & color options)',
@@ -59,6 +72,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'Fast Fixes. Lasting Results.',
     introParagraph: (city) =>
       `A leaking or damaged roof doesn't get better on its own. McKinley Roofing provides dependable roof repair services throughout ${city}, GA and surrounding West Georgia communities. From missing shingles and flashing failures to sagging decking and interior water intrusion, our crew diagnoses the problem accurately and repairs it correctly — so you're not calling us back for the same issue next season.`,
+    expandedContent: (city) =>
+      `Many ${city} homeowners make the mistake of patching a roof problem with a temporary fix, only to face a much larger repair bill a year or two later. McKinley Roofing takes a diagnostic approach — we don't just patch the symptom, we identify the root cause. That might mean a failed pipe boot seal that's been allowing water in for months, compromised flashing around a chimney that looks fine from the ground, or a few lifted shingles that have allowed moisture to penetrate the decking. We document everything with photos before and after so you can see exactly what we found and what we fixed. Our repairs are backed by a Lifetime Workmanship Warranty, and we offer same-week scheduling for ${city} homeowners dealing with urgent issues.`,
     included: [
       'Thorough roof and attic inspection',
       'Shingle repair or replacement (matched to existing)',
@@ -80,6 +95,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'When Storms Hit, We\'re Ready.',
     introParagraph: (city) =>
       `Georgia storms can leave your roof battered overnight. McKinley Roofing offers rapid-response storm damage restoration in ${city}, GA — helping homeowners assess wind, hail, and falling-debris damage quickly so temporary protection is in place before more rain arrives. We work directly with most major insurance carriers and can help you understand your claim, document the damage thoroughly, and restore your roof to pre-storm condition.`,
+    expandedContent: (city) =>
+      `Storm damage claims in ${city} are time-sensitive. The longer damaged areas remain exposed, the greater the risk of secondary water damage to your attic, insulation, ceilings, and interior walls. McKinley Roofing's rapid-response team prioritizes emergency tarping and moisture protection within 24–48 hours of a storm event. From there, we conduct a full damage assessment — including hail impact testing on shingles, wind uplift evaluation, and inspection of all flashing and penetration points. Our detailed damage report is formatted to support insurance claims and has helped ${city} homeowners successfully document and recover full replacement costs. We handle the paperwork and adjuster coordination so you can focus on your family, not the process.`,
     included: [
       'Emergency tarping and temporary protection',
       'Complete storm damage inspection (wind, hail, debris)',
@@ -101,6 +118,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'Stop Water Damage Before It Starts.',
     introParagraph: (city) =>
       `Properly installed gutters are the first line of defense against foundation damage, landscaping erosion, and siding rot. McKinley Roofing provides professional gutter installation in ${city}, GA — using seamless aluminum gutters cut on-site for a perfect fit. Our installations are designed to handle Georgia's intense rainfall seasons without sagging, leaking, or pulling away from the fascia.`,
+    expandedContent: (city) =>
+      `Most homes in ${city} were built with basic sectional gutters that develop leaks at every joint over time. Seamless gutters eliminate those leak points entirely by running as a single continuous piece from corner to downspout. McKinley Roofing fabricates every gutter run on-site using professional-grade aluminum coil stock, which means the fit is exact and the material is far more durable than what you'd find at a home improvement store. We size gutters correctly for your roof's square footage and pitch — undersized gutters overflow during heavy Georgia rain events and defeat the entire purpose. We also ensure downspouts are routed to discharge water far enough from your foundation to prevent pooling, and we offer underground drainage extensions for homes where surface discharge isn't sufficient.`,
     included: [
       'Seamless aluminum gutter fabrication (on-site)',
       'Multiple size options: 5" and 6" K-style',
@@ -122,6 +141,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'Fresh Look. Lasting Protection.',
     introParagraph: (city) =>
       `Your home's siding does more than improve curb appeal — it's a critical weather barrier. McKinley Roofing offers professional siding installation and repair throughout ${city}, GA, helping homeowners upgrade aging or damaged siding with attractive, durable materials that stand up to West Georgia's heat, humidity, and storm seasons. Whether you're replacing a few damaged panels or doing a full exterior transformation, our crew delivers a clean, properly installed result.`,
+    expandedContent: (city) =>
+      `West Georgia's climate is tough on siding. High humidity, intense summer heat, and the occasional severe storm all take a toll on exterior cladding over time. McKinley Roofing helps ${city} homeowners choose siding materials that balance aesthetics with long-term performance in this specific climate. Vinyl siding offers excellent moisture resistance and low maintenance at an accessible price point. Fiber cement siding provides superior impact resistance and a more premium look that holds paint well in our hot summers. Wood composite siding offers natural aesthetics with better weather resistance than traditional wood. Regardless of the material you choose, every McKinley Roofing siding installation includes proper moisture barrier installation, correct overlap and fastening per manufacturer specs, and full caulking and sealing at all penetrations and trim interfaces.`,
     included: [
       'Full inspection of existing siding and sheathing',
       'Removal and disposal of old siding materials',
@@ -143,6 +164,8 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     tagline: 'Small Checkups. Big Savings.',
     introParagraph: (city) =>
       `Routine roof maintenance is the most cost-effective way to extend the life of your roof and avoid surprise repair bills. McKinley Roofing offers professional maintenance programs for homeowners throughout ${city}, GA. Our technicians perform a thorough inspection, clear debris from valleys and gutters, re-seal vulnerable penetrations, and flag any issues before they escalate — keeping your warranty active and your home protected year-round.`,
+    expandedContent: (city) =>
+      `Statistics consistently show that roofs with documented annual maintenance last significantly longer than neglected roofs of the same age and material. For ${city} homeowners with Owens Corning shingle systems, regular maintenance is often required to keep the manufacturer's warranty valid — a detail that surprises many homeowners when they discover a warranty claim is denied due to lack of documented upkeep. McKinley Roofing's maintenance visits are thorough and fully documented with written reports and photos so you have a clear record. We identify and address small issues — a cracked sealant joint, a slightly lifted shingle, a debris-clogged valley — before they allow water infiltration and cause the kind of interior damage that costs thousands to repair. Think of it as an annual physical for your home's most important protective system.`,
     included: [
       'Full roof surface inspection (shingles, flashing, ridge)',
       'Valley and gutter debris removal',
@@ -166,9 +189,11 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
 
 interface LandingPageProps {
   page: LandingPageConfig;
+  faqs?: FAQ[];
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const { openModal } = useModal();
   const { serviceName, cityName } = page;
   const content = SERVICE_CONTENT[page.serviceSlug];
@@ -264,7 +289,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
             <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">
               Expert {serviceName} Serving {cityName}, GA
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed">{introParagraph}</p>
+            <p className="text-slate-600 text-lg leading-relaxed mb-6">{introParagraph}</p>
+            <p className="text-slate-600 text-lg leading-relaxed">{content.expandedContent(cityName)}</p>
           </div>
         </div>
       </section>
@@ -363,6 +389,38 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
           </div>
         </div>
       </section>
+
+      {/* ── FAQ Section ─────────────────────────────────────────────────────── */}
+      {faqs.length > 0 && (
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+            <span className="text-red-600 font-bold uppercase tracking-widest text-sm mb-3 block">
+              Common Questions
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-10">
+              {serviceName} FAQs for {cityName} Homeowners
+            </h2>
+            <div className="divide-y divide-slate-200 border border-slate-200 rounded-2xl overflow-hidden">
+              {faqs.map((faq, i) => (
+                <div key={i}>
+                  <button
+                    onClick={() => setOpenFAQ(openFAQ === i ? null : i)}
+                    className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
+                  >
+                    <span className="font-semibold text-slate-900 text-base">{faq.question}</span>
+                    <ChevronIcon open={openFAQ === i} />
+                  </button>
+                  {openFAQ === i && (
+                    <div className="px-6 pb-5 bg-slate-50">
+                      <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── Bottom CTA ─────────────────────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-red-700 to-red-500 text-white text-center">
