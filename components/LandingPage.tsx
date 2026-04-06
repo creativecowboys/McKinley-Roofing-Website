@@ -190,7 +190,26 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
           background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #b91c1c 100%)',
         }}
       >
-        {/* Subtle diagonal texture */}
+        {/* House image — right half, fades in from the red */}
+        <div className="absolute inset-0 flex">
+          <div className="w-1/2 shrink-0" />
+          <div className="flex-1 relative">
+            <img
+              src="/hero-house.png"
+              alt="Beautiful home with new roof by McKinley Roofing"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+            />
+            {/* Fade from red on the left edge into transparent to reveal the image */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: 'linear-gradient(to right, #991b1b 0%, rgba(153,27,27,0.6) 30%, rgba(153,27,27,0.1) 70%, transparent 100%)',
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Subtle diagonal texture over everything */}
         <div
           className="absolute inset-0 opacity-10"
           style={{
@@ -198,42 +217,45 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
               'repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.15) 40px, rgba(255,255,255,0.15) 80px)',
           }}
         />
+
+        {/* Content — left-aligned, max half width so it stays clear of the image */}
         <div className="relative container mx-auto px-4 lg:px-8 max-w-5xl">
+          <div className="max-w-xl">
+            <p className="text-red-200 font-semibold uppercase tracking-widest text-sm mb-4">
+              West Georgia&rsquo;s Trusted Roofers
+            </p>
 
-          <p className="text-red-200 font-semibold uppercase tracking-widest text-sm mb-4">
-            West Georgia&rsquo;s Trusted Roofers
-          </p>
+            {/* H1 — unique per page */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight">
+              {serviceName} in {cityName}, GA
+            </h1>
 
-          {/* H1 — unique per page */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-5 leading-tight">
-            {serviceName} in {cityName}, GA
-          </h1>
+            <p className="text-red-100 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl">
+              {content.tagline}. McKinley Roofing — Owens Corning Preferred Contractor.
+            </p>
 
-          <p className="text-red-100 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl">
-            {content.tagline}. McKinley Roofing — Owens Corning Preferred Contractor.
-          </p>
+            {/* Stars */}
+            <div className="flex items-center gap-2 mb-10">
+              {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
+              <span className="text-red-100 text-sm font-medium">4.9 &bull; 70+ Google Reviews</span>
+            </div>
 
-          {/* Stars */}
-          <div className="flex items-center gap-2 mb-10">
-            {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
-            <span className="text-red-100 text-sm font-medium">4.9 &bull; 70+ Google Reviews</span>
-          </div>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <button
-              onClick={openModal}
-              className="bg-white text-red-700 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition-all shadow-xl text-sm tracking-widest uppercase cursor-pointer"
-            >
-              GET FREE INSPECTION
-            </button>
-            <a
-              href="tel:6789834455"
-              className="flex items-center justify-center gap-2 border-2 border-white text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-sm tracking-widest uppercase"
-            >
-              <PhoneIcon />
-              (678) 983-4455
-            </a>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={openModal}
+                className="bg-white text-red-700 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition-all shadow-xl text-sm tracking-widest uppercase cursor-pointer"
+              >
+                GET FREE INSPECTION
+              </button>
+              <a
+                href="tel:6789834455"
+                className="flex items-center justify-center gap-2 border-2 border-white text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition-all text-sm tracking-widest uppercase"
+              >
+                <PhoneIcon />
+                (678) 983-4455
+              </a>
+            </div>
           </div>
         </div>
       </section>
