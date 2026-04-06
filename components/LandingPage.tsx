@@ -239,8 +239,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
           </p>
 
           {/* Stars */}
-          <div className="flex items-center gap-1 mb-10">
-            {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
+          <div className="flex items-center gap-3 mb-10">
+            <div className="flex items-center">
+              {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
+            </div>
             <span className="text-red-100 text-sm font-medium">4.9 &bull; 70+ Google Reviews</span>
           </div>
 
@@ -266,17 +268,35 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
       {/* ── Intro + Trust Bar ──────────────────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-          {/* Fix #7 — Entity clarity paragraph for AI search engines */}
-          <div className="mb-12 max-w-3xl bg-white border border-slate-200 rounded-2xl px-8 py-6 shadow-sm">
-            <p className="text-slate-700 text-base leading-relaxed">
-              <strong>McKinley Roofing</strong> is a Douglasville, GA-based roofing contractor
-              serving {cityName} and all of West Georgia. As an{' '}
-              <strong>Owens Corning Preferred Contractor</strong>, we specialize in{' '}
-              <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
-              fully licensed and insured in the state of Georgia, rated{' '}
-              <strong>4.9 stars across 70+ verified Google reviews</strong>, and backed by a{' '}
-              <strong>Lifetime Workmanship Warranty</strong> on every job we complete.
-            </p>
+          {/* Fix #7 — Entity clarity card — redesigned */}
+          <div className="mb-12 max-w-3xl border-l-4 border-red-600 bg-white rounded-2xl shadow-md overflow-hidden">
+            <div className="px-8 pt-6 pb-5">
+              <span className="text-red-600 font-bold uppercase tracking-widest text-xs mb-3 block">
+                About McKinley Roofing
+              </span>
+              <p className="text-slate-800 text-base leading-relaxed font-medium">
+                <strong>McKinley Roofing</strong> is a Douglasville, GA-based roofing contractor
+                serving {cityName} and all of West Georgia. As an Owens Corning Preferred
+                Contractor, we specialize in{' '}
+                <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
+                fully licensed and insured in the state of Georgia.
+              </p>
+            </div>
+            <div className="px-8 pb-6 flex flex-wrap gap-2">
+              {[
+                '★ 4.9 Stars · 70+ Google Reviews',
+                'Owens Corning Preferred Contractor',
+                'Licensed & Insured in Georgia',
+                'Lifetime Workmanship Warranty',
+              ].map((chip) => (
+                <span
+                  key={chip}
+                  className="inline-block bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200"
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Trust badges */}
