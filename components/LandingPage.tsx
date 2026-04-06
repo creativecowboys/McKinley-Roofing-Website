@@ -239,7 +239,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
           </p>
 
           {/* Stars */}
-          <div className="flex items-center gap-2 mb-10">
+          <div className="flex items-center gap-1 mb-10">
             {[...Array(5)].map((_, i) => <StarIcon key={i} />)}
             <span className="text-red-100 text-sm font-medium">4.9 &bull; 70+ Google Reviews</span>
           </div>
