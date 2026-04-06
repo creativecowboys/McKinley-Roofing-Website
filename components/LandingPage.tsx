@@ -185,7 +185,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
 
       {/* ── Hero Banner ───────────────────────────────────────────────────── */}
       <section
-        className="relative py-20 md:py-28 text-white overflow-hidden"
+        className="relative pt-32 pb-20 md:pt-40 md:pb-28 text-white overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #b91c1c 100%)',
         }}
