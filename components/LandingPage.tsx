@@ -268,53 +268,44 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
       {/* ── Intro + Trust Bar ──────────────────────────────────────────────── */}
       <section className="py-16 md:py-20 bg-slate-50">
         <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-          {/* Fix #7 — Entity clarity card — redesigned */}
-          <div className="mb-12 max-w-3xl border-l-4 border-red-600 bg-white rounded-2xl shadow-md overflow-hidden">
-            <div className="px-8 pt-6 pb-5">
-              <span className="text-red-600 font-bold uppercase tracking-widest text-xs mb-3 block">
-                About McKinley Roofing
-              </span>
-              <p className="text-slate-800 text-base leading-relaxed font-medium">
-                <strong>McKinley Roofing</strong> is a Douglasville, GA-based roofing contractor
-                serving {cityName} and all of West Georgia. As an Owens Corning Preferred
-                Contractor, we specialize in{' '}
-                <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
-                fully licensed and insured in the state of Georgia.
-              </p>
-            </div>
-            <div className="px-8 pb-6 flex flex-wrap gap-2">
-              {[
-                '★ 4.9 Stars · 70+ Google Reviews',
-                'Owens Corning Preferred Contractor',
-                'Licensed & Insured in Georgia',
-                'Lifetime Workmanship Warranty',
-              ].map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-block bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-200"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
-          </div>
+          {/* ── Unified trust + entity block ──────────────────────────────── */}
+          <div className="mb-14 bg-white border border-slate-200 rounded-2xl shadow-md overflow-hidden">
+            <div className="grid md:grid-cols-[1fr_auto] gap-0">
 
-          {/* Trust badges */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
-            {[
-              { label: 'Owens Corning', sub: 'Preferred Contractor' },
-              { label: 'Lifetime', sub: 'Workmanship Warranty' },
-              { label: 'Fully', sub: 'Insured & Bonded' },
-              { label: '4.9 Stars', sub: '70+ Google Reviews' },
-            ].map((badge) => (
-              <div
-                key={badge.label}
-                className="bg-white border border-slate-200 rounded-xl p-4 text-center shadow-sm"
-              >
-                <p className="font-extrabold text-slate-900 text-sm leading-tight">{badge.label}</p>
-                <p className="text-slate-500 text-xs mt-0.5">{badge.sub}</p>
+              {/* Left — entity clarity text */}
+              <div className="border-l-4 border-red-600 px-8 py-7">
+                <span className="text-red-600 font-bold uppercase tracking-widest text-xs mb-3 block">
+                  About McKinley Roofing
+                </span>
+                <p className="text-slate-800 text-base leading-relaxed">
+                  <strong>McKinley Roofing</strong> is a Douglasville, GA-based roofing contractor
+                  serving <strong>{cityName}</strong> and all of West Georgia. As an{' '}
+                  <strong>Owens Corning Preferred Contractor</strong>, we specialize in{' '}
+                  <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
+                  fully licensed and insured in Georgia, and backed by a{' '}
+                  <strong>Lifetime Workmanship Warranty</strong>.
+                </p>
               </div>
-            ))}
+
+              {/* Right — credential badges */}
+              <div className="grid grid-cols-2 gap-px bg-slate-100 border-l border-slate-100 min-w-[260px]">
+                {[
+                  { label: 'Owens Corning', sub: 'Preferred Contractor' },
+                  { label: 'Lifetime', sub: 'Workmanship Warranty' },
+                  { label: '4.9 Stars', sub: '70+ Google Reviews' },
+                  { label: 'Fully', sub: 'Licensed & Insured' },
+                ].map((badge) => (
+                  <div
+                    key={badge.label}
+                    className="bg-white flex flex-col items-center justify-center text-center p-5"
+                  >
+                    <p className="font-extrabold text-slate-900 text-sm leading-tight">{badge.label}</p>
+                    <p className="text-slate-500 text-xs mt-0.5">{badge.sub}</p>
+                  </div>
+                ))}
+              </div>
+
+            </div>
           </div>
 
           {/* Intro paragraph */}
