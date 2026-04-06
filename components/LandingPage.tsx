@@ -185,7 +185,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
 
       {/* ── Hero Banner ───────────────────────────────────────────────────── */}
       <section
-        className="relative pt-32 pb-20 md:pt-40 md:pb-28 text-white overflow-hidden"
+        className="relative py-32 md:py-40 text-white overflow-hidden"
         style={{
           background: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #b91c1c 100%)',
         }}
@@ -199,12 +199,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ page }) => {
           }}
         />
         <div className="relative container mx-auto px-4 lg:px-8 max-w-5xl">
-          {/* Breadcrumb */}
-          <nav className="text-red-200 text-sm mb-6 flex gap-1.5 items-center flex-wrap">
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span>{serviceName} in {cityName}, GA</span>
-          </nav>
 
           <p className="text-red-200 font-semibold uppercase tracking-widest text-sm mb-4">
             West Georgia&rsquo;s Trusted Roofers
