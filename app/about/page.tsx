@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'About Us',
   description:
     'Learn about McKinley Roofing and Restoration — a family-owned roofing company serving Douglasville, GA and West Georgia with quality, honesty, and local expertise.',
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net/about',
+  },
 };
 
 export default function Page() {

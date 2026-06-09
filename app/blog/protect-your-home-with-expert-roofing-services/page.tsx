@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     images: ['/blog_hero_roofing.png'],
     type: 'article',
   },
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net/blog/protect-your-home-with-expert-roofing-services',
+  },
 };
 
 export default function Page() {

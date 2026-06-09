@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Roofing Services',
   description:
     'Full-service roofing from McKinley Roofing — roof repair, replacement, storm damage restoration, gutter installation, and siding in Douglasville, GA and West Georgia.',
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net/services',
+  },
 };
 
 export default function Page() {

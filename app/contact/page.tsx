@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Contact Us',
   description:
     'Contact McKinley Roofing and Restoration. Schedule a free roof inspection in Douglasville, GA. Call (678) 983-4455 or fill out our quick contact form.',
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net/contact',
+  },
 };
 
 export default function Page() {

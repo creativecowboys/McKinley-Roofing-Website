@@ -10,6 +10,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `Roofing Services in ${city}, GA`,
     description: `McKinley Roofing provides expert roof repair, replacement, and storm damage restoration in ${city}, Georgia. Get a free inspection today.`,
+    alternates: {
+      canonical: `https://www.mckinleyroofing.net/locations/${slug}`,
+    },
   };
 }
 

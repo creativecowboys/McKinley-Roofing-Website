@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Service Areas',
   description:
     'McKinley Roofing serves Douglasville, Carrollton, Villa Rica, Newnan, and the greater West Georgia area. Find out if we serve your location.',
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net/locations',
+  },
 };
 
 export default function Page() {

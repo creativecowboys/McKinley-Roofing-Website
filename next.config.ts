@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
     // New code in app/, components/, lib/ is fully type-safe.
     ignoreBuildErrors: true,
   },
+  async redirects() {
+    return [
+      // Old WordPress index.html
+      { source: '/index.html', destination: '/', permanent: true },
+      // Old WP plugin/content paths — send to homepage
+      { source: '/wp-admin/:path*', destination: '/', permanent: true },
+      { source: '/wp-content/:path*', destination: '/', permanent: true },
+      { source: '/wp-includes/:path*', destination: '/', permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

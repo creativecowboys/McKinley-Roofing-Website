@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description:
     "Family-owned roofing contractor in Douglasville, GA. Expert roof repair, replacement, and storm damage restoration serving West Georgia. Get a free inspection today.",
   keywords: ['roofing contractor Douglasville GA', 'roof repair West Georgia', 'storm damage restoration', 'McKinley Roofing'],
+  alternates: {
+    canonical: 'https://www.mckinleyroofing.net',
+  },
 };
 
 export default function HomePage() {
