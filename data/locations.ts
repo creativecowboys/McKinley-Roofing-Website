@@ -105,6 +105,21 @@ export const locations: LocationData[] = [
             'Serving Dallas and Paulding County with the quality and integrity McKinley Roofing is known for. Your roof is our priority.',
         nearbyAreas: ['Hiram', 'Acworth', 'Powder Springs', 'Douglasville', 'Rockmart'],
     },
+    {
+        slug: 'hiram-ga',
+        city: 'Hiram',
+        state: 'GA',
+        county: 'Paulding County',
+        lat: 33.8748,
+        lng: -84.7635,
+        metaTitle: 'Roofing Services in Hiram, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing provides expert roof repair, replacement, and storm damage restoration in Hiram, Georgia. Family-owned, Owens Corning Preferred. Get a free inspection today.',
+        headline: 'Roofing Services in Hiram, GA',
+        subheadline:
+            'Serving Hiram and Paulding County with honest, expert roofing — the McKinley way. Quality over quantity, on every single roof.',
+        nearbyAreas: ['Dallas', 'Powder Springs', 'Acworth', 'Douglasville', 'Villa Rica'],
+    },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {

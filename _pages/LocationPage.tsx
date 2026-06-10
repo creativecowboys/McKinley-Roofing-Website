@@ -300,7 +300,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                         },
                                         {
                                             title: 'Quality Over Quantity',
-                                            desc: 'We limit our project load to ensure every roof in ${location.city} gets our full attention. No shortcuts, no rushing.',
+                                            desc: `We limit our project load to ensure every roof in ${location.city} gets our full attention. No shortcuts, no rushing.`,
                                         },
                                     ].map((item) => (
                                         <div key={item.title} className="flex items-start gap-4">
