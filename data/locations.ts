@@ -374,6 +374,299 @@ export const locations: LocationData[] = [
             },
         ],
     },
+    {
+        slug: 'lithia-springs-ga',
+        city: 'Lithia Springs',
+        state: 'GA',
+        county: 'Douglas County',
+        lat: 33.7929,
+        lng: -84.6602,
+        metaTitle: 'Roofing Contractor in Lithia Springs, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Lithia Springs, GA with expert roof repair, replacement, storm damage restoration & gutters. Owens Corning Preferred. Free inspection.',
+        headline: 'Roofing Services in Lithia Springs, GA',
+        subheadline:
+            'Trusted, family-owned roofing right next door to our Douglasville home base — serving Lithia Springs and eastern Douglas County.',
+        nearbyAreas: ['Douglasville', 'Austell', 'Powder Springs', 'Mableton', 'Winston'],
+        localIntro: [
+            "Lithia Springs sits in eastern Douglas County, just minutes from our Douglasville home base — which makes it one of the areas McKinley Roofing knows best. From established homes near Sweetwater Creek State Park to the newer subdivisions off Thornton Road and Blairs Bridge, we protect Lithia Springs roofs like they're in our own backyard, because they practically are.",
+            "The community took its name from the mineral springs that once drew visitors to the historic Lithia Springs Hotel, but today's homeowners are more concerned with West Georgia's very modern weather — the hail, high winds, and severe thunderstorms that roll through Douglas County every year. We inspect for the storm damage, worn shingles, and failing flashing those conditions cause, and we catch small problems before they turn into ceiling stains.",
+            "Because we're right down the road, we can usually be on-site the same day, we know the Douglas County permitting process inside and out, and we work directly with the insurance carriers our Lithia Springs neighbors use. Local, fast, and honest — that's the McKinley way.",
+        ],
+        neighborhoods: [
+            'Sweetwater Creek area',
+            'Thornton Road corridor',
+            'Blairs Bridge',
+            'Mount Vernon Road',
+            'Bill Arp',
+        ],
+        localFaqs: [
+            {
+                question: 'Do you serve the neighborhoods near Sweetwater Creek State Park?',
+                answer:
+                    "Yes — that whole eastern Douglas County area is right in our backyard. Lithia Springs is only minutes from our Douglasville base, so whether you're near Sweetwater Creek, Thornton Road, or Blairs Bridge, we can get to you quickly for an inspection or repair.",
+            },
+            {
+                question: 'Do you offer emergency roof repair in Lithia Springs?',
+                answer:
+                    "We do, and because we're so close by we can usually be on-site the same day. If you have an active leak or fresh storm damage, call (678) 983-4455 and we'll prioritize securing your home.",
+            },
+            {
+                question: 'How much does a new roof cost in Lithia Springs, GA?',
+                answer:
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if it's storm damage, we'll help you file an insurance claim to offset the cost.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims in Douglas County?',
+                answer:
+                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Lithia Springs claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
+    {
+        slug: 'austell-ga',
+        city: 'Austell',
+        state: 'GA',
+        county: 'Cobb County',
+        lat: 33.8129,
+        lng: -84.6341,
+        metaTitle: 'Roofing Contractor in Austell, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Austell, GA with roof repair, replacement, storm damage restoration & gutter installation. Owens Corning Preferred. Free inspection.',
+        headline: 'Roofing Services in Austell, GA',
+        subheadline:
+            'Dependable roofing for Austell homeowners across the Cobb and Douglas County line. Quality craftsmanship, honest advice, real warranties.',
+        nearbyAreas: ['Lithia Springs', 'Powder Springs', 'Mableton', 'Douglasville', 'Smyrna'],
+        localIntro: [
+            "Austell straddles the southern edge of Cobb County, with part of the city reaching down into Douglas County — familiar territory for McKinley Roofing. Anchored by the historic Threadmill Complex and the old Clarkdale mill village, Austell blends decades-old homes with newer construction, and we serve them all.",
+            "Older mill-era neighborhoods often mean older roofs — aged decking, brittle shingles, and outdated flashing that West Georgia's storms are quick to find. Newer subdivisions have their own timeline as builder-grade shingles mature. Either way, a free inspection tells you exactly where you stand, and we give it to you straight.",
+            "We work on both the Cobb and Douglas County sides of Austell, so local permitting and quick response are second nature. Owens Corning Preferred materials, dual manufacturer and labor warranties, and workmanship you can count on.",
+        ],
+        neighborhoods: [
+            'Downtown Austell',
+            'Clarkdale',
+            'Salt Springs',
+            'Austell-Powder Springs Road corridor',
+            'Anderson Mill',
+        ],
+        localFaqs: [
+            {
+                question: 'My Austell home is older — should I repair or replace the roof?',
+                answer:
+                    "It depends on the roof's age, the condition of the decking underneath, and how widespread the wear is. Many of Austell's older mill-era homes can get several more good years from a solid repair; others are past that point. We inspect for free and lay out both options with clear pricing — we never push a replacement you don't need.",
+            },
+            {
+                question: 'Do you offer emergency roof repair in Austell?',
+                answer:
+                    "Yes. We serve Austell on both the Cobb and Douglas County sides and can usually be on-site the same day for emergency repairs and storm-damage inspections. Call (678) 983-4455 if you have an active leak or storm damage.",
+            },
+            {
+                question: 'How much does a new roof cost in Austell, GA?',
+                answer:
+                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and we'll help with an insurance claim if the damage is storm-related.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims around Austell?',
+                answer:
+                    "We do. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your claim reflects the full scope of what's needed — no matter which county line your Austell home falls on. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
+    {
+        slug: 'powder-springs-ga',
+        city: 'Powder Springs',
+        state: 'GA',
+        county: 'Cobb County',
+        lat: 33.8596,
+        lng: -84.6838,
+        metaTitle: 'Roofing Contractor in Powder Springs, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Powder Springs, GA with expert roof repair, replacement, storm damage & gutters. Owens Corning Preferred contractor. Free inspection.',
+        headline: 'Roofing Services in Powder Springs, GA',
+        subheadline:
+            'Honest, high-quality roofing for Powder Springs and southwest Cobb County. From storm repairs to full replacements, we protect what matters.',
+        nearbyAreas: ['Hiram', 'Dallas', 'Austell', 'Lithia Springs', 'Marietta'],
+        localIntro: [
+            "Powder Springs sits in southwest Cobb County, known for its revitalized downtown and the popular Silver Comet Trail that begins right in the heart of town at Thurman Springs Park. McKinley Roofing serves Powder Springs homeowners with the same honest, high-quality roofing we bring to all of West Georgia.",
+            "Powder Springs has a healthy mix of established neighborhoods and newer construction, which means roofs of every age — and West Georgia's hail and high winds don't play favorites. We inspect for storm damage, granule loss, lifted shingles, and hidden leaks, then tell you honestly whether a repair or a replacement makes more sense.",
+            "We already work throughout the Cobb, Paulding, and Douglas County corridor, so getting to Powder Springs is easy and our response is fast. Premium materials, dual warranties, and a Quality-over-Quantity approach on every single roof.",
+        ],
+        neighborhoods: [
+            'Downtown Powder Springs',
+            'Thurman Springs',
+            'Brownsville Road',
+            'Macland',
+            'Lost Mountain area',
+        ],
+        localFaqs: [
+            {
+                question: 'Do you serve both older and newer neighborhoods in Powder Springs?',
+                answer:
+                    "Yes — Powder Springs has everything from long-established homes near downtown to newer subdivisions, and we roof them all. Older roofs and builder-grade roofs each have their own wear patterns, and a free inspection is the easiest way to know exactly where yours stands.",
+            },
+            {
+                question: 'Do you offer emergency roof repair in Powder Springs?',
+                answer:
+                    "We do. We can typically be on-site the same day for emergency repairs and storm-damage inspections in Powder Springs and southwest Cobb County. Call (678) 983-4455 if you have an active leak or storm damage.",
+            },
+            {
+                question: 'How much does a new roof cost in Powder Springs, GA?',
+                answer:
+                    "It comes down to your roof's size and pitch, the materials you choose, and whether there's decking damage underneath. We provide free inspections and clear written estimates up front — and if the damage is storm-related, we'll help you file an insurance claim to offset the cost.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims in Cobb County?',
+                answer:
+                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Powder Springs claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
+    {
+        slug: 'temple-ga',
+        city: 'Temple',
+        state: 'GA',
+        county: 'Carroll County',
+        lat: 33.7368,
+        lng: -85.0325,
+        metaTitle: 'Roofing Contractor in Temple, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Temple, GA with trusted roof repair, replacement, storm damage & gutter installation. Owens Corning Preferred. Free inspection.',
+        headline: 'Roofing Services in Temple, GA',
+        subheadline:
+            'Big-quality roofing with small-town honesty for Temple and the I-20 corridor of Carroll County. Quality over quantity, every time.',
+        nearbyAreas: ['Villa Rica', 'Bremen', 'Carrollton', 'Buchanan', 'Waco'],
+        localIntro: [
+            "Temple is a proud small town in Carroll County where I-20 cuts through the south end and neighbors still wave from their front porches. Founded as a railroad town in 1882, Temple has grown steadily while keeping its close-knit character — and McKinley Roofing is glad to serve it with big-quality roofing and small-town honesty.",
+            "Many Temple homes are privately owned single-family houses, some with real age on them, and West Georgia's severe I-20-corridor storms, hail, and high winds test every one of them. We inspect thoroughly for wind and hail damage, worn shingles, and failing flashing, and we're upfront about whether a repair or a full replacement is the smarter move.",
+            "Working the I-20 corridor between Villa Rica and Bremen, we're in Temple regularly, so our response is quick and local. Owens Corning Preferred materials, real manufacturer and labor warranties, and workmanship you can trust.",
+        ],
+        neighborhoods: [
+            'Downtown Temple',
+            'Villa Rosa Road',
+            'I-20 South corridor',
+            'Temple Industrial Park area',
+        ],
+        localFaqs: [
+            {
+                question: 'Do you offer emergency roof repair in Temple?',
+                answer:
+                    "Yes. We work the I-20 corridor through Temple and Carroll County regularly, so we can usually be on-site the same day for emergency repairs and storm-damage inspections. Call (678) 983-4455 if you have an active leak or storm damage.",
+            },
+            {
+                question: 'My Temple home has some age on it — repair or replace?',
+                answer:
+                    "That depends on the roof's age, the decking condition, and how far the wear has spread. Plenty of older Temple homes get several more good years from a solid repair; others are ready for replacement. We inspect for free and give you both options with honest pricing — no pressure.",
+            },
+            {
+                question: 'How much does a new roof cost in Temple, GA?',
+                answer:
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and detailed written estimates so there are no surprises — and we'll help with an insurance claim if the damage is storm-related.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims in Carroll County?',
+                answer:
+                    "We do. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Temple claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
+    {
+        slug: 'bowdon-ga',
+        city: 'Bowdon',
+        state: 'GA',
+        county: 'Carroll County',
+        lat: 33.5368,
+        lng: -85.2536,
+        metaTitle: 'Roofing Contractor in Bowdon, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Bowdon, GA with dependable roof repair, replacement, storm damage & gutters. Owens Corning Preferred contractor. Free inspection.',
+        headline: 'Roofing Services in Bowdon, GA',
+        subheadline:
+            'Reliable, high-quality roofing for Bowdon — "The Friendly City" — and the surrounding western Carroll County communities.',
+        nearbyAreas: ['Carrollton', 'Roopville', 'Tallapoosa', 'Bremen', 'Mount Zion'],
+        localIntro: [
+            "Bowdon — \"The Friendly City\" — sits in western Carroll County, about fourteen miles from Carrollton. Incorporated in 1859 and once home to Bowdon College, this historic town has seen a real downtown revival in recent years, and McKinley Roofing is proud to bring dependable, high-quality roofing to the community.",
+            "Bowdon has weathered fires and even a tornado over its long history, and West Georgia's modern storms — hail, high winds, and severe spring weather — still put local roofs to the test. Many of Bowdon's homes have some age on them, so we inspect carefully for worn shingles, aged decking, and flashing problems, and we tell you honestly what your roof actually needs.",
+            "We serve Bowdon and the surrounding western Carroll County communities from our West Georgia base, so you get fast local response, premium Owens Corning materials, and workmanship backed by real warranties.",
+        ],
+        neighborhoods: [
+            'Downtown Bowdon',
+            'Tyus',
+            'Kansas',
+            'Roopville',
+            'Mount Zion',
+        ],
+        localFaqs: [
+            {
+                question: 'My Bowdon home is older — should I repair or replace the roof?',
+                answer:
+                    "It depends on the roof's age, the decking condition underneath, and how widespread the wear is. Many older Bowdon homes can get several more good years from a well-done repair; others are past that point. We do a free, honest inspection and lay out both options with clear pricing — we never push a replacement you don't need.",
+            },
+            {
+                question: 'Do you offer emergency roof repair in Bowdon?',
+                answer:
+                    "Yes. We serve Bowdon and western Carroll County and can usually be on-site the same day for emergency repairs and storm-damage inspections. If you've got an active leak or storm damage, call (678) 983-4455 and we'll get your home secured.",
+            },
+            {
+                question: 'How much does a new roof cost in Bowdon, GA?',
+                answer:
+                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and we'll help with an insurance claim if the damage is storm-related.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims in Carroll County?',
+                answer:
+                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Bowdon claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
+    {
+        slug: 'whitesburg-ga',
+        city: 'Whitesburg',
+        state: 'GA',
+        county: 'Carroll County',
+        lat: 33.4948,
+        lng: -85.0114,
+        metaTitle: 'Roofing Contractor in Whitesburg, GA | McKinley Roofing',
+        metaDescription:
+            'McKinley Roofing serves Whitesburg, GA with expert roof repair, replacement, storm damage restoration & gutters. Owens Corning Preferred. Free inspection.',
+        headline: 'Roofing Services in Whitesburg, GA',
+        subheadline:
+            'Honest, quality roofing for Whitesburg and the southeastern Carroll County river country. Local knowledge, premium materials.',
+        nearbyAreas: ['Carrollton', 'Newnan', 'Villa Rica', 'Roscoe', 'Sargent'],
+        localIntro: [
+            "Whitesburg is a small, historic railroad town on the Chattahoochee River in southeastern Carroll County. Home to one of Georgia's oldest surviving train depots and near the well-known Banning Mills, Whitesburg keeps its rural charm — and McKinley Roofing is glad to serve its homeowners with honest, quality roofing.",
+            "River-country weather is hard on roofs. Whitesburg sees the same West Georgia hail, wind, and heavy thunderstorms as the rest of Carroll County, and the area's older homes often have aging roofs, decking, and flashing that need a careful eye. We inspect thoroughly and give you straight answers — repair or replace, no pressure.",
+            "We cover Whitesburg and the surrounding southeastern Carroll County area from our West Georgia base, so response is quick and local. Premium materials, dual warranties, and the same Quality-over-Quantity standard we bring to every roof.",
+        ],
+        neighborhoods: [
+            'Downtown Whitesburg',
+            'Banning Mills area',
+            'Snake Creek',
+            'Roscoe',
+            'Sargent',
+        ],
+        localFaqs: [
+            {
+                question: 'Do you serve rural and older homes around Whitesburg?',
+                answer:
+                    "Yes — much of the Whitesburg area is rural, with homes that have some age on them. Older roofs, decking, and flashing need a careful, honest eye, and that's exactly what we bring. A free inspection tells you plainly whether a repair will do or whether it's time for a replacement.",
+            },
+            {
+                question: 'Do you offer emergency roof repair in Whitesburg?',
+                answer:
+                    "We do. We serve Whitesburg and southeastern Carroll County and can usually be on-site the same day for emergency repairs and storm-damage inspections. Call (678) 983-4455 if you have an active leak or storm damage.",
+            },
+            {
+                question: 'How much does a new roof cost in Whitesburg, GA?',
+                answer:
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and we'll help with an insurance claim if the damage is storm-related.",
+            },
+            {
+                question: 'Do you help with storm-damage insurance claims in Carroll County?',
+                answer:
+                    "Absolutely. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Whitesburg claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+        ],
+    },
 ];
 
 export function getLocationBySlug(slug: string): LocationData | undefined {
