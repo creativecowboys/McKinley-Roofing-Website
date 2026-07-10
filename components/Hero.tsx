@@ -48,12 +48,12 @@ const Hero: React.FC<HeroProps> = () => {
                 {/* Title */}
                 <h1 className="text-2xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
                   West Georgia's Trusted <br />
-                  Roofing Experts
+                  Roofing Contractor
                 </h1>
 
                 {/* Description */}
                 <p className="text-slate-500 text-base lg:text-lg leading-relaxed">
-                  Family-owned and locally operated. We specialize in roof repair, replacement, and storm damage restoration with expert insurance claim assistance.
+                  Based in Douglasville, GA — family-owned and locally operated. We specialize in roof repair, replacement, and storm damage restoration with expert insurance claim assistance.
                 </p>
 
                 {/* Button */}

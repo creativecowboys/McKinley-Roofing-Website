@@ -272,6 +272,68 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                     </div>
                 </section>
 
+                {/* ── About {city} (unique local content) ── */}
+                {location.localIntro && location.localIntro.length > 0 && (
+                    <section className="py-20 bg-white">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 className="text-4xl font-bold text-slate-900 mb-8">
+                                Your Local Roofing Contractor in {location.city}, GA
+                            </h2>
+                            <div className="space-y-6">
+                                {location.localIntro.map((paragraph, i) => (
+                                    <p key={i} className="text-slate-600 leading-relaxed text-lg">
+                                        {paragraph}
+                                    </p>
+                                ))}
+                            </div>
+
+                            {location.neighborhoods && location.neighborhoods.length > 0 && (
+                                <div className="mt-12">
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-5 flex items-center gap-3">
+                                        <MapPin className="w-6 h-6 text-red-600" />
+                                        Areas We Serve Around {location.city}
+                                    </h3>
+                                    <div className="flex flex-wrap gap-3">
+                                        {location.neighborhoods.map((area) => (
+                                            <span
+                                                key={area}
+                                                className="bg-slate-100 text-slate-700 rounded-full px-4 py-2 text-sm font-medium"
+                                            >
+                                                {area}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </section>
+                )}
+
+                {/* ── Local FAQ (unique local content + FAQPage schema on route) ── */}
+                {location.localFaqs && location.localFaqs.length > 0 && (
+                    <section className="py-20 bg-slate-50">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 className="text-4xl font-bold text-slate-900 mb-10 text-center">
+                                Roofing FAQs — {location.city}, GA
+                            </h2>
+                            <div className="space-y-6">
+                                {location.localFaqs.map((faq) => (
+                                    <div
+                                        key={faq.question}
+                                        className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100"
+                                    >
+                                        <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-start gap-3">
+                                            <CheckCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                                            {faq.question}
+                                        </h3>
+                                        <p className="text-slate-600 leading-relaxed pl-9">{faq.answer}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 {/* ── Why McKinley ── */}
                 <section className="py-20 bg-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

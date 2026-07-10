@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildRoofingContractorSchema, jsonLd } from '@/lib/schema';
 import Hero from '@/components/Hero';
 import Certifications from '@/components/Certifications';
 import About from '@/components/About';
@@ -10,7 +11,9 @@ import Blog from '@/components/Blog';
 import ServiceAreaMapClient from '@/components/ServiceAreaMapClient';
 
 export const metadata: Metadata = {
-  title: "McKinley Roofing | West Georgia's Trusted Roofing Contractor",
+  // `absolute` bypasses the layout's "%s | McKinley Roofing" template so the
+  // brand name isn't duplicated. Leads with the local head term.
+  title: { absolute: 'Roofing Contractor in Douglasville, GA | McKinley Roofing' },
   description:
     "Family-owned roofing contractor in Douglasville, GA. Expert roof repair, replacement, and storm damage restoration serving West Georgia. Get a free inspection today.",
   keywords: ['roofing contractor Douglasville GA', 'roof repair West Georgia', 'storm damage restoration', 'McKinley Roofing'],
@@ -20,8 +23,16 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const roofingContractorSchema = buildRoofingContractorSchema({
+    geo: { lat: 33.7515, lng: -84.7477 },
+  });
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(roofingContractorSchema) }}
+      />
       <Hero />
       <Certifications />
       <About />
