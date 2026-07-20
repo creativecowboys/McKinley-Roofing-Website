@@ -23,6 +23,7 @@ import {
     Clock,
 } from 'lucide-react';
 import { getLocationBySlug, locations } from '../data/locations';
+import { LANDING_PAGE_MAP } from '../lib/landing-pages';
 
 // Photo sets — rotated by location index so each city page feels unique
 const HERO_PHOTOS = [
@@ -73,26 +74,31 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
     const services = [
         {
             icon: Wrench,
+            slug: 'roof-repair',
             title: 'Roof Repair',
             description: `Fast, reliable roof repair in ${location.city}. We fix leaks, damaged shingles, flashing issues, and more — preventing small problems from becoming costly disasters.`,
         },
         {
             icon: Home,
+            slug: 'roof-replacement',
             title: 'Roof Replacement',
             description: `Complete roof replacement for ${location.city} homeowners. Premium Owens Corning materials, expert installation, and both manufacturer and labor warranties.`,
         },
         {
             icon: CloudRain,
+            slug: 'storm-damage-restoration',
             title: 'Storm Damage Restoration',
             description: `${location.city} storms can cause serious damage. We handle hail, wind, and impact damage — including full insurance claim coordination to maximize your benefits.`,
         },
         {
             icon: Calendar,
+            slug: 'roof-maintenance',
             title: 'Roof Maintenance',
             description: `Proactive maintenance plans for ${location.city} homeowners. Regular inspections, gutter cleaning, and minor repairs to extend the life of your roof.`,
         },
         {
             icon: Droplets,
+            slug: 'gutter-installation',
             title: 'Gutter Installation',
             description: `Seamless gutter systems designed for ${location.city} homes. Professional installation that channels water away from your foundation and landscaping.`,
         },
@@ -103,6 +109,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
         },
         {
             icon: Layers,
+            slug: 'siding-installation',
             title: 'Siding Installation & Repair',
             description: `Professional siding services for ${location.city} homeowners. We install and repair vinyl, fiber cement, and wood siding — boosting curb appeal and protecting your home's exterior.`,
         },
@@ -255,16 +262,34 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {services.map((service) => {
                                 const Icon = service.icon;
-                                return (
-                                    <div
-                                        key={service.title}
-                                        className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 cursor-pointer group"
-                                    >
+                                // Link each service card to its dedicated service×city
+                                // landing page when one exists (internal-link boost for
+                                // otherwise orphaned landing pages).
+                                const landingSlug = service.slug ? `${service.slug}-${location.slug}` : null;
+                                const landingHref = landingSlug && LANDING_PAGE_MAP[landingSlug] ? `/${landingSlug}` : null;
+                                const cardInner = (
+                                    <>
                                         <div className="bg-red-50 rounded-xl w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-red-100 transition-colors duration-200">
                                             <Icon className="w-7 h-7 text-red-600" />
                                         </div>
                                         <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
                                         <p className="text-slate-600 leading-relaxed text-sm">{service.description}</p>
+                                        {landingHref && (
+                                            <span className="inline-flex items-center gap-1 text-red-600 font-semibold text-sm mt-4 group-hover:gap-2 transition-all">
+                                                {service.title} in {location.city}
+                                                <ArrowRight className="w-4 h-4" />
+                                            </span>
+                                        )}
+                                    </>
+                                );
+                                const cardClasses = "bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:border-red-200 hover:shadow-lg transition-all duration-300 cursor-pointer group";
+                                return landingHref ? (
+                                    <Link key={service.title} href={landingHref} className={`${cardClasses} block`}>
+                                        {cardInner}
+                                    </Link>
+                                ) : (
+                                    <div key={service.title} className={cardClasses}>
+                                        {cardInner}
                                     </div>
                                 );
                             })}

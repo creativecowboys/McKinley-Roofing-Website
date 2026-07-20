@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-slate-400 mb-8 leading-relaxed">
-              We're committed to delivering top-quality roofing service that protects your home &amp; enhances value. With years of expertise focus customer.
+              We're committed to delivering top-quality roofing services that protect your home &amp; enhance its value — built on years of expertise and a customer-first focus.
             </p>
             <div className="flex items-center gap-4 mb-6">
               <a href="https://www.facebook.com/mckinleyroofing" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all cursor-pointer">
@@ -39,6 +39,15 @@ const Footer: React.FC = () => {
               <li><Link href="/services" className="hover:text-red-600 transition-colors">Services</Link></li>
               <li><Link href="/locations" className="hover:text-red-600 transition-colors">Service Areas</Link></li>
               <li><Link href="/contact" className="hover:text-red-600 transition-colors">Contact Us</Link></li>
+            </ul>
+            <h4 className="text-xl font-bold mb-6 mt-10">Popular Services</h4>
+            <ul className="space-y-4 text-slate-400">
+              <li><Link href="/roof-repair-douglasville-ga" className="hover:text-red-600 transition-colors">Roof Repair — Douglasville</Link></li>
+              <li><Link href="/roof-replacement-douglasville-ga" className="hover:text-red-600 transition-colors">Roof Replacement — Douglasville</Link></li>
+              <li><Link href="/storm-damage-restoration-douglasville-ga" className="hover:text-red-600 transition-colors">Storm Damage Restoration</Link></li>
+              <li><Link href="/gutter-installation-douglasville-ga" className="hover:text-red-600 transition-colors">Gutter Installation</Link></li>
+              <li><Link href="/roof-repair-carrollton-ga" className="hover:text-red-600 transition-colors">Roof Repair — Carrollton</Link></li>
+              <li><Link href="/roof-replacement-carrollton-ga" className="hover:text-red-600 transition-colors">Roof Replacement — Carrollton</Link></li>
             </ul>
           </div>
 

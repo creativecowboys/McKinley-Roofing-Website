@@ -2,12 +2,15 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Wrench, Home, CloudRain, Calendar, Droplets, PaintBucket, Layers, Shield, CheckCircle, Phone } from 'lucide-react';
+import { LANDING_PAGES } from '../lib/landing-pages';
 
 const ServicesPage: React.FC = () => {
     const services = [
         {
             icon: Wrench,
+            slug: 'roof-repair',
             title: 'Roof Repair Services',
             description: 'Comprehensive repair services designed to address damage quickly and effectively, preventing minor issues from becoming major problems.',
             features: [
@@ -22,6 +25,7 @@ const ServicesPage: React.FC = () => {
         },
         {
             icon: Home,
+            slug: 'roof-replacement',
             title: 'Roof Replacement Services',
             description: 'Complete replacement services for residential and commercial properties when repairs are no longer cost-effective.',
             features: [
@@ -36,6 +40,7 @@ const ServicesPage: React.FC = () => {
         },
         {
             icon: CloudRain,
+            slug: 'storm-damage-restoration',
             title: 'Storm Damage Restoration',
             description: 'Specialized help for homeowners recovering from storm damage, including hail and wind damage, with expert insurance coordination.',
             features: [
@@ -50,6 +55,7 @@ const ServicesPage: React.FC = () => {
         },
         {
             icon: Calendar,
+            slug: 'roof-maintenance',
             title: 'Proactive Roof Maintenance',
             description: 'Preventive maintenance services to protect your roofing investment and extend the lifespan of your roof.',
             features: [
@@ -63,6 +69,7 @@ const ServicesPage: React.FC = () => {
         },
         {
             icon: Droplets,
+            slug: 'gutter-installation',
             title: 'Gutter Installation',
             description: 'Professional seamless gutter systems designed to effectively channel water away from your structure.',
             features: [
@@ -89,6 +96,7 @@ const ServicesPage: React.FC = () => {
         },
         {
             icon: Layers,
+            slug: 'siding-installation',
             title: 'Siding Installation & Repair',
             description: 'Professional siding services that protect your home from the elements while dramatically boosting curb appeal and long-term property value.',
             features: [
@@ -184,6 +192,24 @@ const ServicesPage: React.FC = () => {
                                             </div>
                                         ))}
                                     </div>
+
+                                    {/* City-specific service pages (internal links) */}
+                                    {service.slug && (
+                                        <div className="mt-6 pt-6 border-t border-slate-100">
+                                            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Available In</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {LANDING_PAGES.filter((p) => p.serviceSlug === service.slug).map((p) => (
+                                                    <Link
+                                                        key={p.slug}
+                                                        href={`/${p.slug}`}
+                                                        className="text-xs bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-full transition-colors"
+                                                    >
+                                                        {p.cityName}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })}

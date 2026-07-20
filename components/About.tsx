@@ -10,7 +10,7 @@ const About: React.FC = () => {
   const accordionData = {
     mission: {
       title: "Our Mission",
-      content: "With years of experience the industry our team of skilled professionals is dedicated to delivering top roofing services prioritize durability, quality, safety we take pride craftsmanship."
+      content: "With years of experience in the industry, our team of skilled professionals is dedicated to delivering top-quality roofing services. We prioritize durability, quality, and safety — and we take pride in our craftsmanship on every project."
     },
     vision: {
       title: "Our Vision",

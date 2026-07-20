@@ -29,8 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = 'https://www.mckinleyroofing.net/McKinley_logo.png';
 
   return {
-    // Fix #1 — no duplicate brand name
-    title: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing`,
+    // Fix #1 — no duplicate brand name. `absolute` bypasses the layout's
+    // "%s | McKinley Roofing" template, which would otherwise double the brand.
+    title: { absolute: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing` },
     description: page.metaDescription,
     openGraph: {
       title: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing`,

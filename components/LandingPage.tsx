@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useModal } from '@/contexts/ModalContext';
-import type { LandingPageConfig } from '@/lib/landing-pages';
+import { LANDING_PAGES, type LandingPageConfig } from '@/lib/landing-pages';
+import { getLocationBySlug } from '@/data/locations';
 import type { FAQ } from '@/lib/landing-page-faqs';
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
@@ -204,6 +205,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
   const included = content.included;
   const whyMckinley = content.whyMckinley.map(resolveString);
   const introParagraph = content.introParagraph(cityName);
+
+  // Internal links: the matching city location page, sibling services in this
+  // city, and this service in nearby cities (fixes orphaned-page crawl issues).
+  const cityLocation = getLocationBySlug(`${page.citySlug}-ga`);
+  const otherCityServices = LANDING_PAGES.filter(
+    (p) => p.citySlug === page.citySlug && p.slug !== page.slug,
+  );
+  const sameServiceNearby = LANDING_PAGES.filter(
+    (p) => p.serviceSlug === page.serviceSlug && p.citySlug !== page.citySlug,
+  );
 
   return (
     <main className="bg-white">
@@ -459,6 +470,66 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
           </div>
         </section>
       )}
+
+      {/* ── Related Pages (internal links) ─────────────────────────────────── */}
+      <section className="py-14 md:py-16 bg-slate-50 border-t border-slate-100">
+        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
+          <div className="grid md:grid-cols-2 gap-10">
+            <div>
+              <h2 className="text-xl font-extrabold text-slate-900 mb-5">
+                More Services in {cityName}
+              </h2>
+              <ul className="space-y-3">
+                {cityLocation && (
+                  <li>
+                    <Link
+                      href={`/locations/${cityLocation.slug}`}
+                      className="text-red-700 font-semibold hover:text-red-800 hover:underline transition-colors"
+                    >
+                      All Roofing Services in {cityName}, GA
+                    </Link>
+                  </li>
+                )}
+                {otherCityServices.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={`/${p.slug}`}
+                      className="text-slate-600 hover:text-red-700 hover:underline transition-colors"
+                    >
+                      {p.serviceName} in {p.cityName}, GA
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className="text-xl font-extrabold text-slate-900 mb-5">
+                {serviceName} in Nearby Cities
+              </h2>
+              <ul className="space-y-3">
+                {sameServiceNearby.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={`/${p.slug}`}
+                      className="text-slate-600 hover:text-red-700 hover:underline transition-colors"
+                    >
+                      {p.serviceName} in {p.cityName}, GA
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href="/locations"
+                    className="text-red-700 font-semibold hover:text-red-800 hover:underline transition-colors"
+                  >
+                    View All Service Areas
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── Bottom CTA ─────────────────────────────────────────────────────── */}
       <section className="py-16 md:py-24 bg-gradient-to-r from-red-700 to-red-500 text-white text-center">
