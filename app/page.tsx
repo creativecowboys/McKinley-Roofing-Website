@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { buildRoofingContractorSchema, jsonLd } from '@/lib/schema';
+import { buildHomeLocalBusinessSchema, jsonLd } from '@/lib/schema';
 import Hero from '@/components/Hero';
 import Certifications from '@/components/Certifications';
 import About from '@/components/About';
@@ -23,15 +23,14 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const roofingContractorSchema = buildRoofingContractorSchema({
-    geo: { lat: 33.7515, lng: -84.7477 },
-  });
+  // The single sitewide LocalBusiness node lives here on the homepage.
+  const localBusinessSchema = buildHomeLocalBusinessSchema();
 
   return (
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd(roofingContractorSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema) }}
       />
       <Hero />
       <Certifications />

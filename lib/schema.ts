@@ -75,6 +75,70 @@ export function buildRoofingContractorSchema(opts?: {
   return schema;
 }
 
+/**
+ * The single sitewide LocalBusiness node — emitted ONCE, on the homepage.
+ *
+ * Richer than the per-location `buildRoofingContractorSchema`: full legal
+ * name, precise Google Business Profile geo, an explicit service-area list, a
+ * service catalog, and the GBP map link via `sameAs`.
+ *
+ * Intentionally OMITS `aggregateRating`/`Review`: the 4.9★ / 70+ reviews live
+ * on Google (third party). Marking third-party reviews up as first-party
+ * violates Google's structured-data guidelines and risks a manual action.
+ * Only add ratings here if the site ever hosts its own first-party reviews.
+ *
+ * `streetAddress` is omitted because no verified street address exists in the
+ * repo/CMS — locality/region/country only, rather than guessing.
+ */
+export function buildHomeLocalBusinessSchema() {
+  const areaServed = [
+    'Douglasville', 'Carrollton', 'Villa Rica', 'Newnan', 'Bremen', 'Dallas',
+    'Hiram', 'Lithia Springs', 'Austell', 'Powder Springs', 'Temple', 'Bowdon',
+  ];
+  const services = [
+    'Roof Repair', 'Roof Replacement', 'Storm Damage Restoration',
+    'Gutter Installation', 'Siding Installation', 'Roof Maintenance',
+  ];
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'RoofingContractor',
+    name: 'McKinley Roofing & Restoration',
+    url: SITE_URL,
+    telephone: '+1-678-983-4455',
+    email: BUSINESS.email,
+    image: BUSINESS.logo,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Douglasville',
+      addressRegion: 'GA',
+      addressCountry: 'US',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 33.6633281,
+      longitude: -84.7910462,
+    },
+    areaServed: areaServed.map((city) => ({
+      '@type': 'City',
+      name: city,
+      containedInPlace: { '@type': 'State', name: 'Georgia' },
+    })),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Roofing Services',
+      itemListElement: services.map((name) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name },
+      })),
+    },
+    sameAs: [
+      'https://www.google.com/maps/place/McKinley+Roofing+and+Restoration/@33.6633281,-84.7910462,17z/',
+      'https://www.facebook.com/mckinleyroofing',
+    ],
+  };
+}
+
 /** Service schema scoped to a city, provided by McKinley Roofing. */
 export function buildServiceSchema(opts: {
   serviceType: string;
