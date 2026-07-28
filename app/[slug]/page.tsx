@@ -100,11 +100,6 @@ export default async function LandingPageRoute({ params }: Props) {
         name: 'Georgia',
       },
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '70',
-    },
     sameAs: [
       'https://www.facebook.com/mckinleyroofing',
     ],

@@ -14,8 +14,10 @@ export const BUSINESS = {
   addressRegion: 'GA',
   addressCountry: 'US',
   logo: `${SITE_URL}/McKinley_logo.png`,
-  ratingValue: '4.9',
-  reviewCount: '70',
+  // NOTE: no ratingValue/reviewCount here. The 4.9★ / 70+ reviews live on
+  // Google (third party). Marking them up as first-party AggregateRating
+  // violates Google's structured-data policy and risks a manual action —
+  // only add ratings if the site ever hosts its own first-party reviews.
   sameAs: ['https://www.facebook.com/mckinleyroofing'],
 } as const;
 
@@ -56,11 +58,6 @@ export function buildRoofingContractorSchema(opts?: {
     image: BUSINESS.logo,
     address: postalAddress,
     areaServed,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: BUSINESS.ratingValue,
-      reviewCount: BUSINESS.reviewCount,
-    },
     sameAs: [...BUSINESS.sameAs],
   };
 
