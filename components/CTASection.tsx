@@ -11,7 +11,7 @@ const CTASection: React.FC = () => {
     <section
       className="relative py-24 overflow-hidden text-white"
       style={{
-        backgroundImage: 'url(/cta-house.jpg)',
+        backgroundImage: 'url(/testimonial_red_roof_home.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
