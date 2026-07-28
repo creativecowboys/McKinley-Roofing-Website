@@ -6,6 +6,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 import InspectionModal from '@/components/InspectionModal';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+
+const GA_MEASUREMENT_ID = 'G-M14NQBJTNL';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -41,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body className="bg-white text-slate-900 overflow-x-hidden">
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
         <ModalProvider>
           <ScrollToTop />
           <InspectionModal />
