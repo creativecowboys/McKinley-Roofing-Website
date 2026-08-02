@@ -29,7 +29,6 @@ export const locations: LocationData[] = [
         county: 'Carroll County',
         lat: 33.5801,
         lng: -85.0766,
-        isHQ: true,
         metaTitle: 'Roofing Contractor in Carrollton, GA | McKinley Roofing',
         metaDescription:
             'McKinley Roofing is Carrollton, GA\'s trusted local roofing contractor. Roof repair, replacement, storm damage & gutters. Owens Corning Preferred. Free inspection.',
@@ -81,6 +80,7 @@ export const locations: LocationData[] = [
         county: 'Douglas County',
         lat: 33.7515,
         lng: -84.7477,
+        isHQ: true,
         metaTitle: 'Roofing Contractor in Douglasville, GA | McKinley Roofing',
         metaDescription:
             'Need a roofer in Douglasville, GA? McKinley Roofing offers roof repair, replacement, storm damage restoration & gutters. Owens Corning Preferred. Free inspection.',
