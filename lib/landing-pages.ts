@@ -57,17 +57,17 @@ const FIRST_SIX_CITIES: City[] = ALL_CITIES.slice(0, 6);
 function buildMetaDescription(serviceName: string, cityName: string, serviceSlug: ServiceSlug): string {
   const templates: Record<ServiceSlug, (city: string) => string> = {
     'roof-replacement': (city) =>
-      `Need a new roof in ${city}, GA? McKinley Roofing delivers expert roof replacement with Owens Corning materials, lifetime workmanship warranty, and a free inspection. Call today.`,
+      `Roof replacement in ${city}, GA by McKinley Roofing. Owens Corning materials, expert installation, and a free inspection. Request yours today.`,
     'roof-repair': (city) =>
-      `Fast, reliable roof repair in ${city}, GA by McKinley Roofing. We fix leaks, damaged shingles, and more — backed by a lifetime workmanship warranty. Get your free estimate.`,
+      `Fast, reliable roof repair in ${city}, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free inspection today.`,
     'storm-damage-restoration': (city) =>
-      `Storm damage to your roof in ${city}, GA? McKinley Roofing provides rapid storm damage restoration, insurance claim assistance, and a free damage inspection. Call (678) 983-4455.`,
+      `Storm damage restoration in ${city}, GA from McKinley Roofing. We inspect wind and hail damage and help with insurance claims. Book a free inspection.`,
     'gutter-installation': (city) =>
-      `Protect your home with professional gutter installation in ${city}, GA. McKinley Roofing installs seamless gutters built to handle Georgia's heavy rains. Free estimates available.`,
+      `Professional seamless gutter installation in ${city}, GA by McKinley Roofing. Protect your roof and foundation from Georgia rain. Get a free estimate.`,
     'siding-installation': (city) =>
-      `Upgrade your home's curb appeal with expert siding installation & repair in ${city}, GA. McKinley Roofing is fully insured with a lifetime workmanship warranty. Get a free quote.`,
+      `Expert siding installation and repair in ${city}, GA by McKinley Roofing. Protect and refresh your home with a free inspection and honest guidance.`,
     'roof-maintenance': (city) =>
-      `Extend your roof's life with professional maintenance in ${city}, GA. McKinley Roofing's maintenance plans catch small issues before they become costly repairs. Book today.`,
+      `Professional roof maintenance in ${city}, GA from McKinley Roofing. Catch small problems early with inspections and practical repairs. Book today.`,
   };
   return templates[serviceSlug](cityName);
 }
