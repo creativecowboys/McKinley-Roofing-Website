@@ -7,19 +7,20 @@ import { Calendar, ArrowRight } from 'lucide-react';
 const Blog: React.FC = () => {
   const posts = [
     {
+      title: 'How Roofing Insurance Claims Work in Georgia',
+      excerpt: 'ACV vs RCV, adjuster meetings, and the mistakes that get legitimate storm damage claims denied...',
+      author: 'McKinley Roofing',
+      date: 'August 9, 2026',
+      image: '/blog_storm_damage_roofing.png',
+      link: '/blog/how-roofing-insurance-claims-work-in-georgia',
+    },
+    {
       title: 'Protect Your Home with Expert Roofing Services',
       excerpt: 'Your roof is the first line of defense against the elements. Our expert services...',
       author: 'McKinley Roofing',
       date: 'August 23, 2025',
       image: '/blog_hero_roofing.png',
       link: '/blog/protect-your-home-with-expert-roofing-services',
-    },
-    {
-      title: 'Protect Your Investment with Our Roofing Expertise',
-      excerpt: 'We understand the importance of a keeping your home safe and secure...',
-      author: 'Wilbur Huels',
-      date: '24 August 2025',
-      image: '/blog_roofing_investment.png',
     },
     {
       title: 'The Benefits of Upgrading to an Energy-Efficient Roof',

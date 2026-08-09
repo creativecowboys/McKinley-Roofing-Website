@@ -32,6 +32,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
       changeFrequency: 'monthly',
     },
+    {
+      path: '/blog/how-roofing-insurance-claims-work-in-georgia',
+      file: 'app/blog/how-roofing-insurance-claims-work-in-georgia/page.tsx',
+      priority: 0.7,
+      changeFrequency: 'monthly',
+    },
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
