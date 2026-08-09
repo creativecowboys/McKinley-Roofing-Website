@@ -33,7 +33,7 @@ const ServiceAreasPage: React.FC = () => {
                             West Georgia's Trusted Roofer
                         </div>
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                            Our Service Areas
+                            Roofing Service Areas Across West Georgia
                         </h1>
                         <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
                             McKinley Roofing proudly serves homeowners across West Georgia. Select your city below to learn about our local roofing services.

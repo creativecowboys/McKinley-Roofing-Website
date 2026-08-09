@@ -17,7 +17,7 @@ const ContactPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-3xl mx-auto">
                         <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-                            Get in Touch
+                            Contact Us for a Free Roof Inspection
                         </h1>
                         <p className="text-xl text-red-100 leading-relaxed">
                             Ready to protect your home with quality roofing? Contact us today for a free inspection and consultation.

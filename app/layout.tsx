@@ -35,6 +35,10 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['https://www.mckinleyroofing.net/McKinley_logo.png'],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

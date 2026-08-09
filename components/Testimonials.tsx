@@ -77,7 +77,7 @@ const Testimonials: React.FC = () => {
                   <img
                     key={i}
                     src={`/testimonial_avatar_${i}.png`}
-                    alt="User"
+                    alt="Satisfied McKinley Roofing customer"
                     className="w-14 h-14 rounded-full border-4 border-white shadow-lg object-cover"
                   />
                 ))}
