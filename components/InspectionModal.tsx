@@ -59,24 +59,25 @@ const InspectionModal: React.FC = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Server-side lead pipeline: sends notification email (Resend) and
+      // creates a GoHighLevel contact/opportunity. See app/api/lead/route.ts.
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'f0edb404-1cef-4cbd-a52c-4a2ba56b98b3',
-          subject: `Free Roof Inspection Request from ${formData.firstName} ${formData.lastName}`,
-          from_name: `${formData.firstName} ${formData.lastName}`,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
           email: formData.email,
           phone: formData.phone,
           address: formData.address,
           message: formData.message || 'No additional notes.',
-          to_email: 'mckinleyrandr@gmail.com',
+          source: 'inspection-modal',
         }),
       });
 
       const result = await response.json();
 
-      if (result.success) {
+      if (result.ok) {
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', phone: '', address: '', message: '' });
       } else {

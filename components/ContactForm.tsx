@@ -41,26 +41,27 @@ const ContactForm: React.FC = () => {
         setErrorMessage('');
 
         try {
-            const response = await fetch('https://api.web3forms.com/submit', {
+            // Server-side lead pipeline: sends notification email (Resend) and
+            // creates a GoHighLevel contact/opportunity. See app/api/lead/route.ts.
+            const response = await fetch('/api/lead', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    access_key: 'f0edb404-1cef-4cbd-a52c-4a2ba56b98b3',
-                    subject: `New Contact Form Submission from ${formData.firstName} ${formData.lastName}`,
-                    from_name: `${formData.firstName} ${formData.lastName}`,
+                    firstName: formData.firstName,
+                    lastName: formData.lastName,
                     email: formData.email,
                     phone: formData.phone,
-                    new_client: formData.newClient,
+                    newClient: formData.newClient,
                     message: formData.message,
-                    to_email: 'josh@creativecowboys.co',
+                    source: 'contact-form',
                 }),
             });
 
             const result = await response.json();
 
-            if (result.success) {
+            if (result.ok) {
                 setSubmitStatus('success');
                 setFormData({
                     firstName: '',
@@ -80,7 +81,7 @@ const ContactForm: React.FC = () => {
         } catch (error) {
             console.error('Form submission error:', error);
             setSubmitStatus('error');
-            setErrorMessage('Failed to send message. Please try calling us directly or emailing josh@creativecowboys.co');
+            setErrorMessage('Failed to send message. Please try calling us directly or emailing mckinleyrandr@gmail.com');
         } finally {
             setIsSubmitting(false);
         }
