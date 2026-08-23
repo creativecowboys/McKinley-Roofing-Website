@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { trackLead } from '@/lib/analytics';
 
 interface FormData {
     firstName: string;
@@ -62,6 +63,7 @@ const ContactForm: React.FC = () => {
             const result = await response.json();
 
             if (result.ok) {
+                trackLead('contact-form');
                 setSubmitStatus('success');
                 setFormData({
                     firstName: '',

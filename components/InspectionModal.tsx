@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle, AlertCircle, Phone, Shield } from 'lucide-react';
 import { useModal } from '@/contexts/ModalContext';
+import { trackLead } from '@/lib/analytics';
 
 interface FormData {
   firstName: string;
@@ -78,6 +79,7 @@ const InspectionModal: React.FC = () => {
       const result = await response.json();
 
       if (result.ok) {
+        trackLead('inspection-modal');
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', phone: '', address: '', message: '' });
       } else {

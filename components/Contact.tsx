@@ -4,6 +4,7 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import ServiceAreaMap from './ServiceAreaMap';
+import { trackLead } from '@/lib/analytics';
 
 interface FormData {
   firstName: string;
@@ -64,6 +65,7 @@ const Contact: React.FC = () => {
       const result = await response.json();
 
       if (result.ok) {
+        trackLead('contact-page');
         setSubmitStatus('success');
         setFormData({
           firstName: '',
