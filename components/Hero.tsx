@@ -24,7 +24,7 @@ const Hero: React.FC<HeroProps> = () => {
             <source src="/McKinley-Roofing-Web-Banner-v1.mp4" type="video/mp4" />
             {/* Fallback image if video doesn't load */}
             <img
-              src="/McKinley_Roofing_3.jpg"
+              src="/McKinley_Roofing_3.webp"
               alt="McKinley Roofing Expert at Work"
               className="absolute inset-0 w-full h-full object-cover object-right lg:object-center"
             />

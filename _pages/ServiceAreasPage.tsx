@@ -16,7 +16,7 @@ const ServiceAreasPage: React.FC = () => {
                     {/* Real photo background */}
                     <div className="absolute inset-0">
                         <img
-                            src="/MckInley Roofing Photos/McKinley_Roofing_1.jpg"
+                            src="/MckInley Roofing Photos/McKinley_Roofing_1.webp"
                             alt="McKinley Roofing crew at work in West Georgia"
                             className="w-full h-full object-cover object-center"
                             loading="eager"
@@ -106,10 +106,10 @@ const ServiceAreasPage: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {[
-                                { src: '/MckInley Roofing Photos/McKinley_Roofing_22.jpg', alt: 'McKinley crew nailing shingles' },
-                                { src: '/MckInley Roofing Photos/McKinley_Roofing_10.jpg', alt: 'Roofer laying underlayment' },
-                                { src: '/MckInley Roofing Photos/McKinley_Roofing_15.jpg', alt: 'McKinley roofer with nail gun' },
-                                { src: '/MckInley Roofing Photos/McKinley_Roofing_20.jpg', alt: 'McKinley team consulting homeowner' },
+                                { src: '/MckInley Roofing Photos/McKinley_Roofing_22.webp', alt: 'McKinley crew nailing shingles' },
+                                { src: '/MckInley Roofing Photos/McKinley_Roofing_10.webp', alt: 'Roofer laying underlayment' },
+                                { src: '/MckInley Roofing Photos/McKinley_Roofing_15.webp', alt: 'McKinley roofer with nail gun' },
+                                { src: '/MckInley Roofing Photos/McKinley_Roofing_20.webp', alt: 'McKinley team consulting homeowner' },
                             ].map((photo, i) => (
                                 <div key={i} className="rounded-xl overflow-hidden" style={{ aspectRatio: '1/1' }}>
                                     <img

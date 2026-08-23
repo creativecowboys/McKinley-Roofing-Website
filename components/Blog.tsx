@@ -11,7 +11,7 @@ const Blog: React.FC = () => {
       excerpt: 'ACV vs RCV, adjuster meetings, and the mistakes that get legitimate storm damage claims denied...',
       author: 'McKinley Roofing',
       date: 'August 9, 2026',
-      image: '/blog_storm_damage_roofing.png',
+      image: '/blog_storm_damage_roofing.webp',
       link: '/blog/how-roofing-insurance-claims-work-in-georgia',
     },
     {
@@ -19,7 +19,7 @@ const Blog: React.FC = () => {
       excerpt: 'Your roof is the first line of defense against the elements. Our expert services...',
       author: 'McKinley Roofing',
       date: 'August 23, 2025',
-      image: '/blog_hero_roofing.png',
+      image: '/blog_hero_roofing.webp',
       link: '/blog/protect-your-home-with-expert-roofing-services',
     },
     {
@@ -27,7 +27,7 @@ const Blog: React.FC = () => {
       excerpt: 'Energy-efficient roofs do more than just protect your home they also help...',
       author: 'Martin Graham',
       date: '26 August 2025',
-      image: '/blog_energy_efficient.png',
+      image: '/blog_energy_efficient.webp',
       isFeature: true,
     },
   ];

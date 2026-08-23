@@ -29,7 +29,7 @@ const Certifications: React.FC = () => {
     const certifications = [
         {
             name: 'Owens Corning Preferred Contractor',
-            logo: '/owens_corning_badge.png',
+            logo: '/owens_corning_badge.webp',
         },
     ];
 

@@ -56,7 +56,7 @@ const Header: React.FC = () => {
           {/* Logo - McKinley Roofing */}
           <Link href="/" className="flex items-center gap-3 group cursor-pointer">
             <img
-              src="/McKinley_Logo_Dark.png"
+              src="/McKinley_Logo_Dark.webp"
               alt="McKinley Roofing"
               className="h-16 w-auto"
             />

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'Protect Your Home with Expert Roofing Services',
     description:
       'Expert roofing services protect your family and your investment. Learn from McKinley Roofing about repair, replacement, and storm restoration in West Georgia.',
-    images: ['/blog_hero_roofing.png'],
+    images: ['/blog_hero_roofing.webp'],
     type: 'article',
   },
   alternates: {

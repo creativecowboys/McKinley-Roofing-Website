@@ -13,7 +13,7 @@ const BlogProtectYourHomePage: React.FC = () => {
       {/* Hero */}
       <div className="relative h-[55vh] min-h-[420px] overflow-hidden">
         <img
-          src="/blog_hero_roofing.png"
+          src="/blog_hero_roofing.webp"
           alt="Beautiful West Georgia home with expert McKinley roofing installation"
           className="w-full h-full object-cover"
         />
@@ -81,7 +81,7 @@ const BlogProtectYourHomePage: React.FC = () => {
         {/* Inline photo */}
         <figure className="my-12 rounded-2xl overflow-hidden shadow-xl">
           <img
-            src="/blog_storm_damage_roofing.png"
+            src="/blog_storm_damage_roofing.webp"
             alt="McKinley Roofing contractor inspecting storm damage on a residential roof"
             className="w-full object-cover max-h-[480px]"
           />
