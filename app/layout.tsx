@@ -4,6 +4,7 @@ import './globals.css';
 import { ModalProvider } from '@/contexts/ModalContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import FooterServiceAreas from '@/components/FooterServiceAreas';
 import ScrollToTop from '@/components/ScrollToTop';
 import InspectionModal from '@/components/InspectionModal';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
@@ -71,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-col min-h-screen">
             <Header />
             {children}
-            <Footer />
+            <Footer serviceAreas={<FooterServiceAreas />} />
           </div>
         </ModalProvider>
       </body>
