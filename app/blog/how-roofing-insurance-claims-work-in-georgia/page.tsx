@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: 'How Roofing Insurance Claims Work in Georgia: A Homeowner\'s Guide',
     description:
       'ACV vs RCV, deductibles, adjuster meetings, and why legitimate roof claims get denied — a practical guide from McKinley Roofing in Douglasville, GA.',
-    images: ['/blog_storm_damage_roofing.png'],
+    images: ['/blog_storm_damage_roofing.webp'],
     type: 'article',
   },
   alternates: {
@@ -27,7 +27,7 @@ export default function Page() {
     headline: 'How Roofing Insurance Claims Work in Georgia: A Homeowner\'s Guide',
     description:
       'What Georgia homeowners insurance covers on your roof, the claim process step by step, ACV vs RCV, and the mistakes that get storm damage claims denied.',
-    image: 'https://www.mckinleyroofing.net/blog_storm_damage_roofing.png',
+    image: 'https://www.mckinleyroofing.net/blog_storm_damage_roofing.webp',
     datePublished: '2026-08-09',
     dateModified: '2026-08-09',
     mainEntityOfPage: canonical,

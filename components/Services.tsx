@@ -14,7 +14,7 @@ const Services: React.FC = () => {
       title: 'Roof Replacement Services',
       icon: <RefreshCw size={24} />,
       description: 'Complete replacement services for both residential and commercial properties when repairs are no longer cost-effective or when a roof has reached the end of its useful life.',
-      image: '/service_asphalt_shingles.png',
+      image: '/service_asphalt_shingles.webp',
       bullets: [
         'Comprehensive inspection to assess existing roof condition',
         'Customized replacement plan tailored to your needs and budget',
@@ -27,7 +27,7 @@ const Services: React.FC = () => {
       title: 'Storm Damage Restoration',
       icon: <CloudRain size={24} />,
       description: 'Expert assistance recovering from storm damage, including hail and wind damage. We work directly with insurance companies to ensure you receive maximum benefits.',
-      image: '/service_storm_damage.png',
+      image: '/service_storm_damage.webp',
       bullets: [
         'Detailed damage assessment and documentation',
         'Direct coordination with insurance companies',
@@ -40,7 +40,7 @@ const Services: React.FC = () => {
       title: 'Roof Repair Services',
       icon: <Wrench size={24} />,
       description: 'Comprehensive repair services designed to address damage quickly and effectively, preventing minor issues from becoming major problems.',
-      image: '/service_roof_repair.png',
+      image: '/service_roof_repair.webp',
       bullets: [
         'Thorough inspection to assess the full extent of damage',
         'Professional leak detection and repair',
@@ -53,7 +53,7 @@ const Services: React.FC = () => {
       title: 'Proactive Roof Maintenance',
       icon: <Shield size={24} />,
       description: 'Preventive maintenance services help protect your roofing investment and extend the lifespan of your roof by identifying and addressing small issues before they develop into expensive repairs.',
-      image: '/service_maintenance.png',
+      image: '/service_maintenance.webp',
       bullets: [
         'Regular inspections to identify potential issues early',
         'Cleaning gutters and downspouts to prevent water buildup',
@@ -66,7 +66,7 @@ const Services: React.FC = () => {
       title: 'Gutter Installation Services',
       icon: <Droplets size={24} />,
       description: 'Professional seamless gutter system installation designed to effectively channel water away from your structure, protecting both your roof and foundation.',
-      image: '/service_gutter_installation.png',
+      image: '/service_gutter_installation.webp',
       bullets: [
         'Customized gutter design for your property specifications',
         'High-quality, durable gutter materials',
@@ -79,7 +79,7 @@ const Services: React.FC = () => {
       title: 'Siding Installation & Repair',
       icon: <Layers size={24} />,
       description: 'Professional siding services that protect your home from the elements while dramatically boosting curb appeal and property value.',
-      image: '/service_siding_installation.png',
+      image: '/service_siding_installation.webp',
       bullets: [
         'Expert installation of vinyl, fiber cement, and wood siding',
         'Siding repair and replacement for damaged or aging sections',

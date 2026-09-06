@@ -12,7 +12,7 @@ const BlogInsuranceClaimsPage: React.FC = () => {
       {/* Hero */}
       <div className="relative h-[55vh] min-h-[420px] overflow-hidden">
         <img
-          src="/blog_storm_damage_roofing.png"
+          src="/blog_storm_damage_roofing.webp"
           alt="Roofing contractor inspecting shingle roof for a storm damage insurance claim in Douglasville, Georgia"
           className="w-full h-full object-cover"
         />

@@ -26,6 +26,15 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
+export interface SendLeadEmailOptions {
+  /** Override recipients (comma-separated). Defaults to LEAD_NOTIFY_EMAIL. */
+  to?: string;
+  /** Prepended to the subject line, e.g. "[Filtered] ". */
+  subjectPrefix?: string;
+  /** Optional banner shown above the lead table (used for spam-review copies). */
+  note?: string;
+}
+
 /**
  * Send a lead-notification email via Resend.
  *
@@ -36,9 +45,12 @@ function escapeHtml(value: string): string {
  *
  * Returns true on a successful send, false if skipped or failed.
  */
-export async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
+export async function sendLeadEmail(
+  lead: LeadPayload,
+  options: SendLeadEmailOptions = {}
+): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
-  const notify = process.env.LEAD_NOTIFY_EMAIL;
+  const notify = options.to || process.env.LEAD_NOTIFY_EMAIL;
   const from =
     process.env.LEAD_FROM_EMAIL || 'McKinley Roofing <onboarding@resend.dev>';
 
@@ -60,7 +72,7 @@ export async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
   const source = lead.source || 'contact-form';
   const label = SOURCE_LABELS[source] || 'New Website Lead';
   const fullName = [lead.firstName, lead.lastName].filter(Boolean).join(' ').trim();
-  const subject = `${label}${fullName ? ` from ${fullName}` : ''}`;
+  const subject = `${options.subjectPrefix ?? ''}${label}${fullName ? ` from ${fullName}` : ''}`;
 
   const rows: Array<[string, string | undefined]> = [
     ['Name', fullName || undefined],
@@ -74,13 +86,20 @@ export async function sendLeadEmail(lead: LeadPayload): Promise<boolean> {
 
   const presentRows = rows.filter(([, value]) => value && String(value).trim());
 
-  const textBody = presentRows
-    .map(([k, v]) => `${k}: ${v}`)
-    .join('\n');
+  const textBody =
+    (options.note ? `${options.note}\n\n` : '') +
+    presentRows.map(([k, v]) => `${k}: ${v}`).join('\n');
+
+  const noteHtml = options.note
+    ? `<p style="background: #fef3c7; border: 1px solid #f59e0b; color: #78350f; padding: 10px 12px; border-radius: 6px; max-width: 600px;">${escapeHtml(
+        options.note
+      )}</p>`
+    : '';
 
   const htmlBody = `
     <div style="font-family: Arial, Helvetica, sans-serif; color: #0f172a;">
       <h2 style="color: #dc2626; margin-bottom: 16px;">${escapeHtml(label)}</h2>
+      ${noteHtml}
       <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
         ${presentRows
           .map(

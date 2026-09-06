@@ -65,7 +65,7 @@ const Testimonials: React.FC = () => {
               {/* Top Half: Image */}
               <div className="h-64 relative">
                 <img
-                  src="/testimonial_red_roof_home.png"
+                  src="/testimonial_red_roof_home.webp"
                   alt="Beautiful West Georgia home with McKinley Roofing installation"
                   className="w-full h-full object-cover"
                 />
@@ -76,7 +76,7 @@ const Testimonials: React.FC = () => {
                 {[1, 2, 3, 4].map((i) => (
                   <img
                     key={i}
-                    src={`/testimonial_avatar_${i}.png`}
+                    src={`/testimonial_avatar_${i}.webp`}
                     alt="Satisfied McKinley Roofing customer"
                     className="w-14 h-14 rounded-full border-4 border-white shadow-lg object-cover"
                   />

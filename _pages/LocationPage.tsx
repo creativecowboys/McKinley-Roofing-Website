@@ -27,30 +27,30 @@ import { LANDING_PAGE_MAP } from '../lib/landing-pages';
 
 // Photo sets — rotated by location index so each city page feels unique
 const HERO_PHOTOS = [
-    '/MckInley Roofing Photos/McKinley_Roofing_1.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_7.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_11.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_16.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_22.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_23.jpg',
+    '/MckInley Roofing Photos/McKinley_Roofing_1.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_7.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_11.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_16.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_22.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_23.webp',
 ];
 
 const GALLERY_SETS = [
-    ['/MckInley Roofing Photos/McKinley_Roofing_3.jpg', '/MckInley Roofing Photos/McKinley_Roofing_15.jpg', '/MckInley Roofing Photos/McKinley_Roofing_20.jpg'],
-    ['/MckInley Roofing Photos/McKinley_Roofing_5.jpg', '/MckInley Roofing Photos/McKinley_Roofing_10.jpg', '/MckInley Roofing Photos/McKinley_Roofing_25.jpg'],
-    ['/MckInley Roofing Photos/McKinley_Roofing_2.jpg', '/MckInley Roofing Photos/McKinley_Roofing_8.jpg', '/MckInley Roofing Photos/McKinley_Roofing_19.jpg'],
-    ['/MckInley Roofing Photos/McKinley_Roofing_4.jpg', '/MckInley Roofing Photos/McKinley_Roofing_13.jpg', '/MckInley Roofing Photos/McKinley_Roofing_24.jpg'],
-    ['/MckInley Roofing Photos/McKinley_Roofing_6.jpg', '/MckInley Roofing Photos/McKinley_Roofing_14.jpg', '/MckInley Roofing Photos/McKinley_Roofing_26.jpg'],
-    ['/MckInley Roofing Photos/McKinley_Roofing_9.jpg', '/MckInley Roofing Photos/McKinley_Roofing_17.jpg', '/MckInley Roofing Photos/McKinley_Roofing_21.jpg'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_3.webp', '/MckInley Roofing Photos/McKinley_Roofing_15.webp', '/MckInley Roofing Photos/McKinley_Roofing_20.webp'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_5.webp', '/MckInley Roofing Photos/McKinley_Roofing_10.webp', '/MckInley Roofing Photos/McKinley_Roofing_25.webp'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_2.webp', '/MckInley Roofing Photos/McKinley_Roofing_8.webp', '/MckInley Roofing Photos/McKinley_Roofing_19.webp'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_4.webp', '/MckInley Roofing Photos/McKinley_Roofing_13.webp', '/MckInley Roofing Photos/McKinley_Roofing_24.webp'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_6.webp', '/MckInley Roofing Photos/McKinley_Roofing_14.webp', '/MckInley Roofing Photos/McKinley_Roofing_26.webp'],
+    ['/MckInley Roofing Photos/McKinley_Roofing_9.webp', '/MckInley Roofing Photos/McKinley_Roofing_17.webp', '/MckInley Roofing Photos/McKinley_Roofing_21.webp'],
 ];
 
 const SIDE_PHOTOS = [
-    '/MckInley Roofing Photos/McKinley_Roofing_20.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_12.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_18.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_20.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_12.jpg',
-    '/MckInley Roofing Photos/McKinley_Roofing_18.jpg',
+    '/MckInley Roofing Photos/McKinley_Roofing_20.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_12.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_18.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_20.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_12.webp',
+    '/MckInley Roofing Photos/McKinley_Roofing_18.webp',
 ];
 
 const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {

@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, CheckCircle, AlertCircle, Phone, Shield } from 'lucide-react';
 import { useModal } from '@/contexts/ModalContext';
+import { trackLead } from '@/lib/analytics';
 
 interface FormData {
   firstName: string;
@@ -24,6 +25,10 @@ const InspectionModal: React.FC = () => {
     message: '',
   });
 
+  // Anti-spam: honeypot value + when the form was first shown (see lib/spam.ts).
+  const [honeypot, setHoneypot] = useState('');
+  const startedAt = useRef<number>(Date.now());
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
@@ -36,6 +41,11 @@ const InspectionModal: React.FC = () => {
     if (isOpen) window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
+
+  // Restart the time-to-submit clock each time the modal opens
+  useEffect(() => {
+    if (isOpen) startedAt.current = Date.now();
+  }, [isOpen]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -72,12 +82,15 @@ const InspectionModal: React.FC = () => {
           address: formData.address,
           message: formData.message || 'No additional notes.',
           source: 'inspection-modal',
+          website: honeypot,
+          ts: startedAt.current,
         }),
       });
 
       const result = await response.json();
 
       if (result.ok) {
+        if (!result.filtered) trackLead('inspection-modal');
         setSubmitStatus('success');
         setFormData({ firstName: '', lastName: '', email: '', phone: '', address: '', message: '' });
       } else {
@@ -153,6 +166,13 @@ const InspectionModal: React.FC = () => {
                   <p>{errorMessage}</p>
                 </div>
               )}
+              {/* Honeypot: hidden from humans, bots fill it. See lib/spam.ts. */}
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+                </label>
+              </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <input

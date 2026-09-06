@@ -8,6 +8,7 @@ import FooterServiceAreas from '@/components/FooterServiceAreas';
 import ScrollToTop from '@/components/ScrollToTop';
 import InspectionModal from '@/components/InspectionModal';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import PhoneClickTracker from '@/components/PhoneClickTracker';
 
 const GA_MEASUREMENT_ID = 'G-M14NQBJTNL';
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white text-slate-900 overflow-x-hidden">
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        <PhoneClickTracker />
         <ModalProvider>
           <ScrollToTop />
           <InspectionModal />

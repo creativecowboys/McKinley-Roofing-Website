@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { trackLead } from '@/lib/analytics';
 
 interface FormData {
     firstName: string;
@@ -21,6 +22,10 @@ const ContactForm: React.FC = () => {
         newClient: '',
         message: ''
     });
+
+    // Anti-spam: honeypot value + when the form was first shown (see lib/spam.ts).
+    const [honeypot, setHoneypot] = useState('');
+    const startedAt = useRef<number>(Date.now());
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -56,12 +61,15 @@ const ContactForm: React.FC = () => {
                     newClient: formData.newClient,
                     message: formData.message,
                     source: 'contact-form',
+                    website: honeypot,
+                    ts: startedAt.current,
                 }),
             });
 
             const result = await response.json();
 
             if (result.ok) {
+                if (!result.filtered) trackLead('contact-form');
                 setSubmitStatus('success');
                 setFormData({
                     firstName: '',
@@ -105,6 +113,13 @@ const ContactForm: React.FC = () => {
                         <p className="font-medium">{errorMessage}</p>
                     </div>
                 )}
+                {/* Honeypot: hidden from humans, bots fill it. See lib/spam.ts. */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                  <label>
+                    Website
+                    <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+                  </label>
+                </div>
 
                 <div className="grid grid-cols-2 gap-4">
                     <input
