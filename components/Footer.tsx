@@ -110,9 +110,19 @@ const Footer: React.FC<FooterProps> = ({ serviceAreas }) => {
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                 Working Hours
               </h5>
-              <div className="flex justify-between text-sm text-slate-400">
-                <span>7 Days a Week</span>
-                <span className="text-white">7:00 AM - 9:00 PM</span>
+              <div className="space-y-2 text-sm text-slate-400">
+                <div className="flex justify-between">
+                  <span>Monday – Friday</span>
+                  <span className="text-white">8:00 AM – 5:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Saturday</span>
+                  <span className="text-white">10:00 AM – 2:00 PM</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday</span>
+                  <span className="text-white">Closed</span>
+                </div>
               </div>
             </div>
           </div>
