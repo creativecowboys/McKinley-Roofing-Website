@@ -90,7 +90,7 @@ export function buildRoofingContractorSchema(opts?: {
 export function buildHomeLocalBusinessSchema() {
   const areaServed = [
     'Douglasville', 'Carrollton', 'Villa Rica', 'Newnan', 'Bremen', 'Dallas',
-    'Hiram', 'Lithia Springs', 'Austell', 'Powder Springs', 'Temple', 'Bowdon',
+    'Hiram', 'Lithia Springs', 'Austell', 'Powder Springs', 'Temple', 'Bowdon', 'Whitesburg',
   ];
   const services = [
     'Roof Repair', 'Roof Replacement', 'Storm Damage Restoration',
@@ -116,6 +116,21 @@ export function buildHomeLocalBusinessSchema() {
       latitude: 33.6633281,
       longitude: -84.7910462,
     },
+    // Matches the Google Business Profile hours (SearchAtlas location 94265).
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '17:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '10:00',
+        closes: '14:00',
+      },
+    ],
     areaServed: areaServed.map((city) => ({
       '@type': 'City',
       name: city,
