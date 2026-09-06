@@ -9,6 +9,7 @@ import Portfolio from '@/components/Portfolio';
 import CTASection from '@/components/CTASection';
 import Blog from '@/components/Blog';
 import ServiceAreaMapClient from '@/components/ServiceAreaMapClient';
+import ServiceAreaLinks from '@/components/ServiceAreaLinks';
 
 export const metadata: Metadata = {
   // `absolute` bypasses the layout's "%s | McKinley Roofing" template so the
@@ -41,6 +42,7 @@ export default function HomePage() {
       <CTASection />
       <section className="py-10 bg-white">
         <div className="mx-auto px-4" style={{ maxWidth: 'min(1300px, 75vw)' }}>
+          <ServiceAreaLinks />
           <ServiceAreaMapClient />
         </div>
       </section>

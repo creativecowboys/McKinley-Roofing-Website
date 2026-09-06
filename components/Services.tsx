@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Wrench, RefreshCw, CloudRain, Shield, Droplets, Layers, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import { useModal } from '@/contexts/ModalContext';
 
 const Services: React.FC = () => {
@@ -157,6 +158,23 @@ const Services: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Crawlable links to every service page — the tabbed panel above only
+            renders the active service, so Googlebot would otherwise see none. */}
+        <p className="mt-10 text-center text-slate-600">
+          <span className="font-semibold text-slate-800">Learn more:</span>{' '}
+          <Link href="/roof-replacement-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Roof Replacement</Link>
+          <span className="mx-2 text-slate-300">·</span>
+          <Link href="/storm-damage-restoration-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Storm Damage Restoration</Link>
+          <span className="mx-2 text-slate-300">·</span>
+          <Link href="/roof-repair-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Roof Repair</Link>
+          <span className="mx-2 text-slate-300">·</span>
+          <Link href="/roof-maintenance-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Roof Maintenance</Link>
+          <span className="mx-2 text-slate-300">·</span>
+          <Link href="/gutter-installation-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Gutter Installation</Link>
+          <span className="mx-2 text-slate-300">·</span>
+          <Link href="/siding-installation-douglasville-ga" className="hover:text-red-600 underline-offset-2 hover:underline">Siding Installation &amp; Repair</Link>
+        </p>
       </div>
     </section>
   );

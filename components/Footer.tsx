@@ -4,7 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { Facebook, Mail, MapPin, Phone, Send } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  /** Server-rendered service-area link row (see FooterServiceAreas). */
+  serviceAreas?: React.ReactNode;
+}
+
+const Footer: React.FC<FooterProps> = ({ serviceAreas }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -112,6 +117,8 @@ const Footer: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {serviceAreas}
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
