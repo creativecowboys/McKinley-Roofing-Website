@@ -6,7 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
       disallow: [
-        '/_next/',
         '/*?wordfence_lh=',
         '/wp-admin/',
         '/wp-content/',
