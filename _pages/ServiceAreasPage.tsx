@@ -101,6 +101,45 @@ const ServiceAreasPage: React.FC = () => {
                     </div>
                 </section>
 
+                <section className="py-16 bg-white">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <h2 className="text-3xl font-bold text-slate-900 mb-4">Newnan and Carrollton</h2>
+                        <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                            Douglasville is home base. Newnan and Carrollton each have a city page, with the local services listed under it.
+                        </p>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="rounded-2xl border border-slate-200 p-6">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                                    <Link href="/locations/newnan-ga" className="hover:text-red-600">
+                                        Roofing companies in Newnan, GA
+                                    </Link>
+                                </h3>
+                                <p className="text-slate-600 mb-4">Roofers in Newnan and Coweta County. Court Square, Ashley Park, and the rest of the city.</p>
+                                <ul className="space-y-2 text-sm">
+                                    <li><Link href="/roof-repair-newnan-ga" className="text-red-700 font-semibold hover:underline">Roof repair in Newnan, GA</Link></li>
+                                    <li><Link href="/roof-replacement-newnan-ga" className="text-red-700 font-semibold hover:underline">Roof replacement in Newnan, GA</Link></li>
+                                    <li><Link href="/storm-damage-restoration-newnan-ga" className="text-red-700 font-semibold hover:underline">Storm damage restoration in Newnan, GA</Link></li>
+                                    <li><Link href="/gutter-installation-newnan-ga" className="text-red-700 font-semibold hover:underline">Gutter installation in Newnan, GA</Link></li>
+                                </ul>
+                            </div>
+                            <div className="rounded-2xl border border-slate-200 p-6">
+                                <h3 className="text-xl font-bold text-slate-900 mb-3">
+                                    <Link href="/locations/carrollton-ga" className="hover:text-red-600">
+                                        Roofing company in Carrollton, GA
+                                    </Link>
+                                </h3>
+                                <p className="text-slate-600 mb-4">Roofers in Carrollton and Carroll County, from Adamson Square to the University of West Georgia area.</p>
+                                <ul className="space-y-2 text-sm">
+                                    <li><Link href="/roof-repair-carrollton-ga" className="text-red-700 font-semibold hover:underline">Roof repair in Carrollton, GA</Link></li>
+                                    <li><Link href="/roof-replacement-carrollton-ga" className="text-red-700 font-semibold hover:underline">Roof replacement in Carrollton, GA</Link></li>
+                                    <li><Link href="/gutter-installation-carrollton-ga" className="text-red-700 font-semibold hover:underline">Gutter installation in Carrollton, GA</Link></li>
+                                    <li><Link href="/storm-damage-restoration-carrollton-ga" className="text-red-700 font-semibold hover:underline">Storm damage restoration in Carrollton, GA</Link></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* ── Photo Strip ── */}
                 <section className="py-12 bg-slate-900">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

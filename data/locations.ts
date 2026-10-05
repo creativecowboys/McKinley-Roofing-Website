@@ -19,6 +19,12 @@ export interface LocationData {
     neighborhoods?: string[];
     // City-specific FAQs (rendered on-page AND emitted as FAQPage schema).
     localFaqs?: { question: string; answer: string }[];
+    // Unique service-card copy, keyed by landing-page service slug.
+    serviceBlurbs?: Partial<Record<string, string>>;
+    // Replaces the shared "comprehensive roofing solutions" line under the services heading.
+    servicesIntro?: string;
+    // Crawlable links to neighboring city hubs. Used on the Douglasville page.
+    nearbyMarketLinks?: { href: string; label: string; description: string }[];
 }
 
 export const locations: LocationData[] = [
@@ -29,18 +35,35 @@ export const locations: LocationData[] = [
         county: 'Carroll County',
         lat: 33.5801,
         lng: -85.0766,
-        metaTitle: 'Roofing Contractor in Carrollton, GA | McKinley Roofing',
+        metaTitle: 'Roofing Companies in Carrollton, GA | McKinley Roofing',
         metaDescription:
-            'McKinley Roofing is Carrollton, GA\'s trusted local roofing contractor. Roof repair, replacement, storm damage & gutters. Owens Corning Preferred. Free inspection.',
-        headline: 'Roofing Services in Carrollton, GA',
+            'Roofing company in Carrollton, GA. McKinley Roofing handles roof repair, roof replacement, and gutter installation across Carroll County. Free inspection.',
+        headline: 'Roofing Company in Carrollton, GA',
         subheadline:
-            'Your local, family-owned roofing experts serving Carrollton and Carroll County. Quality craftsmanship backed by Owens Corning Preferred certification.',
+            'Roofers in Carrollton and Carroll County for roof repair, roof replacement, storm damage, and gutter installation. Family-owned in Douglasville. Free inspection.',
         nearbyAreas: ['Villa Rica', 'Bremen', 'Temple', 'Whitesburg', 'Bowdon'],
         localIntro: [
             "Carrollton is the heart of Carroll County, and it's one of the West Georgia communities McKinley Roofing is proud to serve. From the historic homes surrounding Adamson Square downtown to the newer subdivisions spreading out toward the University of West Georgia and Highway 61, we help Carrollton homeowners protect their biggest investment with roofing built to last.",
             "As both a college town and the county seat, Carrollton has a real mix of roofing needs — century-old homes near the Square that call for careful, craftsman-level repairs, rental properties around UWG, and fast-growing neighborhoods topped with newer architectural shingles. West Georgia's severe spring storms, summer hail, and straight-line winds don't discriminate, and we inspect for the specific damage each type of roof tends to hide.",
             "Being local means we know the Carroll County permitting process, we're familiar with the neighborhoods off the GreenBelt and out toward Oak Mountain, and we can get to you quickly when a storm rolls through. You get a roofer who treats Carrollton like home — because to us, it is.",
+            "People comparing roofing companies in Carrollton, GA are usually pricing one of three jobs: roof repair on an older house near Adamson Square, roof replacement on a newer roof toward the University of West Georgia or Highway 61, or gutter installation that can handle Carroll County rain. McKinley Roofing is a family-owned roofing company based in Douglasville. We serve Carrollton with those services, plus storm damage restoration, siding, and roof maintenance. If you want roofers in Carrollton who will inspect before they sell a tear-off, call (678) 983-4455.",
         ],
+        servicesIntro:
+            'Roof repair, roof replacement, gutter installation, and storm damage restoration for homeowners comparing roofing companies in Carrollton, GA.',
+        serviceBlurbs: {
+            'roof-repair':
+                'Adamson Square and other older Carrollton homes usually need careful flashing and shingle repairs. Neighborhoods toward UWG, Oak Mountain, Sunset Hills, and Highway 61 more often need wind-lifted shingles fixed after a storm.',
+            'roof-replacement':
+                'Full roof replacement in Carrollton when the shingles are worn out or storm damage covers the slopes. Owens Corning materials, a written estimate, and both manufacturer and labor warranties.',
+            'storm-damage-restoration':
+                'Hail, high wind, and straight-line storms across Carroll County. We inspect, photograph the damage, and meet the adjuster when a Carrollton claim needs a full scope.',
+            'gutter-installation':
+                'Seamless gutter installation in Carrollton for older downtown eaves and longer runs in Oak Mountain, Northside, and along Highway 61, with downspouts aimed away from the foundation.',
+            'roof-maintenance':
+                'Inspections plus valley and gutter cleaning for tree-lined lots around the GreenBelt and older Carrollton streets, before a small opening becomes a leak.',
+            'siding-installation':
+                'Siding repair and installation for older exteriors near downtown Carrollton and for storm-damaged sections in newer subdivisions.',
+        },
         neighborhoods: [
             'Downtown Carrollton',
             'Adamson Square',
@@ -70,6 +93,11 @@ export const locations: LocationData[] = [
                 question: 'Do you help with storm-damage insurance claims in Carroll County?',
                 answer:
                     "Yes. Storm and hail damage is one of the most common reasons Carrollton homeowners call us. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+            },
+            {
+                question: 'Which roofing company serves Carrollton, GA?',
+                answer:
+                    'McKinley Roofing does. We are a family-owned roofing company based in Douglasville and we serve Carrollton and Carroll County for roof repair, roof replacement, gutter installation, storm damage, siding, and roof maintenance. Call (678) 983-4455 to schedule a free inspection.',
             },
         ],
     },
@@ -122,6 +150,43 @@ export const locations: LocationData[] = [
                 question: 'Are you licensed and insured to work in Douglasville?',
                 answer:
                     'Yes — McKinley Roofing is fully licensed and insured in Georgia, and we carry both general liability and workers’ compensation coverage. We’re also an Owens Corning Preferred Contractor, which lets us back your new roof with strong manufacturer and labor warranties.',
+            },
+        ],
+        nearbyMarketLinks: [
+            {
+                href: '/locations/newnan-ga',
+                label: 'Roofing companies in Newnan, GA',
+                description: 'Coweta County hub for roof repair, roof replacement, and storm damage.',
+            },
+            {
+                href: '/roof-repair-newnan-ga',
+                label: 'Roof repair in Newnan, GA',
+                description: 'Leaks, missing shingles, and wind damage on Newnan roofs.',
+            },
+            {
+                href: '/roof-replacement-newnan-ga',
+                label: 'Roof replacement in Newnan, GA',
+                description: 'Full replacements with Owens Corning materials after a free inspection.',
+            },
+            {
+                href: '/locations/carrollton-ga',
+                label: 'Roofing company in Carrollton, GA',
+                description: 'Carroll County hub for roofers serving Carrollton.',
+            },
+            {
+                href: '/roof-repair-carrollton-ga',
+                label: 'Roof repair in Carrollton, GA',
+                description: 'Repairs for older downtown homes and newer subdivisions.',
+            },
+            {
+                href: '/roof-replacement-carrollton-ga',
+                label: 'Roof replacement in Carrollton, GA',
+                description: 'Replacement estimates for Carrollton and Carroll County.',
+            },
+            {
+                href: '/gutter-installation-carrollton-ga',
+                label: 'Gutter installation in Carrollton, GA',
+                description: 'Seamless gutters and downspouts for Carrollton houses.',
             },
         ],
     },
@@ -183,18 +248,35 @@ export const locations: LocationData[] = [
         county: 'Coweta County',
         lat: 33.3807,
         lng: -84.7997,
-        metaTitle: 'Roofing Contractor in Newnan, GA | McKinley Roofing',
+        metaTitle: 'Roofing Companies in Newnan, GA | McKinley Roofing',
         metaDescription:
-            'McKinley Roofing provides expert roofing services in Newnan, GA. Roof repair, replacement, storm damage & gutters. Owens Corning Preferred. Free inspection.',
-        headline: 'Roofing Services in Newnan, GA',
+            'Roofing companies in Newnan, GA: McKinley Roofing handles roof repair, roof replacement, storm damage, and gutters in Coweta County. Free inspection.',
+        headline: 'Roofing Company in Newnan, GA',
         subheadline:
-            'Serving Newnan and Coweta County with premium roofing solutions. From storm damage to full replacements, we protect what matters most.',
+            'Roofers in Newnan and Coweta County for roof repair, roof replacement, storm damage, and gutters. Family-owned in Douglasville. Free inspection.',
         nearbyAreas: ['Peachtree City', 'Sharpsburg', 'Senoia', 'Fayetteville', 'Tyrone'],
         localIntro: [
             "Newnan — long known as the \"City of Homes\" for its beautiful historic architecture around the downtown Court Square — is one of Coweta County's proudest communities, and McKinley Roofing is honored to serve it. From antebellum homes near downtown to fast-growing subdivisions out toward Ashley Park, we protect Newnan roofs with premium materials and craftsmanship.",
             "Newnan understands storm damage better than almost anywhere in the region. In March 2021, an EF-4 tornado tore a mile-wide path straight through the city with winds over 170 mph, damaging or destroying more than 1,700 homes across Coweta County. Years later, we still find roofs with lingering wind and hail damage — or rushed post-storm repairs that never held up. We inspect thoroughly and tell you the truth about what your roof needs.",
             "Insurance experience matters enormously here, and it's one of our strengths. We document damage carefully, meet adjusters on-site, and make sure Newnan homeowners get the full scope of what their policy owes them — while getting the work done right the first time.",
+            "Homeowners searching for roofing companies in Newnan, GA usually need a leak repaired, a full roof replacement, or help documenting wind and hail damage. McKinley Roofing is a family-owned roofing company based in Douglasville that serves Newnan and Coweta County for those jobs, plus gutter installation, siding, and roof maintenance. If you want roofers in Newnan who will inspect first and say whether a repair will hold, start with a free inspection at (678) 983-4455.",
         ],
+        servicesIntro:
+            'Roof repair, roof replacement, storm damage restoration, and gutter installation for people comparing roofing companies in Newnan, GA.',
+        serviceBlurbs: {
+            'roof-repair':
+                'Court Square and other older Newnan houses usually leak at flashing and pipe boots. Newer roofs near Ashley Park, White Oak, and Woodland Farms more often need wind-lifted shingles repaired after a Coweta County storm.',
+            'roof-replacement':
+                'Roof replacement in Newnan when patches have piled up on an older house, or when a subdivision roof has widespread granule loss or storm damage. Owens Corning materials and a written estimate.',
+            'storm-damage-restoration':
+                'Wind and hail inspections across Coweta County, including roofs that were patched quickly after the March 2021 tornado. We document the damage and meet the adjuster.',
+            'gutter-installation':
+                'Seamless gutters for older Court Square eaves and for longer runs in Ashley Park, Windsong, and Mountain Creek, with downspouts that carry rain away from the foundation.',
+            'roof-maintenance':
+                'A yearly look at shingles, flashing, valleys, and gutters — especially useful on roofs repaired after the 2021 tornado and on tree-covered Newnan lots.',
+            'siding-installation':
+                'Siding repair and replacement for storm-damaged Newnan exteriors, inspected together with the roof when water got behind the wall.',
+        },
         neighborhoods: [
             'Downtown Newnan / Court Square',
             'Ashley Park',
@@ -223,6 +305,11 @@ export const locations: LocationData[] = [
                 question: 'How much does a new roof cost in Newnan, GA?',
                 answer:
                     "It depends on your roof's size and pitch, the materials you pick, and whether there's underlying decking damage. We provide free inspections and detailed written estimates up front — and when the damage is storm-related, we'll help you file a claim so insurance covers the bulk of the cost.",
+            },
+            {
+                question: 'Are you one of the roofing companies that serves Newnan, GA?',
+                answer:
+                    'Yes. McKinley Roofing is based in Douglasville and serves Newnan and Coweta County for roof repair, roof replacement, storm damage, gutters, siding, and roof maintenance. Call (678) 983-4455 to schedule a free inspection.',
             },
         ],
     },

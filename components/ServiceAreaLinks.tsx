@@ -24,6 +24,39 @@ export default function ServiceAreaLinks() {
         <h2 className="text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4">Cities We Serve in West Georgia</h2>
         <p className="text-slate-600 text-lg">Select your city for local roofing services.</p>
       </div>
+      <div className="max-w-3xl mx-auto mb-10 text-center text-slate-700 leading-relaxed">
+        <p>
+          Douglasville is home base. For Coweta County, see{' '}
+          <Link href="/locations/newnan-ga" className="text-red-700 font-semibold hover:underline">
+            roofing companies in Newnan, GA
+          </Link>
+          , including{' '}
+          <Link href="/roof-repair-newnan-ga" className="text-red-700 font-semibold hover:underline">
+            roof repair in Newnan
+          </Link>{' '}
+          and{' '}
+          <Link href="/roof-replacement-newnan-ga" className="text-red-700 font-semibold hover:underline">
+            roof replacement in Newnan
+          </Link>
+          . For Carroll County, see our{' '}
+          <Link href="/locations/carrollton-ga" className="text-red-700 font-semibold hover:underline">
+            roofing company in Carrollton, GA
+          </Link>{' '}
+          page, plus{' '}
+          <Link href="/roof-repair-carrollton-ga" className="text-red-700 font-semibold hover:underline">
+            roof repair
+          </Link>
+          ,{' '}
+          <Link href="/roof-replacement-carrollton-ga" className="text-red-700 font-semibold hover:underline">
+            roof replacement
+          </Link>
+          , and{' '}
+          <Link href="/gutter-installation-carrollton-ga" className="text-red-700 font-semibold hover:underline">
+            gutter installation in Carrollton
+          </Link>
+          .
+        </p>
+      </div>
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {ordered.map((loc) => {
           const city = loc.slug.replace(/-ga$/, '');

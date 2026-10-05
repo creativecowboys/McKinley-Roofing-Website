@@ -51,8 +51,13 @@ const Footer: React.FC<FooterProps> = ({ serviceAreas }) => {
               <li><Link href="/roof-replacement-douglasville-ga" className="hover:text-red-600 transition-colors">Roof Replacement — Douglasville</Link></li>
               <li><Link href="/storm-damage-restoration-douglasville-ga" className="hover:text-red-600 transition-colors">Storm Damage Restoration</Link></li>
               <li><Link href="/gutter-installation-douglasville-ga" className="hover:text-red-600 transition-colors">Gutter Installation</Link></li>
+              <li><Link href="/locations/carrollton-ga" className="hover:text-red-600 transition-colors">Roofing Company — Carrollton</Link></li>
               <li><Link href="/roof-repair-carrollton-ga" className="hover:text-red-600 transition-colors">Roof Repair — Carrollton</Link></li>
               <li><Link href="/roof-replacement-carrollton-ga" className="hover:text-red-600 transition-colors">Roof Replacement — Carrollton</Link></li>
+              <li><Link href="/gutter-installation-carrollton-ga" className="hover:text-red-600 transition-colors">Gutter Installation — Carrollton</Link></li>
+              <li><Link href="/locations/newnan-ga" className="hover:text-red-600 transition-colors">Roofing Company — Newnan</Link></li>
+              <li><Link href="/roof-repair-newnan-ga" className="hover:text-red-600 transition-colors">Roof Repair — Newnan</Link></li>
+              <li><Link href="/roof-replacement-newnan-ga" className="hover:text-red-600 transition-colors">Roof Replacement — Newnan</Link></li>
             </ul>
           </div>
 
