@@ -58,6 +58,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ],
     },
     keywords: [
+      `roofing companies ${city} GA`,
+      `roofing company ${city} GA`,
+      `roofers in ${city}`,
       `roofing contractor ${city} GA`,
       `roof repair ${city}`,
       `roof replacement ${city} GA`,

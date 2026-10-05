@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { LANDING_PAGES, LANDING_PAGE_MAP } from '@/lib/landing-pages';
 import LandingPage from '@/components/LandingPage';
 import { getFAQs } from '@/lib/landing-page-faqs';
+import { LOCAL_LANDING_COPY } from '@/lib/local-landing-copy';
 
 // ── Static generation ─────────────────────────────────────────────────────────
 
@@ -27,15 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonical = `https://www.mckinleyroofing.net/${page.slug}`;
   const ogImage = 'https://www.mckinleyroofing.net/McKinley_logo.png';
+  const localCopy = LOCAL_LANDING_COPY[page.slug];
+  const description = localCopy?.metaDescription ?? page.metaDescription;
 
   return {
     // Fix #1 — no duplicate brand name. `absolute` bypasses the layout's
     // "%s | McKinley Roofing" template, which would otherwise double the brand.
     title: { absolute: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing` },
-    description: page.metaDescription,
+    description,
     openGraph: {
       title: `${page.serviceName} in ${page.cityName}, GA | McKinley Roofing`,
-      description: page.metaDescription,
+      description,
       // Fix #2 — canonical with www
       url: canonical,
       // Fix #3 — OG image
@@ -75,7 +78,9 @@ export default async function LandingPageRoute({ params }: Props) {
     notFound();
   }
 
-  const faqs = getFAQs(page.serviceSlug, page.cityName);
+  const localCopy = LOCAL_LANDING_COPY[page.slug];
+  const faqs = [...getFAQs(page.serviceSlug, page.cityName), ...(localCopy?.faqs ?? [])];
+  const description = localCopy?.metaDescription ?? page.metaDescription;
   const pageUrl = `https://www.mckinleyroofing.net/${page.slug}`;
 
   // Fix #4 — LocalBusiness + Service schema
@@ -124,7 +129,7 @@ export default async function LandingPageRoute({ params }: Props) {
         name: 'Georgia',
       },
     },
-    description: page.metaDescription,
+    description,
     url: pageUrl,
   };
 
@@ -159,7 +164,7 @@ export default async function LandingPageRoute({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <LandingPage page={page} faqs={faqs} />
+      <LandingPage page={page} faqs={faqs} localCopy={localCopy} />
     </>
   );
 }

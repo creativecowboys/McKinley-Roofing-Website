@@ -6,6 +6,7 @@ import { useModal } from '@/contexts/ModalContext';
 import { LANDING_PAGES, type LandingPageConfig } from '@/lib/landing-pages';
 import { getLocationBySlug } from '@/data/locations';
 import type { FAQ } from '@/lib/landing-page-faqs';
+import type { LocalLandingCopy } from '@/lib/local-landing-copy';
 
 // ─── Icons ───────────────────────────────────────────────────────────────────
 const CheckIcon = () => (
@@ -191,9 +192,15 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
 interface LandingPageProps {
   page: LandingPageConfig;
   faqs?: FAQ[];
+  localCopy?: LocalLandingCopy;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
+const DOUGLASVILLE_NEIGHBORS = [
+  { citySlug: 'newnan', cityName: 'Newnan', hub: '/locations/newnan-ga', hubLabel: 'Roofing companies in Newnan, GA' },
+  { citySlug: 'carrollton', cityName: 'Carrollton', hub: '/locations/carrollton-ga', hubLabel: 'Roofing company in Carrollton, GA' },
+];
+
+const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [], localCopy }) => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const { openModal } = useModal();
   const { serviceName, cityName } = page;
@@ -322,10 +329,29 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
           {/* Intro paragraph */}
           <div className="max-w-3xl">
             <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-4">
-              Expert {serviceName} Serving {cityName}, GA
+              {localCopy?.heading ?? `Expert ${serviceName} Serving ${cityName}, GA`}
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-6">{introParagraph}</p>
-            <p className="text-slate-600 text-lg leading-relaxed">{content.expandedContent(cityName)}</p>
+            {localCopy ? (
+              <div className="space-y-6">
+                {localCopy.paragraphs.map((paragraph, i) => (
+                  <p key={i} className="text-slate-600 text-lg leading-relaxed">{paragraph}</p>
+                ))}
+                <ul className="space-y-2 pt-2">
+                  {localCopy.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className="text-red-700 font-semibold hover:text-red-800 hover:underline">
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <>
+                <p className="text-slate-600 text-lg leading-relaxed mb-6">{introParagraph}</p>
+                <p className="text-slate-600 text-lg leading-relaxed">{content.expandedContent(cityName)}</p>
+              </>
+            )}
 
             {/* Fix #8 — Crawlable trust signals as plain text */}
             <div className="mt-8 pt-6 border-t border-slate-200">
@@ -435,6 +461,37 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [] }) => {
               is just a call away — and we&rsquo;ll always be upfront about whether your address is within our
               service area.
             </p>
+            {page.citySlug === 'douglasville' ? (
+              <div className="mt-8 pt-6 border-t border-red-100">
+                <h3 className="text-xl font-extrabold text-slate-900 mb-3">
+                  Also serving Newnan and Carrollton
+                </h3>
+                <p className="text-slate-600 leading-relaxed mb-4">
+                  The Douglasville crew also works in Coweta County and Carroll County. Start with the city page, or go straight to this service there.
+                </p>
+                <ul className="space-y-2">
+                  {DOUGLASVILLE_NEIGHBORS.map((neighbor) => {
+                    const serviceSlug = `${page.serviceSlug}-${neighbor.citySlug}-ga`;
+                    const hasService = LANDING_PAGES.some((p) => p.slug === serviceSlug);
+                    return (
+                      <li key={neighbor.citySlug} className="text-slate-700">
+                        <Link href={neighbor.hub} className="text-red-700 font-semibold hover:underline">
+                          {neighbor.hubLabel}
+                        </Link>
+                        {hasService ? (
+                          <>
+                            {' — '}
+                            <Link href={`/${serviceSlug}`} className="text-red-700 font-semibold hover:underline">
+                              {serviceName} in {neighbor.cityName}, GA
+                            </Link>
+                          </>
+                        ) : null}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

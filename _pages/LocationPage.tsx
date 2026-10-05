@@ -125,19 +125,19 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
     const testimonials = [
         {
             name: 'Tee Davis',
-            location: `${location.city}, GA`,
+            source: 'Google Review',
             text: `McKinley Roofing did an awesome job on replacing our roof, gutters and downspouts. Everything looks wonderful and best of all we are leak free now. The guys are very friendly with great customer service. We were even greeted by the owner and he made sure all of our questions were answered. They were very thorough on cleaning up after they were done. We would definitely recommend using McKinley Roofing.`,
             rating: 5,
         },
         {
             name: 'Latasha Burns',
-            location: `${location.county}`,
+            source: 'Google Review',
             text: 'McKinley Roofing & Restoration did an awesome job on our roof. From day one, Tyler Bowman was great. He came out and inspected our roof and worked with our insurance company who also came out and saw damage. Tyler kept us informed throughout the process and the crew was very professional and cleaned up everything.',
             rating: 5,
         },
         {
             name: 'Ben Leak',
-            location: `${location.city}, GA`,
+            source: 'Google Review',
             text: "I've had Jacob & McKinley Roofing and Restoration do work on several of my commercial properties, my own home, and my seventy-six year old mother's home as well. I have always been exceptionally satisfied with the professionalism and high-quality work from Jacob and the team.",
             rating: 5,
         },
@@ -255,7 +255,8 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                 Roofing Services in {location.city}
                             </h2>
                             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-                                Comprehensive roofing solutions for {location.city} homeowners — all backed by our Quality over Quantity philosophy.
+                                {location.servicesIntro
+                                    ?? `Comprehensive roofing solutions for ${location.city} homeowners — all backed by our Quality over Quantity philosophy.`}
                             </p>
                         </div>
 
@@ -267,16 +268,17 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                 // otherwise orphaned landing pages).
                                 const landingSlug = service.slug ? `${service.slug}-${location.slug}` : null;
                                 const landingHref = landingSlug && LANDING_PAGE_MAP[landingSlug] ? `/${landingSlug}` : null;
+                                const description = (service.slug && location.serviceBlurbs?.[service.slug]) || service.description;
                                 const cardInner = (
                                     <>
                                         <div className="bg-red-50 rounded-xl w-14 h-14 flex items-center justify-center mb-5 group-hover:bg-red-100 transition-colors duration-200">
                                             <Icon className="w-7 h-7 text-red-600" />
                                         </div>
                                         <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                                        <p className="text-slate-600 leading-relaxed text-sm">{service.description}</p>
+                                        <p className="text-slate-600 leading-relaxed text-sm">{description}</p>
                                         {landingHref && (
                                             <span className="inline-flex items-center gap-1 text-red-600 font-semibold text-sm mt-4 group-hover:gap-2 transition-all">
-                                                {service.title} in {location.city}
+                                                {service.title} in {location.city}, GA
                                                 <ArrowRight className="w-4 h-4" />
                                             </span>
                                         )}
@@ -450,10 +452,10 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-14">
                             <h2 className="text-4xl font-bold text-slate-900 mb-4">
-                                What {location.city} Homeowners Are Saying
+                                What Homeowners Say About McKinley Roofing
                             </h2>
                             <p className="text-xl text-slate-600">
-                                Real reviews from real customers in {location.county}
+                                Google reviews from McKinley Roofing customers
                             </p>
                         </div>
 
@@ -472,7 +474,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                     <p className="text-slate-700 leading-relaxed mb-6 italic">"{t.text}"</p>
                                     <div>
                                         <div className="font-bold text-slate-900">{t.name}</div>
-                                        <div className="text-sm text-slate-500">{t.location}</div>
+                                        <div className="text-sm text-slate-500">{t.source}</div>
                                     </div>
                                 </div>
                             ))}
@@ -501,6 +503,29 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                         </div>
                     </div>
                 </section>
+
+                {location.nearbyMarketLinks && location.nearbyMarketLinks.length > 0 ? (
+                    <section className="py-16 bg-slate-50 border-t border-slate-100">
+                        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                                Roofing in Newnan and Carrollton
+                            </h2>
+                            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                                Douglasville is our home base. The same crew serves Newnan in Coweta County and Carrollton in Carroll County — roof repair, roof replacement, storm damage, and gutter installation included.
+                            </p>
+                            <ul className="space-y-4">
+                                {location.nearbyMarketLinks.map((link) => (
+                                    <li key={link.href} className="bg-white rounded-xl border border-slate-200 p-5">
+                                        <Link href={link.href} className="text-lg font-bold text-red-700 hover:text-red-800 hover:underline">
+                                            {link.label}
+                                        </Link>
+                                        <p className="text-slate-600 mt-1">{link.description}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </section>
+                ) : null}
 
                 {/* ── Other Locations ── */}
                 <section className="py-16 bg-white">
