@@ -4,6 +4,10 @@
 
 export const SITE_URL = 'https://www.mckinleyroofing.net';
 
+/** Stable @id of the business node (defined in full on the homepage). */
+export const BUSINESS_ID = `${SITE_URL}/#business`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
 export const BUSINESS = {
   name: 'McKinley Roofing',
   legalName: 'McKinley Roofing and Restoration',
@@ -100,6 +104,7 @@ export function buildHomeLocalBusinessSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'RoofingContractor',
+    '@id': BUSINESS_ID,
     name: 'McKinley Roofing & Restoration',
     url: SITE_URL,
     telephone: '+1-678-983-4455',
@@ -148,6 +153,66 @@ export function buildHomeLocalBusinessSchema() {
       'https://www.google.com/maps/place/McKinley+Roofing+and+Restoration/@33.6633281,-84.7910462,17z/',
       'https://www.facebook.com/mckinleyroofing',
     ],
+  };
+}
+
+/**
+ * Lightweight reference to the business node. The full RoofingContractor is
+ * defined once on the homepage under BUSINESS_ID; other pages point at it by
+ * @id and repeat only identity facts the site already states (name, url,
+ * phone, logo, locality) so no new claims are introduced.
+ */
+export function businessRef() {
+  return {
+    '@type': 'RoofingContractor',
+    '@id': BUSINESS_ID,
+    name: 'McKinley Roofing & Restoration',
+    url: SITE_URL,
+    telephone: '+1-678-983-4455',
+    image: BUSINESS.logo,
+    address: postalAddress,
+  };
+}
+
+/**
+ * Schema for a plain site page: a WebPage-family node tied to the business by
+ * reference, plus a BreadcrumbList (Home > page).
+ * `relation: 'about'` for pages about the business (About, Contact, Service
+ * Areas, Services); `'publisher'` for legal pages.
+ */
+export function buildPageSchemas(opts: {
+  type: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  path: string; // e.g. '/about'
+  name: string;
+  description: string;
+  relation: 'about' | 'publisher';
+}) {
+  const url = `${SITE_URL}${opts.path}`;
+  const page: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': opts.type,
+    '@id': `${url}#webpage`,
+    url,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: BUSINESS.legalName },
+    [opts.relation]: businessRef(),
+  };
+  return [page, buildBreadcrumbSchema([{ name: 'Home', url: SITE_URL }, { name: opts.name, url }])];
+}
+
+/** BreadcrumbList from an ordered list of crumbs. */
+export function buildBreadcrumbSchema(crumbs: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
   };
 }
 
