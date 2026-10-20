@@ -76,10 +76,12 @@ function buildMetaDescription(serviceName: string, cityName: string, serviceSlug
 // the service templates above. (Moved into code from Search Atlas OTTO, which
 // used to rewrite them in the browser; they now ship in the server HTML.)
 const META_DESCRIPTION_OVERRIDES: Record<string, string> = {
+  'roof-replacement-douglasville-ga':
+    'Roof replacement in Douglasville, GA by McKinley Roofing. Owens Corning materials, lifetime workmanship warranty, free inspection. Call (678) 983-4455.',
   'roof-repair-douglasville-ga':
     'Roof repair in Douglasville, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free roof inspection: (678) 983-4455.',
   'storm-damage-restoration-douglasville-ga':
-    'McKinley Roofing offers storm damage roof repair in Douglasville, GA. We handle wind and hail claims. Book your free roof inspection today',
+    'McKinley Roofing offers storm damage roof repair in Douglasville, GA. We inspect wind and hail damage and help with insurance claims. Book your free roof inspection today.',
   'gutter-installation-douglasville-ga':
     'Gutter installation and repair in Douglasville, GA by McKinley Roofing. Protect your roof and foundation from water damage. Call (678) 983-4455.',
   'siding-installation-douglasville-ga':

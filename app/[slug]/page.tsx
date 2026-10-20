@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Script from 'next/script';
+import { jsonLd } from '@/lib/schema';
 import { LANDING_PAGES, LANDING_PAGE_MAP } from '@/lib/landing-pages';
 import LandingPage from '@/components/LandingPage';
 import { getFAQs } from '@/lib/landing-page-faqs';
@@ -149,20 +149,20 @@ export default async function LandingPageRoute({ params }: Props) {
 
   return (
     <>
-      <Script
+      <script
         id="schema-local-business"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(localBusinessSchema) }}
       />
-      <Script
+      <script
         id="schema-service"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(serviceSchema) }}
       />
-      <Script
+      <script
         id="schema-faq"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }}
       />
       <LandingPage page={page} faqs={faqs} localCopy={localCopy} />
     </>
