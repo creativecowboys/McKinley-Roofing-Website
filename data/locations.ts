@@ -111,7 +111,7 @@ export const locations: LocationData[] = [
         isHQ: true,
         metaTitle: 'Roofing Contractor in Douglasville, GA | McKinley Roofing',
         metaDescription:
-            'Need a roofer in Douglasville, GA? McKinley Roofing offers roof repair, replacement, storm damage restoration & gutters. Owens Corning Preferred. Free inspection.',
+            'McKinley Roofing offers expert roof repair, replacement, storm damage restoration, and gutters in Douglasville, GA. Get a free roof inspection.',
         headline: 'Roofing Services in Douglasville, GA',
         subheadline:
             'Serving Douglasville and Douglas County with honest, high-quality roofing solutions. Family-owned and locally trusted since day one.',
