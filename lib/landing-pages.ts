@@ -72,6 +72,22 @@ function buildMetaDescription(serviceName: string, cityName: string, serviceSlug
   return templates[serviceSlug](cityName);
 }
 
+// Hand-tuned meta descriptions for specific pages. These take precedence over
+// the service templates above. (Moved into code from Search Atlas OTTO, which
+// used to rewrite them in the browser; they now ship in the server HTML.)
+const META_DESCRIPTION_OVERRIDES: Record<string, string> = {
+  'roof-repair-douglasville-ga':
+    'Roof repair in Douglasville, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free roof inspection: (678) 983-4455.',
+  'storm-damage-restoration-douglasville-ga':
+    'McKinley Roofing offers storm damage roof repair in Douglasville, GA. We handle wind and hail claims. Book your free roof inspection today',
+  'gutter-installation-douglasville-ga':
+    'Gutter installation and repair in Douglasville, GA by McKinley Roofing. Protect your roof and foundation from water damage. Call (678) 983-4455.',
+  'siding-installation-douglasville-ga':
+    'Expert siding installation and repair in Douglasville, GA by McKinley Roofing. Durable materials, quality workmanship. Schedule your free inspection today.',
+  'roof-maintenance-douglasville-ga':
+    "Roof maintenance in Douglasville, GA by McKinley Roofing. Catch small problems early and extend your roof's life. Schedule a free inspection today.",
+};
+
 // ─── Build the page configs ────────────────────────────────────────────────────
 
 function buildLandingPages(): LandingPageConfig[] {
@@ -88,7 +104,9 @@ function buildLandingPages(): LandingPageConfig[] {
         cityName: city.name,
         citySlug: city.slug,
         slug,
-        metaDescription: buildMetaDescription(service.name, city.name, service.slug),
+        metaDescription:
+          META_DESCRIPTION_OVERRIDES[slug] ??
+          buildMetaDescription(service.name, city.name, service.slug),
       });
     }
   }
