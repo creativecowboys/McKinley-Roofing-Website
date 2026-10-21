@@ -10,7 +10,7 @@ import InspectionModal from '@/components/InspectionModal';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import PhoneClickTracker from '@/components/PhoneClickTracker';
 
-const GA_MEASUREMENT_ID = 'G-M14NQBJTNL';
+const GA_MEASUREMENT_ID = 'G-P2JLRF5PYX';
 
 const lexend = Lexend({
   subsets: ['latin'],
