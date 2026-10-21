@@ -61,8 +61,6 @@ Materials are the part you have the most say in:
 - **Ice-and-water membrane.** West Georgia doesn't see much ice, but the same self-sealing membrane is what protects valleys and the areas around chimneys and vents from wind-driven rain.
 - **Drip edge, starter strips and ridge caps.** Code requires drip edge along the eaves and rake edges of a shingle roof, and starter strips and ridge caps finish the system.
 
-[CONFIRM WITH McKINLEY: Owens Corning Preferred Contractor status is still current. If yes, keep this sentence: "As an Owens Corning Preferred Contractor, we install Owens Corning shingles and can walk you through their product lines and warranty options in person." If no, delete it.]
-
 ## 7. Ventilation, Flashing and the Small Parts
 
 Attic ventilation affects how long shingles last. A balanced system pulls fresh air in at the soffits and lets hot air out at the ridge, and shingle manufacturers generally require proper ventilation to honor their warranties. If your attic runs hot every summer, a replacement is the easiest time to fix it.
