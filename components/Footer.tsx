@@ -54,6 +54,7 @@ const Footer: React.FC<FooterProps> = ({ serviceAreas }) => {
               <li><Link href="/about" className="hover:text-red-600 transition-colors">About Us</Link></li>
               <li><Link href="/services" className="hover:text-red-600 transition-colors">Services</Link></li>
               <li><Link href="/locations" className="hover:text-red-600 transition-colors">Service Areas</Link></li>
+              <li><Link href="/blog" className="hover:text-red-600 transition-colors">Blog</Link></li>
               <li><Link href="/contact" className="hover:text-red-600 transition-colors">Contact Us</Link></li>
             </ul>
             <h4 className="text-xl font-bold mb-6 mt-10">Popular Services</h4>
