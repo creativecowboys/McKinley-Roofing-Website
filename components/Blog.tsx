@@ -3,35 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { formatPostDate, type BlogPost } from '@/lib/blog-format';
 
-const Blog: React.FC = () => {
-  const posts = [
-    {
-      title: 'How Roofing Insurance Claims Work in Georgia',
-      excerpt: 'ACV vs RCV, adjuster meetings, and the mistakes that get legitimate storm damage claims denied...',
-      author: 'McKinley Roofing',
-      date: 'August 9, 2026',
-      image: '/blog_storm_damage_roofing.webp',
-      link: '/blog/how-roofing-insurance-claims-work-in-georgia',
-    },
-    {
-      title: 'Protect Your Home with Expert Roofing Services',
-      excerpt: 'Your roof is the first line of defense against the elements. Our expert services...',
-      author: 'McKinley Roofing',
-      date: 'August 23, 2025',
-      image: '/blog_hero_roofing.webp',
-      link: '/blog/protect-your-home-with-expert-roofing-services',
-    },
-    {
-      title: 'The Benefits of Upgrading to an Energy-Efficient Roof',
-      excerpt: 'Energy-efficient roofs do more than just protect your home they also help...',
-      author: 'Martin Graham',
-      date: '26 August 2025',
-      image: '/blog_energy_efficient.webp',
-      isFeature: true,
-    },
-  ];
-
+/** Homepage blog strip. The latest posts are passed in by app/page.tsx (getBlogPosts). */
+const Blog: React.FC<{ posts: BlogPost[] }> = ({ posts }) => {
   return (
     <section id="blog" className="py-24 bg-slate-50">
       <div className="container mx-auto px-4">
@@ -43,19 +18,20 @@ const Blog: React.FC = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
-            <article key={idx} className={`bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 flex flex-col h-full group`}>
+          {posts.map((post) => (
+            <article key={post.slug} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 flex flex-col h-full group">
               <div className="relative overflow-hidden aspect-[16/10]">
                 <img
                   src={post.image}
-                  alt={post.title}
+                  alt={post.imageAlt}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-4 text-sm font-semibold text-slate-500">
                   <Calendar size={16} className="text-red-600" />
-                  {post.date}
+                  <time dateTime={post.datePublished}>{formatPostDate(post.datePublished)}</time>
                 </div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-red-600 transition-colors">
                   {post.title}
@@ -63,17 +39,11 @@ const Blog: React.FC = () => {
                 <p className="text-slate-600 mb-8 flex-grow">
                   {post.excerpt}
                 </p>
-                {post.link ? (
-                  <Link href={post.link} className="flex items-center gap-2 font-bold text-red-600 group/btn">
-                    READ MORE
-                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </Link>
-                ) : (
-                  <button className="flex items-center gap-2 font-bold text-red-600 group/btn">
-                    READ MORE
-                    <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                )}
+                <Link href={`/blog/${post.slug}`} className="flex items-center gap-2 font-bold text-red-600 group/btn">
+                  READ MORE
+                  <span className="sr-only">: {post.title}</span>
+                  <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </article>
           ))}

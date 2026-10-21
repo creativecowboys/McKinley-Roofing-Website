@@ -11,6 +11,10 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 import PhoneClickTracker from '@/components/PhoneClickTracker';
 
 const GA_MEASUREMENT_ID = 'G-P2JLRF5PYX';
+// Analytics load only on the production deployment, so Vercel previews and local builds
+// never send hits to McKinley's GA4 property. Pages are static, so this is decided at build
+// time (Vercel exposes VERCEL_ENV to the build).
+const LOAD_ANALYTICS = process.env.VERCEL_ENV === 'production';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -50,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body className="bg-white text-slate-900 overflow-x-hidden">
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+        {LOAD_ANALYTICS && <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />}
         <PhoneClickTracker />
         <ModalProvider>
           <ScrollToTop />

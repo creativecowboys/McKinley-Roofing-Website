@@ -8,6 +8,7 @@ import Testimonials from '@/components/Testimonials';
 import Portfolio from '@/components/Portfolio';
 import CTASection from '@/components/CTASection';
 import Blog from '@/components/Blog';
+import { getBlogPosts } from '@/lib/blog-posts';
 import ServiceAreaMapClient from '@/components/ServiceAreaMapClient';
 import ServiceAreaLinks from '@/components/ServiceAreaLinks';
 
@@ -46,7 +47,7 @@ export default function HomePage() {
           <ServiceAreaMapClient />
         </div>
       </section>
-      <Blog />
+      <Blog posts={getBlogPosts().slice(0, 3)} />
     </main>
   );
 }

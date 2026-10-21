@@ -36,8 +36,8 @@ const BlogProtectYourHomePage: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 py-16">
 
         {/* Back link */}
-        <Link href="/" className="inline-flex items-center gap-2 text-red-600 font-semibold text-sm mb-10 hover:underline">
-          <ArrowLeft size={16} /> Back to Home
+        <Link href="/blog" className="inline-flex items-center gap-2 text-red-600 font-semibold text-sm mb-10 hover:underline">
+          <ArrowLeft size={16} /> Back to Blog
         </Link>
 
         {/* Intro */}
