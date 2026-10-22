@@ -44,7 +44,7 @@ const BlogInsuranceClaimsPage: React.FC = () => {
         </p>
 
         <p className="text-slate-600 leading-relaxed mb-8">
-          At McKinley Roofing and Restoration, we've walked hundreds of Douglasville-area homeowners through the claims process after wind and hail events. This guide covers what your policy actually pays for, the steps of a claim from first inspection to final payment, and the mistakes that get legitimate claims denied.
+          At McKinley Roofing and Restoration, we've inspected and documented storm damage for hundreds of Douglasville-area homeowners after wind and hail events. This guide covers what your policy actually pays for, the steps of a claim from first inspection to final payment, and the mistakes that get legitimate claims denied.
         </p>
 
         {/* Section 1 */}
@@ -93,7 +93,7 @@ const BlogInsuranceClaimsPage: React.FC = () => {
           <strong className="text-slate-900">3. Meet the adjuster — with your roofer present.</strong> The insurance adjuster inspects the roof and writes an estimate of covered damage. We strongly recommend having your contractor on the roof at the same time. Adjusters are human; a roofer who documented the damage beforehand makes sure nothing gets missed, from soft-metal hits on vents and flashing to matted ridge caps.
         </p>
         <p className="text-slate-600 leading-relaxed mb-5">
-          <strong className="text-slate-900">4. Review the settlement and scope of work.</strong> The insurer issues an estimate and first payment (on RCV policies, depreciation is held back). If the adjuster's scope missed damage or underpriced the work, your contractor can submit a supplement with evidence — this is routine, not adversarial.
+          <strong className="text-slate-900">4. Review the settlement and scope of work.</strong> The insurer issues an estimate and first payment (on RCV policies, depreciation is held back). If you believe the adjuster's estimate missed damage or underpriced the work, raise it with your insurer (or a licensed public adjuster, if you hire one). Your roofer's dated photos and written report are the evidence to back that up.
         </p>
         <p className="text-slate-600 leading-relaxed mb-10">
           <strong className="text-slate-900">5. Complete the work and recover depreciation.</strong> Once the roof is replaced and the final invoice is submitted, RCV policyholders receive the held-back depreciation. You pay your deductible — and legally, that's not optional. Any contractor who offers to "eat the deductible" is committing insurance fraud in Georgia, and that's a contractor to avoid.
@@ -133,7 +133,7 @@ const BlogInsuranceClaimsPage: React.FC = () => {
         <div className="mt-16 bg-slate-900 rounded-3xl p-10 md:p-14 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Storm Damage? Start with a Free Inspection</h2>
           <p className="text-slate-300 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Before you call your insurance company, know exactly what's on your roof. McKinley Roofing and Restoration provides free, documented inspections across Douglasville and West Georgia — and we'll walk the claim with you from adjuster meeting to final nail.
+            Before you call your insurance company, know exactly what's on your roof. McKinley Roofing and Restoration provides free, documented inspections across Douglasville and West Georgia, gives you a written report to share with your insurer, and can meet your adjuster on the roof. You file the claim; we handle the roof, down to the final nail.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

@@ -42,14 +42,13 @@ const ServicesPage: React.FC = () => {
             icon: CloudRain,
             slug: 'storm-damage-restoration',
             title: 'Storm Damage Restoration',
-            description: 'Specialized help for homeowners recovering from storm damage, including hail and wind damage, with expert insurance coordination.',
+            description: 'Specialized help for homeowners recovering from storm damage, including hail and wind damage, with thorough damage documentation for your insurance claim.',
             features: [
                 'Detailed damage assessment and documentation',
-                'Direct coordination with insurance companies',
-                'Assistance with claims process and paperwork',
-                'Expert testimony on damage extent when needed',
+                'Written damage report you can share with your insurer',
+                'On-site meeting with your insurance adjuster',
                 'Complete restoration to pre-damage condition or better',
-                'Maximize insurance benefits and minimize out-of-pocket costs'
+                'You file the claim; we provide the documentation'
             ],
             color: 'purple'
         },
@@ -276,9 +275,9 @@ const ServicesPage: React.FC = () => {
 
                         <div className="bg-white rounded-xl p-8 shadow-lg">
                             <CloudRain className="w-12 h-12 text-red-600 mb-4" />
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">Insurance Experts</h3>
+                            <h3 className="text-xl font-bold text-slate-900 mb-3">Insurance Documentation</h3>
                             <p className="text-slate-600">
-                                Extensive experience working with insurance companies to maximize your benefits and minimize costs.
+                                We photograph and document storm damage, give you a written report for your insurer, and can meet your adjuster on site. You file and manage the claim.
                             </p>
                         </div>
 

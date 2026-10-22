@@ -26,13 +26,13 @@ const Services: React.FC = () => {
     {
       title: 'Storm Damage Restoration',
       icon: <CloudRain size={24} />,
-      description: 'Expert assistance recovering from storm damage, including hail and wind damage. We work directly with insurance companies to ensure you receive maximum benefits.',
+      description: 'Expert help recovering from storm damage, including hail and wind damage. We document the damage with photos and a written report you can share with your insurance company.',
       image: '/service_storm_damage.webp',
       bullets: [
         'Detailed damage assessment and documentation',
-        'Direct coordination with insurance companies',
-        'Assistance with claims process and paperwork',
-        'Expert testimony on damage extent when needed',
+        'Written damage report to share with your insurer',
+        'Meeting your insurance adjuster on site',
+        'You file the claim; we provide the documentation',
         'Complete restoration to pre-damage condition or better'
       ],
     },

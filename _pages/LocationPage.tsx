@@ -88,7 +88,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
             icon: CloudRain,
             slug: 'storm-damage-restoration',
             title: 'Storm Damage Restoration',
-            description: `${location.city} storms can cause serious damage. We handle hail, wind, and impact damage — including full insurance claim coordination to maximize your benefits.`,
+            description: `${location.city} storms can cause serious damage. We handle hail, wind, and impact damage — including photos and a written damage report you can share with your insurance company.`,
         },
         {
             icon: Calendar,
@@ -380,8 +380,8 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                             desc: 'Certified status means access to premium materials, proper installation standards, and extended warranty options unavailable elsewhere.',
                                         },
                                         {
-                                            title: 'Insurance Claim Experts',
-                                            desc: `We work directly with insurance companies on behalf of ${location.city} homeowners — maximizing your benefits and minimizing out-of-pocket costs.`,
+                                            title: 'Storm Damage & Insurance Documentation',
+                                            desc: `We photograph and document storm damage for ${location.city} homeowners, give you a written report to share with your insurer, and can meet your adjuster on site. You file and manage the claim.`,
                                         },
                                         {
                                             title: 'Dual Warranty Protection',
@@ -426,7 +426,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                     </p>
 
                                     <div className="space-y-2 mb-6">
-                                        {['Licensed & Insured in Georgia', 'Owens Corning Preferred', 'Free Roof Inspections', 'Same-Day Emergency Response', 'Insurance Claim Assistance'].map((item) => (
+                                        {['Licensed & Insured in Georgia', 'Owens Corning Preferred', 'Free Roof Inspections', 'Same-Day Emergency Response', 'Insurance Damage Documentation'].map((item) => (
                                             <div key={item} className="flex items-center gap-3 text-sm">
                                                 <CheckCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
                                                 <span className="text-slate-300">{item}</span>

@@ -56,7 +56,7 @@ export const locations: LocationData[] = [
             'roof-replacement':
                 'Full roof replacement in Carrollton when the shingles are worn out or storm damage covers the slopes. Owens Corning materials, a written estimate, and both manufacturer and labor warranties.',
             'storm-damage-restoration':
-                'Hail, high wind, and straight-line storms across Carroll County. We inspect, photograph the damage, and meet the adjuster when a Carrollton claim needs a full scope.',
+                'Hail, high wind, and straight-line storms across Carroll County. We inspect, photograph the damage, write it up for your insurer, and can meet your adjuster on the roof.',
             'gutter-installation':
                 'Seamless gutter installation in Carrollton for older downtown eaves and longer runs in Oak Mountain, Northside, and along Highway 61, with downspouts aimed away from the foundation.',
             'roof-maintenance':
@@ -87,12 +87,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Carrollton, GA?',
                 answer:
-                    "It depends on the size and pitch of your roof, the materials you choose, and whether there's hidden decking damage underneath. We provide free, no-obligation inspections and detailed written estimates so there are no surprises — and if the damage is storm-related, we'll help you file an insurance claim to offset the cost.",
+                    "It depends on the size and pitch of your roof, the materials you choose, and whether there's hidden decking damage underneath. We provide free, no-obligation inspections and detailed written estimates so there are no surprises — and if the damage is storm-related, we'll photograph it and put it in a written report you can share with your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Carroll County?',
                 answer:
-                    "Yes. Storm and hail damage is one of the most common reasons Carrollton homeowners call us. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Yes. Storm and hail damage is one of the most common reasons Carrollton homeowners call us. We inspect the roof, photograph and document the damage, give you a written report you can share with your insurer, and can meet your adjuster on-site. You file and manage the claim with your insurance company; we show what the storm did.",
             },
             {
                 question: 'Which roofing company serves Carrollton, GA?',
@@ -119,7 +119,7 @@ export const locations: LocationData[] = [
         localIntro: [
             "Douglasville is our home base, and it's where McKinley Roofing got its start. As Douglas County's population has grown along the I-20 corridor, so has the demand for honest, high-quality roofing — and we've built our reputation one roof at a time, from the historic homes near downtown Douglasville to the newer subdivisions out toward Chapel Hill Road and Highway 5.",
             "West Georgia weather is hard on roofs. Douglasville sits squarely in an area that sees severe spring and summer thunderstorms, damaging hail, and the occasional straight-line wind event rolling in off the metro Atlanta line. We inspect Douglasville roofs for the specific wear those storms cause — lifted or missing shingles, granule loss, cracked flashing around chimneys, and hidden leaks that show up months later as ceiling stains.",
-            "Because we're local, we know the Douglas County permitting process, we work directly with the major insurance carriers our neighbors use, and we can usually be on-site for an emergency inspection the same day. When a storm rolls through Douglasville, you want a roofer who's already down the road — not one driving in from another county.",
+            "Because we're local, we know the Douglas County permitting process, we know how to document storm damage for the insurance carriers our neighbors use, and we can usually be on-site for an emergency inspection the same day. When a storm rolls through Douglasville, you want a roofer who's already down the road — not one driving in from another county.",
         ],
         neighborhoods: [
             'Downtown Douglasville',
@@ -139,12 +139,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Douglasville, GA?',
                 answer:
-                    "Roof replacement cost in Douglasville depends on the size and pitch of your roof, the materials you choose, and whether there's underlying decking damage. We provide free, no-obligation inspections and detailed written estimates so you know exactly what you're paying for — and if the damage is storm-related, we'll help you file an insurance claim to offset the cost.",
+                    "Roof replacement cost in Douglasville depends on the size and pitch of your roof, the materials you choose, and whether there's underlying decking damage. We provide free, no-obligation inspections and detailed written estimates so you know exactly what you're paying for — and if storm damage is part of the picture, we'll document it with photos and a written report you can send to your insurer.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Douglas County?',
                 answer:
-                    "Absolutely. Storm and hail damage is one of the most common reasons Douglasville homeowners call us. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance company so your claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. Storm and hail damage is one of the most common reasons Douglasville homeowners call us. We inspect the roof, document the damage with photos, and give you a written report for your insurance company, and we can meet your adjuster on-site. The claim itself stays between you and your insurer, and your deductible is yours to pay.",
             },
             {
                 question: 'Are you licensed and insured to work in Douglasville?',
@@ -232,12 +232,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Villa Rica, GA?',
                 answer:
-                    "Cost comes down to the size and pitch of your roof, your material choice, and any decking damage hiding underneath. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if it's storm damage, we'll help you file an insurance claim to bring your out-of-pocket cost down.",
+                    "Cost comes down to the size and pitch of your roof, your material choice, and any decking damage hiding underneath. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if it's storm damage, our photos and written report give you what you need to take to your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims around Villa Rica?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so nothing gets missed — no matter which county your Villa Rica home falls in. In most cases homeowners pay only their deductible.",
+                    "Absolutely. We inspect the roof, photograph the storm damage, and put it in a written report you can share with your insurance carrier, no matter which county your Villa Rica home falls in. We can meet your adjuster on-site, too. You file and manage the claim with your insurer.",
             },
         ],
     },
@@ -258,7 +258,7 @@ export const locations: LocationData[] = [
         localIntro: [
             "Newnan — long known as the \"City of Homes\" for its beautiful historic architecture around the downtown Court Square — is one of Coweta County's proudest communities, and McKinley Roofing is honored to serve it. From antebellum homes near downtown to fast-growing subdivisions out toward Ashley Park, we protect Newnan roofs with premium materials and craftsmanship.",
             "Newnan understands storm damage better than almost anywhere in the region. In March 2021, an EF-4 tornado tore a mile-wide path straight through the city with winds over 170 mph, damaging or destroying more than 1,700 homes across Coweta County. Years later, we still find roofs with lingering wind and hail damage — or rushed post-storm repairs that never held up. We inspect thoroughly and tell you the truth about what your roof needs.",
-            "Insurance experience matters enormously here, and it's one of our strengths. We document damage carefully, meet adjusters on-site, and make sure Newnan homeowners get the full scope of what their policy owes them — while getting the work done right the first time.",
+            "Careful documentation matters enormously here, and it's one of our strengths. We photograph storm damage, give Newnan homeowners a written report they can share with their insurance company, and can meet the adjuster on-site. The claim stays between you and your insurer; our job is to show what the storm did and then get the work done right the first time.",
             "Homeowners searching for roofing companies in Newnan, GA usually need a leak repaired, a full roof replacement, or help documenting wind and hail damage. McKinley Roofing is a family-owned roofing company based in Douglasville that serves Newnan and Coweta County for those jobs, plus gutter installation, siding, and roof maintenance. If you want roofers in Newnan who will inspect first and say whether a repair will hold, start with a free inspection at (678) 983-4455.",
         ],
         servicesIntro:
@@ -299,12 +299,12 @@ export const locations: LocationData[] = [
             {
                 question: 'Do you help with storm-damage insurance claims in Coweta County?',
                 answer:
-                    "Absolutely — it's one of the things we do best. We meet your adjuster on-site, document the full extent of the damage, and work directly with your carrier so your claim reflects everything that's actually needed. Most Newnan homeowners end up paying only their deductible.",
+                    "Yes. Storm damage inspections are one of the things we do best in Coweta County. We photograph and document the full extent of the damage, give you a written report to share with your carrier, and can meet your adjuster on-site. You file and manage the claim with your insurance company, and your deductible is still yours to pay.",
             },
             {
                 question: 'How much does a new roof cost in Newnan, GA?',
                 answer:
-                    "It depends on your roof's size and pitch, the materials you pick, and whether there's underlying decking damage. We provide free inspections and detailed written estimates up front — and when the damage is storm-related, we'll help you file a claim so insurance covers the bulk of the cost.",
+                    "It depends on your roof's size and pitch, the materials you pick, and whether there's underlying decking damage. We provide free inspections and detailed written estimates up front — and when the damage is storm-related, we'll document it with photos and a written report for you to share with your insurer. Your policy and your adjuster decide what's covered.",
             },
             {
                 question: 'Are you one of the roofing companies that serves Newnan, GA?',
@@ -354,12 +354,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Bremen, GA?',
                 answer:
-                    "Cost depends on the size and pitch of your roof, your material choice, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates so there are no surprises, and we'll help with an insurance claim if the damage is storm-related.",
+                    "Cost depends on the size and pitch of your roof, your material choice, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates so there are no surprises, and if the damage is storm-related, we'll document it for you to share with your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Haralson County?',
                 answer:
-                    "We do. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Bremen home's claim reflects the full scope of what's needed. In most cases, homeowners pay only their deductible.",
+                    "We do. We document the damage with photos, give you a written report you can share with your insurance company, and can meet your adjuster on-site at your Bremen home. You file and handle the claim with your insurer; we show them what the storm did.",
             },
         ],
     },
@@ -403,12 +403,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Dallas, GA?',
                 answer:
-                    "It comes down to your roof's size and pitch, the materials you choose, and whether there's decking damage underneath. We provide free inspections and detailed written estimates up front — and if the damage is storm-related, we'll help you file an insurance claim to offset the cost.",
+                    "It comes down to your roof's size and pitch, the materials you choose, and whether there's decking damage underneath. We provide free inspections and detailed written estimates up front — and if the damage is storm-related, we'll give you photos and a written damage report for your insurance claim.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Paulding County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Dallas home's claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We photograph and document the damage, give you a written report for your insurance carrier, and can meet your adjuster on-site at your Dallas home. The claim is yours to file and manage with your insurer, and if it's approved, your deductible is still yours to pay.",
             },
         ],
     },
@@ -457,7 +457,7 @@ export const locations: LocationData[] = [
             {
                 question: 'Do you help with storm-damage insurance claims in Paulding County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Hiram claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We inspect your Hiram roof, document the damage with photos and a written report you can share with your insurer, and can meet your adjuster on-site. You file and manage the claim with your insurance company.",
             },
         ],
     },
@@ -478,7 +478,7 @@ export const locations: LocationData[] = [
         localIntro: [
             "Lithia Springs sits in eastern Douglas County, just minutes from our Douglasville home base — which makes it one of the areas McKinley Roofing knows best. From established homes near Sweetwater Creek State Park to the newer subdivisions off Thornton Road and Blairs Bridge, we protect Lithia Springs roofs like they're in our own backyard, because they practically are.",
             "The community took its name from the mineral springs that once drew visitors to the historic Lithia Springs Hotel, but today's homeowners are more concerned with West Georgia's very modern weather — the hail, high winds, and severe thunderstorms that roll through Douglas County every year. We inspect for the storm damage, worn shingles, and failing flashing those conditions cause, and we catch small problems before they turn into ceiling stains.",
-            "Because we're right down the road, we can usually be on-site the same day, we know the Douglas County permitting process inside and out, and we work directly with the insurance carriers our Lithia Springs neighbors use. Local, fast, and honest — that's the McKinley way.",
+            "Because we're right down the road, we can usually be on-site the same day, we know the Douglas County permitting process inside and out, and we know what the insurance carriers our Lithia Springs neighbors use look for in storm damage documentation. Local, fast, and honest — that's the McKinley way.",
         ],
         neighborhoods: [
             'Sweetwater Creek area',
@@ -501,12 +501,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Lithia Springs, GA?',
                 answer:
-                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if it's storm damage, we'll help you file an insurance claim to offset the cost.",
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if it's storm damage, we'll document it in a written report you can share with your insurer.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Douglas County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Lithia Springs claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We document the damage, give you a written report you can pass along to your insurance carrier, and can meet your adjuster on-site at your Lithia Springs home. You file the claim and manage it with your insurer.",
             },
         ],
     },
@@ -550,12 +550,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Austell, GA?',
                 answer:
-                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and we'll help with an insurance claim if the damage is storm-related.",
+                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and we'll photograph and document storm damage so you have a report to give your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims around Austell?',
                 answer:
-                    "We do. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your claim reflects the full scope of what's needed — no matter which county line your Austell home falls on. Most homeowners pay only their deductible.",
+                    "We do. We photograph and document the damage and can meet your adjuster on-site, no matter which county line your Austell home falls on. You get a written report to share with your insurance company; filing and managing the claim stays between you and your insurer.",
             },
         ],
     },
@@ -599,12 +599,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Powder Springs, GA?',
                 answer:
-                    "It comes down to your roof's size and pitch, the materials you choose, and whether there's decking damage underneath. We provide free inspections and clear written estimates up front — and if the damage is storm-related, we'll help you file an insurance claim to offset the cost.",
+                    "It comes down to your roof's size and pitch, the materials you choose, and whether there's decking damage underneath. We provide free inspections and clear written estimates up front — and if the damage is storm-related, you'll get our photos and written findings to share with your insurer.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Cobb County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Powder Springs claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We inspect the roof, photograph the damage, and give you a written report for your insurance carrier, and we can meet your adjuster on-site at your Powder Springs home. You file and manage the claim with your insurer, and your deductible stays yours to pay.",
             },
         ],
     },
@@ -647,12 +647,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Temple, GA?',
                 answer:
-                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and detailed written estimates so there are no surprises — and we'll help with an insurance claim if the damage is storm-related.",
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and detailed written estimates so there are no surprises — and if the damage is storm-related, we'll document it so you have photos and a written report for your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Carroll County?',
                 answer:
-                    "We do. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Temple claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "We do. We inspect, photograph and document the damage at your Temple home, give you a written report to share with your insurance company, and can meet your adjuster on-site. You file and manage the claim; we show the adjuster what we found.",
             },
         ],
     },
@@ -696,12 +696,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Bowdon, GA?',
                 answer:
-                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and we'll help with an insurance claim if the damage is storm-related.",
+                    "Cost depends on your roof's size and pitch, the materials you choose, and any hidden decking damage — which is more common on older homes. We provide free inspections and detailed written estimates, and if a storm caused the damage, we'll document it in a report you can share with your insurer.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Carroll County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and coordinate directly with your insurance carrier so your Bowdon claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We document the damage with photos and a written report you can share with your insurance carrier, and we can meet your adjuster on-site at your Bowdon home. The claim is yours to file and manage with your insurer.",
             },
         ],
     },
@@ -745,12 +745,12 @@ export const locations: LocationData[] = [
             {
                 question: 'How much does a new roof cost in Whitesburg, GA?',
                 answer:
-                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and we'll help with an insurance claim if the damage is storm-related.",
+                    "It depends on the size and pitch of your roof, the materials you choose, and any hidden decking damage. We provide free inspections and clear written estimates so you know exactly what you're paying for — and if a storm did the damage, we'll photograph it and write it up for you to share with your insurance company.",
             },
             {
                 question: 'Do you help with storm-damage insurance claims in Carroll County?',
                 answer:
-                    "Absolutely. We document the damage, meet your adjuster on-site, and work directly with your insurance company so your Whitesburg claim reflects the full scope of what's needed. Most homeowners pay only their deductible.",
+                    "Absolutely. We inspect your Whitesburg roof, photograph and document the damage, and give you a written report for your insurance company. We can also meet your adjuster on-site. You file and manage the claim with your insurer, and if it's approved, your deductible is still yours to pay.",
             },
         ],
     },

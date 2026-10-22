@@ -96,21 +96,21 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'storm-damage-restoration': {
     tagline: 'When Storms Hit, We\'re Ready.',
     introParagraph: (city) =>
-      `Georgia storms can leave your roof battered overnight. McKinley Roofing offers rapid-response storm damage restoration in ${city}, GA — helping homeowners assess wind, hail, and falling-debris damage quickly so temporary protection is in place before more rain arrives. We work directly with most major insurance carriers and can help you understand your claim, document the damage thoroughly, and restore your roof to pre-storm condition.`,
+      `Georgia storms can leave your roof battered overnight. McKinley Roofing offers rapid-response storm damage restoration in ${city}, GA — helping homeowners assess wind, hail, and falling-debris damage quickly so temporary protection is in place before more rain arrives. We photograph and document the damage in a written report you can share with your insurance company, can meet your adjuster on site, and restore your roof to pre-storm condition. You file and manage the claim with your insurer.`,
     expandedContent: (city) =>
-      `Storm damage claims in ${city} are time-sensitive. The longer damaged areas remain exposed, the greater the risk of secondary water damage to your attic, insulation, ceilings, and interior walls. McKinley Roofing's rapid-response team prioritizes emergency tarping and moisture protection within 24–48 hours of a storm event. From there, we conduct a full damage assessment — including hail impact testing on shingles, wind uplift evaluation, and inspection of all flashing and penetration points. Our detailed damage report is formatted to support insurance claims and has helped ${city} homeowners successfully document and recover full replacement costs. We handle the paperwork and adjuster coordination so you can focus on your family, not the process.`,
+      `Storm damage claims in ${city} are time-sensitive. The longer damaged areas remain exposed, the greater the risk of secondary water damage to your attic, insulation, ceilings, and interior walls. McKinley Roofing's rapid-response team prioritizes emergency tarping and moisture protection within 24–48 hours of a storm event. From there, we conduct a full damage assessment — including hail impact testing on shingles, wind uplift evaluation, and inspection of all flashing and penetration points. Our detailed damage report, with photos, is yours to share with your insurance company, and we can meet your adjuster on site to point out what we found. You file and manage the claim with your insurer; we focus on protecting and repairing your roof.`,
     included: [
       'Emergency tarping and temporary protection',
       'Complete storm damage inspection (wind, hail, debris)',
       'Detailed damage report for insurance claims',
-      'Insurance adjuster walk-through support',
+      'Meeting your insurance adjuster on site',
       'Full repair or replacement based on damage scope',
-      'Supplement filing assistance if needed',
+      'You file the claim; we provide the documentation',
       'Final walkthrough and warranty documentation',
     ],
     whyMckinley: [
       'Rapid response within 24–48 hours of storm events',
-      'Experienced with all major insurance carriers',
+      'Photo-documented damage reports for your insurer',
       'No-obligation free damage inspection',
       'Lifetime Workmanship Warranty post-restoration',
       'Locally rooted in West Georgia since day one',

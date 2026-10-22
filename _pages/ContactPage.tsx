@@ -201,9 +201,9 @@ const ContactPage: React.FC = () => {
                         </div>
 
                         <div className="bg-slate-50 rounded-xl p-6">
-                            <h3 className="text-xl font-semibold text-slate-900 mb-3">Do you work with insurance companies?</h3>
+                            <h3 className="text-xl font-semibold text-slate-900 mb-3">What's your role in an insurance claim?</h3>
                             <p className="text-slate-600">
-                                Absolutely. We have extensive experience working with insurance companies and can help you navigate the claims process to maximize your benefits and minimize out-of-pocket expenses.
+                                We inspect your roof, photograph and document any storm damage, and give you a written report you can share with your insurer. We can also meet your adjuster on site. You file and manage the claim with your insurance company.
                             </p>
                         </div>
 

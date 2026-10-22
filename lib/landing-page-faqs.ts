@@ -59,11 +59,11 @@ const FAQ_MAP: Record<string, FAQFactory> = {
   'storm-damage-restoration': (city) => [
     {
       question: `What should I do immediately after storm damage to my roof in ${city}, GA?`,
-      answer: `First, stay safe — don't attempt to inspect the roof yourself. Document any visible damage from the ground with photos. Call McKinley Roofing for emergency tarping to prevent further water intrusion, then contact your insurance company to open a claim. We can assist you through the entire process.`,
+      answer: `First, stay safe — don't attempt to inspect the roof yourself. Document any visible damage from the ground with photos. Call McKinley Roofing for emergency tarping to prevent further water intrusion, then contact your insurance company to open a claim. We'll inspect and document the damage so you have photos and a written report to share with your insurer.`,
     },
     {
-      question: `Does McKinley Roofing work with insurance companies for storm claims in ${city}?`,
-      answer: `Yes. McKinley Roofing has extensive experience working with all major insurance carriers. We'll provide a detailed damage report, help document all affected areas, and can coordinate directly with your adjuster to ensure nothing is missed in your claim for your ${city} property.`,
+      question: `What's McKinley Roofing's role in a storm damage insurance claim in ${city}?`,
+      answer: `We inspect the roof, photograph and document every affected area, and give you a detailed damage report you can share with your insurer. We can also meet your adjuster on site at your ${city} property to point out what we found. You file and manage the claim with your insurance company.`,
     },
     {
       question: `How long does storm damage restoration take in ${city}, GA?`,

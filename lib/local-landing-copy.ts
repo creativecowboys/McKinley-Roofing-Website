@@ -87,7 +87,7 @@ export const LOCAL_LANDING_COPY: Record<string, LocalLandingCopy> = {
     paragraphs: [
       'Newnan has a specific storm history, not a generic one. In March 2021 an EF-4 tornado crossed the city on a mile-wide path with winds over 170 mph and damaged or destroyed more than 1,700 homes in Coweta County. Years later, roof inspections in Newnan still find two leftovers from that event: damage that was never fully opened up, and repairs that were rushed on while the county was overwhelmed.',
       'Later hail and wind storms hit the same houses. A roof over White Oak or Mountain Creek can look fine from the driveway and still have bruised shingles, lifted tabs, and flashing that pulled away from a chimney. Downtown, an older roof may only show the problem as a ceiling stain after the next hard rain. Storm damage restoration in Newnan starts with photos and a written scope, because that is what an insurance claim actually needs.',
-      'McKinley Roofing is based in Douglasville and works storm claims across Coweta County. We inspect, document wind, hail, and impact damage, and meet the adjuster on the roof when you want us there. Most homeowners in this situation pay their deductible once the carrier approves the scope. If water is coming in now, call (678) 983-4455 so the roof can be secured before the next storm.',
+      'McKinley Roofing is based in Douglasville and repairs storm damage across Coweta County. We inspect, document wind, hail, and impact damage, and meet the adjuster on the roof when you want us there. You file and manage the claim with your insurer. Most homeowners in this situation pay their deductible once the carrier approves the scope. If water is coming in now, call (678) 983-4455 so the roof can be secured before the next storm.',
     ],
     links: [
       newnanHub,
@@ -104,7 +104,7 @@ export const LOCAL_LANDING_COPY: Record<string, LocalLandingCopy> = {
       {
         question: 'Will you meet the insurance adjuster in Newnan?',
         answer:
-          'Yes. We document the damage and can meet the adjuster on-site so the claim matches what the roof actually needs. That help is part of how we handle storm damage for Newnan homeowners.',
+          'Yes. We document the damage and can meet the adjuster on-site to point out everything we found on the roof. You file and manage the claim with your insurance company; our photos and written report are yours to share with them.',
       },
     ],
   },
@@ -250,7 +250,7 @@ export const LOCAL_LANDING_COPY: Record<string, LocalLandingCopy> = {
     heading: 'Hail and wind damage in Carrollton',
     paragraphs: [
       'Carrollton’s storm problem is hail, high wind, and straight-line storms rolling across Carroll County — not a single famous tornado. A spring storm can bruise shingles across Oak Mountain and leave a rental near the University of West Georgia with missing tabs, while a downtown roof only shows a lifted ridge cap. Storm damage restoration in Carrollton starts with an inspection that names what the storm did, slope by slope.',
-      'Insurance is usually the reason people call. We photograph the damage, write down the scope, and meet the adjuster on the roof so the claim is not limited to whatever was visible from the yard. Older houses around Adamson Square hide damage in flashing. Newer architectural roofs hide it as granule loss that looks like normal wear unless someone is on the roof.',
+      'Insurance is usually the reason people call. We photograph the damage, write down the scope, and can meet the adjuster on the roof to point out damage that was never visible from the yard. The claim itself stays between you and your insurer. Older houses around Adamson Square hide damage in flashing. Newer architectural roofs hide it as granule loss that looks like normal wear unless someone is on the roof.',
       'McKinley Roofing is family-owned in Douglasville and serves Carrollton and Carroll County. If the roof is leaking after a storm, call (678) 983-4455. We can typically be on-site the same day to secure it, then sort out whether the lasting fix is a repair or a replacement.',
     ],
     links: [

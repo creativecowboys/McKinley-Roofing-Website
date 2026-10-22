@@ -61,7 +61,7 @@ function buildMetaDescription(serviceName: string, cityName: string, serviceSlug
     'roof-repair': (city) =>
       `Fast, reliable roof repair in ${city}, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free inspection today.`,
     'storm-damage-restoration': (city) =>
-      `Storm damage restoration in ${city}, GA from McKinley Roofing. We inspect wind and hail damage and help with insurance claims. Book a free inspection.`,
+      `Storm damage restoration in ${city}, GA from McKinley Roofing. We inspect and document wind and hail damage for insurance claims. Book a free inspection.`,
     'gutter-installation': (city) =>
       `Professional seamless gutter installation in ${city}, GA by McKinley Roofing. Protect your roof and foundation from Georgia rain. Get a free estimate.`,
     'siding-installation': (city) =>
@@ -81,7 +81,7 @@ const META_DESCRIPTION_OVERRIDES: Record<string, string> = {
   'roof-repair-douglasville-ga':
     'Roof repair in Douglasville, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free roof inspection: (678) 983-4455.',
   'storm-damage-restoration-douglasville-ga':
-    'McKinley Roofing offers storm damage roof repair in Douglasville, GA. We inspect wind and hail damage and help with insurance claims. Book your free roof inspection today.',
+    'McKinley Roofing offers storm damage roof repair in Douglasville, GA. We inspect and document wind and hail damage for insurance claims. Book your free roof inspection today.',
   'gutter-installation-douglasville-ga':
     'Gutter installation and repair in Douglasville, GA by McKinley Roofing. Protect your roof and foundation from water damage. Call (678) 983-4455.',
   'siding-installation-douglasville-ga':

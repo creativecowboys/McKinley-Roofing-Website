@@ -101,7 +101,7 @@ const Hero: React.FC<HeroProps> = () => {
 
                 {/* Description */}
                 <p className="text-slate-500 text-base lg:text-lg leading-relaxed">
-                  Based in Douglasville, GA — family-owned and locally operated. We specialize in roof repair, replacement, and storm damage restoration with expert insurance claim assistance.
+                  Based in Douglasville, GA — family-owned and locally operated. We specialize in roof repair, replacement, and storm damage restoration with detailed damage reports for insurance claims.
                 </p>
 
                 {/* Button */}
