@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { sendLeadEmail, type LeadPayload } from '@/lib/email';
 import { createGhlLead } from '@/lib/ghl';
 import { assessLead } from '@/lib/spam';
+import { pitchNote, screenPitch } from '@/lib/pitch';
 
 // Lead capture runs at request time (never prerendered/cached).
 export const dynamic = 'force-dynamic';
@@ -16,10 +17,14 @@ export const dynamic = 'force-dynamic';
  *
  * Before either runs, the submission is scored by lib/spam.ts:
  *   - 'bot'  → dropped silently (honeypot / submitted too fast)
- *   - 'spam' → NOT sent to the client or GHL. Forwarded to
- *              LEAD_SPAM_NOTIFY_EMAIL (if set) with the reasons, so a false
- *              positive can still be rescued.
- *   - 'ok'   → normal pipeline
+ *   - 'spam' → a sales pitch (lib/spam.ts solicitation score, or the shared
+ *              vendor-pitch screen in lib/pitch.ts: SEO/web/marketing/loan
+ *              pitches). NOT sent to GHL. Still emailed, with a
+ *              "[Filtered: pitch]" subject, to LEAD_SPAM_NOTIFY_EMAIL when set,
+ *              otherwise to LEAD_NOTIFY_EMAIL, so a false positive is never
+ *              lost (this site has no other store).
+ *   - 'ok'   → normal pipeline; a borderline pitch gets "[Check]" in the
+ *              subject and still goes to GHL.
  * Filtered submissions still return ok:true so the sender learns nothing;
  * the `filtered` flag lets the client skip GA4 conversion tracking.
  *
@@ -65,22 +70,27 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, email: false, ghl: false, filtered: true });
   }
 
-  if (spam.verdict === 'spam') {
-    console.warn(
-      `[lead] filtered solicitation (score ${spam.score}): ${spam.reasons.join(', ')} — from ${lead.email || lead.phone}`
-    );
-    const reviewTo = process.env.LEAD_SPAM_NOTIFY_EMAIL;
+  const pitch = screenPitch([lead.message, lead.address], { profile: 'default' });
+
+  // A gibberish name is a bot fingerprint, not a pitch: dropped as before.
+  if (spam.verdict === 'spam' && spam.reasons.includes('gibberish name')) {
+    console.warn(`[lead] dropped bot submission (score ${spam.score}): ${spam.reasons.join(', ')}`);
+    return NextResponse.json({ ok: true, email: false, ghl: false, filtered: true });
+  }
+
+  if (spam.verdict === 'spam' || pitch.verdict === 'pitch') {
+    const reasons = [...(spam.verdict === 'spam' ? spam.reasons : []), ...pitch.reasons];
+    console.warn(`[lead] filtered sales pitch: ${reasons.join(', ')}`);
     let reviewSent = false;
-    if (reviewTo) {
-      try {
-        reviewSent = await sendLeadEmail(lead, {
-          to: reviewTo,
-          subjectPrefix: '[Filtered] ',
-          note: `Filtered as likely spam (score ${spam.score}): ${spam.reasons.join('; ')}. Not sent to the client or GoHighLevel.`,
-        });
-      } catch (err) {
-        console.error('[lead] spam review email failed:', err);
-      }
+    try {
+      reviewSent = await sendLeadEmail(lead, {
+        // LEAD_SPAM_NOTIFY_EMAIL (if set) gets pitches instead of the client.
+        to: process.env.LEAD_SPAM_NOTIFY_EMAIL || undefined,
+        subjectPrefix: '[Filtered: pitch] ',
+        note: `The website flagged this as a likely sales pitch (${reasons.join('; ')}). It was not added to GoHighLevel. Delivered anyway so nothing is lost.`,
+      });
+    } catch (err) {
+      console.error('[lead] pitch email failed:', err);
     }
     return NextResponse.json({ ok: true, email: reviewSent, ghl: false, filtered: true });
   }
@@ -94,7 +104,10 @@ export async function POST(request: Request) {
   );
 
   const [emailResult, ghlResult] = await Promise.allSettled([
-    sendLeadEmail(lead),
+    sendLeadEmail(
+      lead,
+      pitch.verdict === 'check' ? { subjectPrefix: '[Check] ', note: pitchNote(pitch) } : {}
+    ),
     createGhlLead(lead),
   ]);
 
