@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Facebook, Mail, MapPin, Phone, Send } from 'lucide-react';
+import BbbSeal from './BbbSeal';
 
 interface FooterProps {
   /** Server-rendered service-area link row (see FooterServiceAreas). */
@@ -33,17 +34,7 @@ const Footer: React.FC<FooterProps> = ({ serviceAreas }) => {
                 <Facebook size={20} />
               </a>
             </div>
-            {/* BBB Dynamic Seal. src and chk are verbatim from BBB; the cast keeps the legacy border attribute they supplied. */}
-            <iframe
-              {...({
-                title: 'BBB Accredited Business seal for McKinley Roofing',
-                loading: 'lazy',
-                border: '0',
-                frameBorder: '0',
-                style: { border: 0, height: '42px', width: '200px' },
-                src: 'https://seal-atlanta.bbb.org/frame/blue-seal-200-42-bbb-28198426.png?chk=6D31EA7289',
-              } as React.ComponentProps<'iframe'>)}
-            />
+            <BbbSeal className="w-[176px]" />
           </div>
 
           {/* Quick Links */}

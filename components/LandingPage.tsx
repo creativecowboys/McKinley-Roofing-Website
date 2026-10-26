@@ -50,9 +50,9 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
   'roof-replacement': {
     tagline: 'Built to Last — Done Right the First Time',
     introParagraph: (city) =>
-      `When it's time for a full roof replacement in ${city}, GA, McKinley Roofing delivers the craftsmanship and materials your home deserves. We work with Owens Corning shingles and follow manufacturer-approved installation methods so your new roof qualifies for the strongest warranties available. Whether your current roof is showing its age or suffered serious storm damage, our West Georgia team will complete your replacement efficiently — with zero shortcuts and zero surprises.`,
+      `When it's time for a full roof replacement in ${city}, GA, McKinley Roofing delivers the craftsmanship and materials your home deserves. We work with Owens Corning shingles and follow manufacturer-approved installation methods so your new roof qualifies for Owens Corning's limited lifetime shingle warranty. Whether your current roof is showing its age or suffered serious storm damage, our West Georgia team will complete your replacement efficiently — with zero shortcuts and zero surprises.`,
     expandedContent: (city) =>
-      `Choosing the right roofing contractor in ${city} matters more than most homeowners realize. The difference between a roof that lasts 15 years and one that lasts 30+ often comes down to installation quality — not just materials. McKinley Roofing is one of a select number of contractors in West Georgia awarded Owens Corning Preferred Contractor status, which means we're trained and certified to install their products correctly. Every replacement we complete in ${city} includes full tear-off and disposal, proper ventilation assessment, new underlayment and ice-and-water shield, and a thorough final inspection before we leave your property. We don't cut corners on the details that protect your home long-term, and we back every job with our Lifetime Workmanship Warranty so you can have confidence your investment is protected.`,
+      `Choosing the right roofing contractor in ${city} matters more than most homeowners realize. The difference between a roof that lasts 15 years and one that lasts 30+ often comes down to installation quality — not just materials. McKinley Roofing is one of a select number of contractors in West Georgia awarded Owens Corning Preferred Contractor status, which means we're trained and certified to install their products correctly. Every replacement we complete in ${city} includes full tear-off and disposal, proper ventilation assessment, new underlayment and ice-and-water shield, and a thorough final inspection before we leave your property. We don't cut corners on the details that protect your home long-term, and every replacement carries a limited lifetime warranty on the shingles plus our 5-year workmanship warranty on the installation.`,
     included: [
       'Full tear-off and disposal of old roofing materials',
       'Owens Corning shingles (multiple style & color options)',
@@ -60,11 +60,11 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Flashing replacement around chimneys and vents',
       'Ridge cap and ventilation upgrade',
       'Final inspection and cleanup',
-      'Lifetime Workmanship Warranty',
+      'Limited lifetime shingle warranty + 5-year workmanship warranty',
     ],
     whyMckinley: [
       'Owens Corning Preferred Contractor status',
-      'Lifetime Workmanship Warranty on every replacement',
+      '5-Year Workmanship Warranty on every replacement',
       'Fully licensed, insured & bonded in Georgia',
       '4.9 stars across 70+ verified Google reviews',
       'Serving ${city} and all of West Georgia',
@@ -75,7 +75,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     introParagraph: (city) =>
       `A leaking or damaged roof doesn't get better on its own. McKinley Roofing provides dependable roof repair services throughout ${city}, GA and surrounding West Georgia communities. From missing shingles and flashing failures to sagging decking and interior water intrusion, our crew diagnoses the problem accurately and repairs it correctly — so you're not calling us back for the same issue next season.`,
     expandedContent: (city) =>
-      `Many ${city} homeowners make the mistake of patching a roof problem with a temporary fix, only to face a much larger repair bill a year or two later. McKinley Roofing takes a diagnostic approach — we don't just patch the symptom, we identify the root cause. That might mean a failed pipe boot seal that's been allowing water in for months, compromised flashing around a chimney that looks fine from the ground, or a few lifted shingles that have allowed moisture to penetrate the decking. We document everything with photos before and after so you can see exactly what we found and what we fixed. Our repairs are backed by a Lifetime Workmanship Warranty, and we offer same-week scheduling for ${city} homeowners dealing with urgent issues.`,
+      `Many ${city} homeowners make the mistake of patching a roof problem with a temporary fix, only to face a much larger repair bill a year or two later. McKinley Roofing takes a diagnostic approach — we don't just patch the symptom, we identify the root cause. That might mean a failed pipe boot seal that's been allowing water in for months, compromised flashing around a chimney that looks fine from the ground, or a few lifted shingles that have allowed moisture to penetrate the decking. We document everything with photos before and after so you can see exactly what we found and what we fixed. Our repairs are backed by our 5-year workmanship warranty, and we offer same-week scheduling for ${city} homeowners dealing with urgent issues.`,
     included: [
       'Thorough roof and attic inspection',
       'Shingle repair or replacement (matched to existing)',
@@ -88,7 +88,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
     whyMckinley: [
       'Same-week scheduling available for urgent repairs',
       'Transparent pricing — no hidden fees',
-      'Backed by a Lifetime Workmanship Warranty',
+      'Backed by a 5-Year Workmanship Warranty',
       'Fully insured; we handle any damage caused during work',
       '4.9-star rating from over 70 happy customers',
     ],
@@ -112,7 +112,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Rapid response within 24–48 hours of storm events',
       'Photo-documented damage reports for your insurer',
       'No-obligation free damage inspection',
-      'Lifetime Workmanship Warranty post-restoration',
+      '5-Year Workmanship Warranty post-restoration',
       'Locally rooted in West Georgia since day one',
     ],
   },
@@ -152,7 +152,7 @@ const SERVICE_CONTENT: Record<string, ServiceContent> = {
       'Moisture barrier and house wrap installation',
       'Trim and corner board finishing',
       'Caulking and sealing at all penetrations',
-      'Lifetime Workmanship Warranty',
+      '5-year workmanship warranty',
     ],
     whyMckinley: [
       'Experienced with vinyl, fiber cement, and wood composite siding',
@@ -301,7 +301,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [], localCopy })
                   <strong>Owens Corning Preferred Contractor</strong>, we specialize in{' '}
                   <strong>{serviceName.toLowerCase()}</strong> for homeowners in {cityName}, GA —
                   fully licensed and insured in Georgia, and backed by a{' '}
-                  <strong>Lifetime Workmanship Warranty</strong>.
+                  <strong>5-Year Workmanship Warranty</strong>.
                 </p>
               </div>
 
@@ -309,7 +309,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [], localCopy })
               <div className="grid grid-cols-2 gap-px bg-slate-100 border-l border-slate-100 min-w-[260px]">
                 {[
                   { label: 'Owens Corning', sub: 'Preferred Contractor' },
-                  { label: 'Lifetime', sub: 'Workmanship Warranty' },
+                  { label: '5-Year', sub: 'Workmanship Warranty' },
                   { label: '4.9 Stars', sub: '70+ Google Reviews' },
                   { label: 'Fully', sub: 'Licensed & Insured' },
                 ].map((badge) => (
@@ -363,7 +363,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ page, faqs = [], localCopy })
                 liability and workers&apos; compensation coverage, and have maintained a{' '}
                 <strong>4.9-star rating across more than 70 verified Google reviews</strong>.
                 Every project we complete in {cityName} is backed by our{' '}
-                <strong>Lifetime Workmanship Warranty</strong>.
+                <strong>5-Year Workmanship Warranty</strong>.
               </p>
             </div>
           </div>

@@ -82,7 +82,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
             icon: Home,
             slug: 'roof-replacement',
             title: 'Roof Replacement',
-            description: `Complete roof replacement for ${location.city} homeowners. Premium Owens Corning materials, expert installation, and both manufacturer and labor warranties.`,
+            description: `Complete roof replacement for ${location.city} homeowners. Premium Owens Corning materials, expert installation, a limited lifetime shingle warranty, and a 5-year labor warranty.`,
         },
         {
             icon: CloudRain,
@@ -385,7 +385,7 @@ const LocationPage: React.FC<{ slug: string }> = ({ slug }) => {
                                         },
                                         {
                                             title: 'Dual Warranty Protection',
-                                            desc: 'Both manufacturer warranties on materials and labor warranties on our installation work — complete peace of mind.',
+                                            desc: 'A limited lifetime manufacturer warranty on the shingles and our 5-year workmanship warranty on the installation.',
                                         },
                                         {
                                             title: 'Quality Over Quantity',

@@ -83,20 +83,20 @@ const Certifications: React.FC = () => {
                 <div className="mt-12 bg-gradient-to-r from-[#0F172A] to-[#334155] rounded-2xl p-8 md:p-12 text-center text-white">
                     <div className="max-w-3xl mx-auto">
                         <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                            Lifetime Workmanship Warranty
+                            Backed by Real Warranties
                         </h3>
                         <p className="text-lg text-slate-300 mb-6">
-                            We stand behind our work with a comprehensive lifetime warranty on all installations.
+                            Owens Corning shingles carry a limited lifetime manufacturer warranty, and our 5-year workmanship warranty covers the installation.
                             Your investment is protected, and your peace of mind is guaranteed.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                             <div className="flex items-center gap-2 text-sm">
                                 <CheckCircle size={20} className="text-red-600" />
-                                <span>Manufacturer Warranties Honored</span>
+                                <span>Limited Lifetime Shingle Warranty</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                                 <CheckCircle size={20} className="text-red-600" />
-                                <span>Transferable to New Owners</span>
+                                <span>5-Year Workmanship Warranty</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                                 <CheckCircle size={20} className="text-red-600" />

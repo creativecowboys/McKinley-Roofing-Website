@@ -20,7 +20,7 @@ const Services: React.FC = () => {
         'Customized replacement plan tailored to your needs and budget',
         'High-quality materials from trusted manufacturers',
         'Professional installation by skilled craftsmen',
-        'Both manufacturer and labor warranties for peace of mind'
+        'Limited lifetime shingle warranty and 5-year labor warranty'
       ],
     },
     {

@@ -17,7 +17,7 @@ const FAQ_MAP: Record<string, FAQFactory> = {
     },
     {
       question: `What roofing materials does McKinley Roofing use for replacements?`,
-      answer: `McKinley Roofing is an Owens Corning Preferred Contractor. We primarily install Owens Corning architectural shingles, which are available in a variety of colors and styles. These shingles come with some of the strongest manufacturer warranties available, and our workmanship warranty backs every installation.`,
+      answer: `McKinley Roofing is an Owens Corning Preferred Contractor. We primarily install Owens Corning architectural shingles, which are available in a variety of colors and styles. These shingles carry a limited lifetime manufacturer warranty, and our 5-year workmanship warranty covers the installation.`,
     },
     {
       question: `Does McKinley Roofing offer financing for roof replacement in ${city}?`,
@@ -48,7 +48,7 @@ const FAQ_MAP: Record<string, FAQFactory> = {
     },
     {
       question: `How do I know if my roof repair was done right?`,
-      answer: `McKinley Roofing performs a final inspection and provides before-and-after documentation for every repair. We stand behind our work with a Lifetime Workmanship Warranty, so if any issue arises from our work, we'll come back and make it right — no questions asked.`,
+      answer: `McKinley Roofing performs a final inspection and provides before-and-after documentation for every repair. We stand behind our work with a 5-year workmanship warranty, so if an issue arises from our work in that time, we'll come back and make it right.`,
     },
     {
       question: `Can you repair just part of my roof, or does it all need to be replaced?`,
@@ -121,7 +121,7 @@ const FAQ_MAP: Record<string, FAQFactory> = {
     },
     {
       question: `Does McKinley Roofing offer a warranty on siding installation in ${city}?`,
-      answer: `Yes. Every siding project comes with our Lifetime Workmanship Warranty. In addition, most siding materials come with their own manufacturer's warranty covering product defects. McKinley Roofing will explain both warranty coverages clearly before your project begins.`,
+      answer: `Yes. Every siding project comes with our 5-year workmanship warranty. In addition, most siding materials come with their own manufacturer's warranty covering product defects. McKinley Roofing will explain both warranty coverages clearly before your project begins.`,
     },
   ],
 

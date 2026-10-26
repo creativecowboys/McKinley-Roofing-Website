@@ -77,7 +77,7 @@ function buildMetaDescription(serviceName: string, cityName: string, serviceSlug
 // used to rewrite them in the browser; they now ship in the server HTML.)
 const META_DESCRIPTION_OVERRIDES: Record<string, string> = {
   'roof-replacement-douglasville-ga':
-    'Roof replacement in Douglasville, GA by McKinley Roofing. Owens Corning materials, lifetime workmanship warranty, free inspection. Call (678) 983-4455.',
+    'Roof replacement in Douglasville, GA by McKinley Roofing. Owens Corning materials, 5-year workmanship warranty, free inspection. Call (678) 983-4455.',
   'roof-repair-douglasville-ga':
     'Roof repair in Douglasville, GA from McKinley Roofing. We fix leaks, damaged shingles, and flashing. Schedule a free roof inspection: (678) 983-4455.',
   'storm-damage-restoration-douglasville-ga':

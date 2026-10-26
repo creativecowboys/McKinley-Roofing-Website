@@ -217,7 +217,7 @@ const ContactPage: React.FC = () => {
                         <div className="bg-slate-50 rounded-xl p-6">
                             <h3 className="text-xl font-semibold text-slate-900 mb-3">What types of warranties do you offer?</h3>
                             <p className="text-slate-600">
-                                We provide both manufacturer warranties on materials and labor warranties on our installation work, giving you comprehensive protection for your investment.
+                                Owens Corning shingles come with a limited lifetime manufacturer warranty, and our labor is covered by a 5-year workmanship warranty.
                             </p>
                         </div>
 

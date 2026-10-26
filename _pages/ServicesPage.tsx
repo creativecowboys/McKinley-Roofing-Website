@@ -34,7 +34,7 @@ const ServicesPage: React.FC = () => {
                 'High-quality roofing materials from trusted manufacturers',
                 'Professional installation by skilled craftsmen',
                 'Meticulous attention to detail for durability',
-                'Both manufacturer and labor warranties'
+                'Limited lifetime shingle warranty + 5-year labor warranty'
             ],
             color: 'blue'
         },
@@ -293,7 +293,7 @@ const ServicesPage: React.FC = () => {
                             <Shield className="w-12 h-12 text-red-600 mb-4" />
                             <h3 className="text-xl font-bold text-slate-900 mb-3">Dual Warranties</h3>
                             <p className="text-slate-600">
-                                Both manufacturer warranties on materials and labor warranties on installation work for complete protection.
+                                A limited lifetime manufacturer warranty on the shingles and our 5-year workmanship warranty on the installation.
                             </p>
                         </div>
 

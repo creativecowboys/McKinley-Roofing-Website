@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useModal } from '@/contexts/ModalContext';
+import BbbSeal from '@/components/BbbSeal';
 
 interface HeroProps {}
 
@@ -81,7 +82,8 @@ const Hero: React.FC<HeroProps> = () => {
           {/* Subtle Gradient Overlay to ensure the white text box is perfectly legible */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/30"></div>
 
-
+          {/* BBB seal: top-right on mobile (the content box fills the bottom), bottom-right on desktop */}
+          <BbbSeal className="absolute top-6 right-6 lg:top-auto lg:bottom-10 lg:right-10 z-10 w-[128px] lg:w-[176px]" />
 
           {/* Floating Content Box - Compact Version */}
           <div className="absolute bottom-6 left-6 right-6 lg:bottom-10 lg:left-10 lg:right-auto lg:max-w-2xl z-10">
