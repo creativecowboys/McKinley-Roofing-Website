@@ -11,6 +11,8 @@
 //   - back-office services ("Xactimate supplements, $45 a claim")
 //   - canvassing / appointment setting ("our reps knock, you just inspect")
 //   - business brokers ("private equity group acquiring roofing businesses")
+//   - phone answering / missed-call services ("who answers the phone when
+//     your crew is up on a roof? ... that's where jobs slip away")
 //
 // lib/pitch.ts is blind to all of these: none of them mention SEO or a loan.
 // Worse, lib/spam.ts SUBTRACTS 2 for roofing vocabulary to protect real
@@ -162,6 +164,33 @@ function buildRules(trade: string): Rule[] {
         `\\b(offer (your )?(customers?|homeowners?|clients?) financing|(consumer|homeowner|customer|point[- ]of[- ]sale|pos) financing (for|program|platform|options for (contractors|roofers|your business))|finance (your )?(customers?|homeowners?)\\b${GAP}\\b(approval|rates?|program))\\b`
       ),
     },
+    {
+      // Answering-service pitches (Nov 18 2026: "who answers the phone at
+      // McKinley ... when your whole crew is up on a roof? If it's voicemail,
+      // that's where jobs slip away"). The vendor talks about the BUSINESS
+      // losing work to unanswered calls. A frustrated homeowner complains about
+      // not getting through, in words like "goes to voicemail" or "you're
+      // losing customers" — those are in t-w-phone-coverage below, context
+      // only, so on their own they never hold a lead back. Nouns are plural on
+      // purpose: "don't let my job slip through the cracks" is a customer.
+      id: "t-missed-call-loss",
+      kind: "offer",
+      reason: "missed-call / answering-service pitch (lost jobs to voicemail)",
+      re: rx(
+        `\\b((missed|unanswered|dropped) (phone )?calls?\\b${GAP}\\b(cost(s|ing)?|los(e|es|ing)|lost|mean(s)?|equals?) (you|your)\\b|every (missed|unanswered) (phone )?call\\b|(jobs|leads|deals|customers|clients|opportunities|sales) (slip|slips|slipping|slipped) (away|through the cracks)|missed[- ]call text[- ]?back|text[- ]?back (system|feature|tool|service|software|automation)|never miss (another|a single) (call|lead|job|customer|opportunity)|never miss a (call|lead|job|customer) again)\\b`
+      ),
+    },
+    {
+      // "We answer every call for you", "our virtual receptionists pick up your
+      // calls". Vendor voice plus the business's calls as the object; "I'll
+      // return your call" (singular, a customer) does not match.
+      id: "t-answer-your-calls",
+      kind: "offer",
+      reason: "offers to answer the business's phone calls",
+      re: rx(
+        `\\b((we|i|our (team|staff|receptionists?|agents?|operators?|service|system|software|app|platform|ai|assistant|bot))('ll|'d)?(\\s(can|could|will|would|also))? (answer|answers|pick up|picks up|handle|handles|cover|covers|catch|catches|capture|captures|return|returns|field|fields)\\b${GAP}\\b((your|all your|all of your) (incoming |inbound |missed |after[- ]hours |overflow )?(calls|phone calls|phones|leads)|(every|each) (single )?(incoming |inbound |missed )?(call|lead))|(virtual|remote|ai[- ]powered) receptionists?|our (24\\/7 |virtual |live |remote |bilingual )+(receptionists?|answering services?|call cent(er|re)))\\b`
+      ),
+    },
 
     // ------------------------------------------------------- services (2)
     {
@@ -202,6 +231,36 @@ function buildRules(trade: string): Rule[] {
       reason: "promises a volume of jobs/leads per month",
       re: rx(
         `\\b\\d+\\s*(\\+|plus)?\\s*(qualified |exclusive |new |extra |additional )?(leads?|appointments?|jobs?|deals?|installs?|calls?|customers?|clients?)\\b${GAP}\\b(per|a|each|every) (month|week|day)\\b`
+      ),
+    },
+    {
+      // "I can show you a fix in 10 minutes." Weak, not an offer: a homeowner
+      // may well say "I can show you where it leaks".
+      id: "t-w-show-you-fix",
+      kind: "weak",
+      reason: "offers to show the business a fix/demo",
+      re: rx(
+        `\\b((i|we)('d|'ll)?(\\s(can|could|would|will))? (love to |like to |be happy to |happy to |want to )?(show|walk) you (through )?(a|our|my) (quick |simple |easy |proven |better |\\d+[- ]minute )?(fix|solution|system|tool|demo|setup|walkthrough|process)\\b|show you\\b${GAP}\\b(in|under) (\\d+|five|ten|fifteen|twenty|thirty|a few) (minutes?|mins?)\\b)`
+      ),
+    },
+    {
+      // Phone-coverage talk. Real customers write most of these too ("it goes
+      // to voicemail", "who answers the phone over there?"), so context only:
+      // never counts unless something else hit.
+      id: "t-w-phone-coverage",
+      kind: "context",
+      reason: "talks about who answers the business's phone",
+      re: rx(
+        `\\b(who (answers|picks up|gets|handles|takes) (the |your )?(phones?|calls?)|(when|while) (you('re| are)|your (whole |entire )?(crew|team|guys)( is| are|'s|'re)?) (up |out )?on (a|the) (roof|job|jobsite|job site|ladder)|(goes|go|going|went|rolls?|rolling|sent) (straight )?to voice ?mail|if it'?s (a )?voice ?mail|(you('re| are)|you'?ll be) (losing|missing|leaving)\\b${GAP}\\b(jobs|leads|calls|customers|revenue|money|business|work))\\b`
+      ),
+    },
+    {
+      // A bare "Worth it?" / "Worth a look?" closing line.
+      id: "t-w-worth-it",
+      kind: "context",
+      reason: "cold-outreach \"worth it?\" closer",
+      re: rx(
+        `(^|[.!?]\\s+|\\n\\s*)worth (it|a look|a try|exploring|a (quick )?(look|chat|call)|(a few|\\d+|ten|five|fifteen) min(ute)?s?)\\?`
       ),
     },
     {

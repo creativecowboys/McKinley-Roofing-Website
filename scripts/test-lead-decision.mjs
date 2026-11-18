@@ -344,3 +344,52 @@ test("a pitch that also trips the rate limit is still labelled a solicitation", 
   assert.equal(d.verdict, "solicitation", "label hid which rule to tune");
   assert.equal(d.action, "review");
 });
+
+// ------------------------------------------- answering-service pitches ---
+// Nov 18 2026: "who answers the phone ... when your whole crew is up on a
+// roof? If it's voicemail, that's where jobs slip away. I can show you a fix
+// in 10 minutes. Worth it?" scored 0 on every screen and reached McKinley.
+
+const PHONE_PITCHES = [
+  "Hi, quick question: who answers the phone at McKinley Roofing and Restoration when your whole crew is up on a roof? If it's voicemail, that's where jobs slip away. I can show you a fix in 10 minutes. Worth it?\n\nTodd Abbott\nAutoMaxRevenue\ntodd@automaxrevenue.com",
+  "Who answers the phone when your crew is up on a roof? If it's voicemail, you're losing jobs. I can show you a fix in 10 minutes. Worth it?",
+  "Quick question - when you're on a job and the phone rings, who picks up? Most roofers miss 1 in 3 calls. We answer every call for you 24/7 and book the inspection on your calendar. Worth a 10 minute chat?",
+  "Every missed call is a missed roof job. We set up missed-call text back for roofing companies so you never miss another lead.",
+  "Hi, I wanted to introduce our AI receptionist built for roofers. It answers calls 24/7, qualifies storm leads and books inspections while your crew is on the roof. Can I send a quick demo?",
+  "Are you missing calls while you're up on roofs? Our virtual receptionists answer your calls live, 24/7, for less than a part-time hire.",
+  "Missed calls are costing you jobs. Our answering service picks up all your calls so leads stop slipping away.",
+];
+
+// Real customers complain about the phone too. These must go through clean —
+// not held, and not even tagged [Check].
+const PHONE_COMPLAINTS = [
+  "Who answers the phone over there? I've called three times and it keeps going to voicemail. I have a leak over my bedroom and need someone out ASAP.",
+  "You guys are losing business by not answering your phone. I need an estimate for siding, call me back at 770-555-0101.",
+  "I left a voicemail yesterday, nobody called back. Tree limb went through the roof, need a tarp today.",
+  "I know your crew is probably up on a roof right now, but please call me back about an estimate when you can.",
+  "I can show you where the water comes in when you come out. It's over the garage.",
+  "Another company quoted me $18k. Is it worth it to repair instead? Want a second opinion.",
+  "Please don't let my job slip through the cracks, I've been waiting on the estimate since last week.",
+  "My calls seem to slip through the cracks over there. Still need the gutter quote.",
+  "Our receptionist will let you in. Commercial building on Bankhead Hwy needs the flat roof looked at.",
+  "Can you return my call? Need an estimate for a roof replacement.",
+  "Need a quote for new gutters and gutter guards. Worth it? My neighbor says they clog anyway.",
+];
+
+test("answering-service / missed-call pitches are held back from the client", () => {
+  for (const m of PHONE_PITCHES) {
+    const d = decide(m);
+    assert.equal(d.action, "review", `NOT caught: ${m}`);
+    assert.equal(d.toClient, false, m);
+    assert.equal(d.toGhl, false, m);
+    assert.equal(d.subjectPrefix, "[Filtered: pitch] ", m);
+  }
+});
+
+test("customers complaining about the phone go through clean", () => {
+  for (const m of PHONE_COMPLAINTS) {
+    const d = decide(m);
+    assert.equal(d.verdict, "ok", `flagged a real customer: ${m}\n  -> ${d.reasons.join("; ")}`);
+    assert.equal(d.subjectPrefix, "", m);
+  }
+});

@@ -1,59 +1,24 @@
 /**
- * Where a filtered submission is allowed to go.
+ * Where a held submission goes: Dave, and only Dave.
  *
- * A confident solicitation must never be mailed back to the client — that was
- * the original leak: the filter relabelled solicitations and then sent them to
- * the client's own inbox anyway, so nothing actually came off their desk.
+ * Dave, Nov 18 2026: vendor pitches are kept off McKinley's desk and rerouted
+ * to him rather than dropped, so a false positive can still be forwarded on
+ * and no real lead is ever silently lost.
  *
- * `LEAD_SPAM_NOTIFY_EMAIL` is a plain environment variable. Anyone with Vercel
- * access can set it, and its value is not readable back out of the dashboard,
- * so "it is probably fine" is not a safe assumption. This module decides the
- * review destination from that variable instead of trusting it:
+ * Until Nov 18 this came from LEAD_SPAM_NOTIFY_EMAIL, screened down to a
+ * Creative Cowboys address with howdy@ as the fallback. Vercel stores that
+ * variable as sensitive, so nobody could read back where held submissions were
+ * actually going, and a lead copy in howdy@ carries the pitcher as Reply-To,
+ * which an inbox routine could answer. A fixed address in code is visible,
+ * reviewable and tested. LEAD_SPAM_NOTIFY_EMAIL is no longer read.
  *
- *   1. Addresses are parsed out of the raw value — comma or semicolon
- *      separated, `Name <addr>` display-name form, stray whitespace, blanks.
- *   2. An address is only usable if it sits on a domain Creative Cowboys
- *      controls. Anything else — the client's own address, a client-domain
- *      address, a typo, a stranger — is dropped.
- *   3. An address that is ALSO one of the client's notification recipients
- *      (`LEAD_NOTIFY_EMAIL`, same parsing, case-insensitive) is dropped, even
- *      if it is on our domain.
- *   4. If nothing survives, review mail goes to the default Creative Cowboys
- *      review mailbox. There is no code path where it goes to the client.
+ * It can never be the client: this is a constant, not configuration.
  *
- * Nothing here reads, returns or logs the configured value beyond the
- * addresses it actually approves: callers get counts and a source label, which
- * is enough to verify the policy in tests and in logs without printing a
- * secret.
- *
- * Pure — no imports, no I/O, no process.env access. The caller passes the
- * values in, which is also what makes it testable.
+ * Pure — no imports, no I/O, no process.env access.
  */
 
-/** Domains Creative Cowboys controls. A review address must be on one. */
-export const AUTHORIZED_REVIEW_DOMAINS: readonly string[] = ['creativecowboys.co'];
-
-/** Last-resort review mailbox: ours, monitored, and never a client address. */
-export const DEFAULT_REVIEW_RECIPIENT = 'howdy@creativecowboys.co';
-
-export type ReviewDestinationSource =
-  /** Every configured address was authorized. */
-  | 'configured'
-  /** Some configured addresses were authorized, some were dropped. */
-  | 'partial'
-  /** Nothing configured, or nothing configured was authorized. */
-  | 'fallback';
-
-export interface ReviewDestination {
-  /** Comma-separated recipients for lib/email.ts. Never empty. */
-  to: string;
-  source: ReviewDestinationSource;
-  /** How many configured addresses were approved. */
-  accepted: number;
-  /** How many were dropped, with why — rule ids only, never an address. */
-  rejected: number;
-  reasons: string[];
-}
+/** The one inbox held submissions go to. Never a client address. */
+export const REVIEW_RECIPIENT = 'dave@creativecowboys.co';
 
 const ADDRESS_RE = /^[^\s@,;<>]+@[^\s@,;<>]+\.[a-z]{2,}$/i;
 
@@ -100,66 +65,11 @@ export function parseAddressList(value: unknown): string[] {
   return out;
 }
 
-/** True when the address sits on a domain we control (or a subdomain of one). */
-export function isAuthorizedReviewAddress(address: string): boolean {
-  const domain = address.split('@')[1]?.toLowerCase();
-  if (!domain) return false;
-  return AUTHORIZED_REVIEW_DOMAINS.some(
-    (ours) => domain === ours || domain.endsWith(`.${ours}`)
-  );
-}
-
 /**
- * Decide where review mail goes.
- *
- * @param configured   raw LEAD_SPAM_NOTIFY_EMAIL (may be undefined/blank/junk)
- * @param clientNotify raw LEAD_NOTIFY_EMAIL — the client's own recipients
+ * True when the review inbox is already one of the client's notification
+ * recipients (LEAD_NOTIFY_EMAIL). It then already receives the "[Check]" email
+ * for a borderline lead, so a second "[Check — copy]" would be a duplicate.
  */
-export function resolveReviewDestination(
-  configured: unknown,
-  clientNotify: unknown
-): ReviewDestination {
-  const candidates = parseAddressList(configured);
-  const clientRecipients = new Set(parseAddressList(clientNotify));
-
-  const approved: string[] = [];
-  const reasons: string[] = [];
-  let rejected = 0;
-
-  for (const address of candidates) {
-    if (clientRecipients.has(address)) {
-      rejected += 1;
-      reasons.push('dropped: configured review address is also a client recipient');
-      continue;
-    }
-    if (!isAuthorizedReviewAddress(address)) {
-      rejected += 1;
-      reasons.push('dropped: configured review address is not on a Creative Cowboys domain');
-      continue;
-    }
-    approved.push(address);
-  }
-
-  if (approved.length === 0) {
-    reasons.push(
-      candidates.length === 0
-        ? 'no review address configured — using the Creative Cowboys default'
-        : 'no configured review address was usable — using the Creative Cowboys default'
-    );
-    return {
-      to: DEFAULT_REVIEW_RECIPIENT,
-      source: 'fallback',
-      accepted: 0,
-      rejected,
-      reasons,
-    };
-  }
-
-  return {
-    to: approved.join(', '),
-    source: rejected > 0 ? 'partial' : 'configured',
-    accepted: approved.length,
-    rejected,
-    reasons,
-  };
+export function reviewInboxGetsClientMail(clientNotify: unknown): boolean {
+  return parseAddressList(clientNotify).includes(REVIEW_RECIPIENT);
 }

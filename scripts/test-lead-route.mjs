@@ -13,11 +13,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { handleLead } from "../lib/lead-handler.ts";
-import {
-  DEFAULT_REVIEW_RECIPIENT,
-  parseAddressList,
-  resolveReviewDestination,
-} from "../lib/review-destination.ts";
+import { REVIEW_RECIPIENT, parseAddressList } from "../lib/review-destination.ts";
 
 /** The client's own notification recipients, as configured on Vercel. */
 const CLIENT_NOTIFY = "mckinleyrandr@gmail.com";
@@ -83,95 +79,72 @@ const post = (message, overrides, extra = {}) => {
 };
 
 // ================================================================ blocker 1 ==
-// A configured review destination must never be able to send a confident
-// solicitation back to the client.
+// A held submission goes to Dave and only Dave. Nothing in the environment can
+// send it to the client.
 
-test("a solicitation goes to OUR review mailbox, never the client's", async () => {
+/** The Nov 18 2026 pitch that got through to McKinley before this change. */
+const TODD =
+  "Hi, quick question: who answers the phone at McKinley Roofing and Restoration when your whole crew is up on a roof? If it's voicemail, that's where jobs slip away. I can show you a fix in 10 minutes. Worth it?\n\nTodd Abbott\nAutoMaxRevenue\ntodd@automaxrevenue.com";
+
+test("a solicitation goes to Dave as [Filtered: pitch], never the client's inbox", async () => {
   const { res, sent, ghlCalls } = await post(SOLICITATION);
   assert.equal(res.body.filtered, true);
   assert.equal(sent.length, 1, "exactly one email: the review copy");
-  assert.equal(sent[0].options.to, DEFAULT_REVIEW_RECIPIENT);
+  assert.equal(sent[0].options.to, REVIEW_RECIPIENT);
+  assert.equal(REVIEW_RECIPIENT, "dave@creativecowboys.co");
+  assert.equal(sent[0].options.subjectPrefix, "[Filtered: pitch] ");
   assert.notEqual(sent[0].options.to, undefined, "undefined 'to' falls back to the CLIENT");
   assert.equal(ghlCalls.length, 0, "a solicitation must never reach GoHighLevel");
 });
 
-// Each row: what LEAD_SPAM_NOTIFY_EMAIL is set to -> where review mail goes.
-const DESTINATIONS = [
-  ["unset", undefined, DEFAULT_REVIEW_RECIPIENT],
-  ["empty", "", DEFAULT_REVIEW_RECIPIENT],
-  ["blank separators", "  ,  ;  ", DEFAULT_REVIEW_RECIPIENT],
-  ["the client's own address", CLIENT_NOTIFY, DEFAULT_REVIEW_RECIPIENT],
-  ["an address on the client's domain", "caitlyn@mckinleyroofing.net", DEFAULT_REVIEW_RECIPIENT],
-  ["a stranger", "someone@gmail.com", DEFAULT_REVIEW_RECIPIENT],
-  ["not an address at all", "howdy[at]creativecowboys.co", DEFAULT_REVIEW_RECIPIENT],
-  ["ours", "howdy@creativecowboys.co", "howdy@creativecowboys.co"],
-  ["ours, mixed case", "HOWDY@CreativeCowboys.CO", "howdy@creativecowboys.co"],
-  ["ours with a display name", "Review Desk <Review@CreativeCowboys.co>", "review@creativecowboys.co"],
-  ["ours on a subdomain", "ops@mail.creativecowboys.co", "ops@mail.creativecowboys.co"],
-  ["two of ours, semicolon separated", "a@creativecowboys.co; b@creativecowboys.co", "a@creativecowboys.co, b@creativecowboys.co"],
-  [
-    "mixed: client + ours keeps only ours",
-    'Caitlyn <CAITLYN@MCKINLEYROOFING.NET>, "Jones, Pat" <pat@example.test>, howdy@creativecowboys.co',
-    "howdy@creativecowboys.co",
-  ],
-  ["ours + junk keeps only ours", "not-an-email, howdy@creativecowboys.co", "howdy@creativecowboys.co"],
+test("the Nov 18 answering-service pitch is held for Dave, not delivered", async () => {
+  const { res, sent, ghlCalls } = await post(TODD, {}, {
+    firstName: "Todd",
+    lastName: "Abbott",
+    email: "todd@automaxrevenue.com",
+    phone: "4786062782",
+    newClient: "no",
+  });
+  assert.equal(res.status, 200);
+  assert.equal(res.body.filtered, true);
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].options.to, "dave@creativecowboys.co");
+  assert.equal(sent[0].options.subjectPrefix, "[Filtered: pitch] ");
+  assert.equal(ghlCalls.length, 0);
+});
+
+// LEAD_SPAM_NOTIFY_EMAIL used to pick the destination. It is no longer read:
+// whatever it holds — including the client's own address — changes nothing.
+const CONFIGURED = [
+  undefined,
+  "",
+  "mckinleyrandr@gmail.com",
+  "caitlyn@mckinleyroofing.net",
+  "someone@gmail.com",
+  "howdy@creativecowboys.co",
+  'Caitlyn <CAITLYN@MCKINLEYROOFING.NET>, howdy@creativecowboys.co',
 ];
 
-test("review mail only ever goes to an authorized Creative Cowboys address", async () => {
-  for (const [label, configured, expected] of DESTINATIONS) {
-    const { sent } = await post(SOLICITATION, {
-      env: { LEAD_SPAM_NOTIFY_EMAIL: configured },
-    });
-    assert.equal(sent.length, 1, label);
-    assert.equal(sent[0].options.to, expected, label);
+test("LEAD_SPAM_NOTIFY_EMAIL is ignored: held mail always goes to Dave only", async () => {
+  for (const configured of CONFIGURED) {
+    const { sent } = await post(SOLICITATION, { env: { LEAD_SPAM_NOTIFY_EMAIL: configured } });
+    assert.equal(sent.length, 1, String(configured));
+    assert.equal(sent[0].options.to, REVIEW_RECIPIENT, String(configured));
   }
 });
 
-test("no configured value can route a solicitation to any client recipient", async () => {
+test("no client recipient ever receives a held submission", async () => {
   const clientList = "Caitlyn <Caitlyn@McKinleyRoofing.net>, MCKINLEYRANDR@GMAIL.COM, jacob@mckinleyroofing.net";
-  for (const [label, configured] of DESTINATIONS) {
+  for (const configured of CONFIGURED) {
     const { sent } = await post(SOLICITATION, {
       env: { LEAD_SPAM_NOTIFY_EMAIL: configured, LEAD_NOTIFY_EMAIL: clientList },
     });
     const to = parseAddressList(sent[0].options.to);
     for (const recipient of parseAddressList(clientList)) {
-      assert.ok(!to.includes(recipient), `${label}: solicitation would reach ${recipient}`);
+      assert.ok(!to.includes(recipient), `${configured}: solicitation would reach ${recipient}`);
     }
-    assert.ok(to.length > 0, `${label}: nowhere to send it`);
+    assert.ok(to.length > 0, `${configured}: nowhere to send it`);
   }
-});
-
-test("case-insensitive overlap with a client recipient on our own domain is dropped", () => {
-  const d = resolveReviewDestination("LEADS@CreativeCowboys.co", "leads@creativecowboys.co");
-  assert.equal(d.to, DEFAULT_REVIEW_RECIPIENT);
-  assert.equal(d.source, "fallback");
-  assert.equal(d.rejected, 1);
-});
-
-test("the configured value is never written to the log", async () => {
-  const secretish = "caitlyn@mckinleyroofing.net";
-  const { logs } = await post(SOLICITATION, { env: { LEAD_SPAM_NOTIFY_EMAIL: secretish } });
-  const everything = [...logs.warn, ...logs.error].join("\n");
-  assert.ok(!everything.includes(secretish), "a rejected review address leaked into the log");
-  assert.ok(!everything.includes("mckinleyroofing.net"), "the domain leaked into the log");
-  assert.ok(everything.includes("source=fallback"), "the fallback was not reported at all");
-});
-
-test("resolveReviewDestination reports what it did without quoting addresses", () => {
-  const ok = resolveReviewDestination("howdy@creativecowboys.co", CLIENT_NOTIFY);
-  assert.deepEqual(
-    { source: ok.source, accepted: ok.accepted, rejected: ok.rejected },
-    { source: "configured", accepted: 1, rejected: 0 }
-  );
-
-  const partial = resolveReviewDestination(
-    "howdy@creativecowboys.co, caitlyn@mckinleyroofing.net",
-    CLIENT_NOTIFY
-  );
-  assert.equal(partial.source, "partial");
-  assert.equal(partial.to, "howdy@creativecowboys.co");
-  assert.equal(partial.rejected, 1);
-  for (const reason of partial.reasons) assert.ok(!reason.includes("@"), reason);
 });
 
 test("parseAddressList handles the shapes a recipient list actually comes in", () => {
@@ -263,7 +236,8 @@ test("a genuine lead that is too fast still goes to review, not to the client", 
   const { res, sent, ghlCalls } = await post(GENUINE, {}, { ts: Date.now() - 50 });
   assert.equal(res.body.filtered, true);
   assert.equal(sent.length, 1);
-  assert.equal(sent[0].options.to, DEFAULT_REVIEW_RECIPIENT);
+  assert.equal(sent[0].options.to, REVIEW_RECIPIENT);
+  assert.equal(sent[0].options.subjectPrefix, "[Filtered: suspected bot] ", "a machine-signal hold is not labelled a pitch");
   assert.equal(ghlCalls.length, 0);
 });
 
@@ -350,7 +324,18 @@ test("a borderline lead reaches the client tagged, and the review copy is deferr
 
   const copy = sent.find((s) => s.options.subjectPrefix === "[Check — copy] ");
   assert.ok(copy, "no review copy was sent");
-  assert.equal(copy.options.to, DEFAULT_REVIEW_RECIPIENT);
+  assert.equal(copy.options.to, REVIEW_RECIPIENT);
+});
+
+test("no duplicate review copy when Dave is already on the client's notification list", async () => {
+  const { res, sent, deferred } = await post(BORDERLINE, {
+    env: { LEAD_NOTIFY_EMAIL: "mckinleyrandr@gmail.com, Dave Collum <Dave@CreativeCowboys.co>" },
+  });
+  assert.equal(res.body.ok, true);
+  assert.equal(deferred.length, 0, "Dave already has the [Check] email");
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].options.to, undefined, "the client still gets it via LEAD_NOTIFY_EMAIL");
+  assert.equal(sent[0].options.subjectPrefix, "[Check] ");
 });
 
 test("a failing review copy never fails a real lead", async () => {

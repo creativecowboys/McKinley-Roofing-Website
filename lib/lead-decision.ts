@@ -147,11 +147,16 @@ export function decideLead(lead: LeadPayload, meta: DecideMeta = {}): LeadDecisi
       toClient: false,
       toReview: true,
       toGhl: false,
-      subjectPrefix: '[Filtered: solicitation] ',
+      // Same "[Filtered: pitch]" label the other client sites use, so one mail
+      // filter catches them all. A hold on machine signals alone (too fast,
+      // gibberish name, burst) is labelled as such: those are the ones most
+      // likely to be a real lead.
+      subjectPrefix: solicitation ? '[Filtered: pitch] ' : '[Filtered: suspected bot] ',
       note:
-        `Held back from McKinley's inbox: the website scored this as a solicitation rather ` +
-        `than a customer (${why}). It was NOT added to GoHighLevel. If it is a real ` +
-        `roofing or siding lead, forward it on and tell us so the filter can be tuned.`,
+        `Held back from McKinley's inbox: the website scored this as a ` +
+        `${solicitation ? 'sales pitch' : 'possible bot'} rather than a customer (${why}). ` +
+        `McKinley did not get it and it was NOT added to GoHighLevel. If it is a real ` +
+        `roofing or siding lead, forward it to McKinley so it is not lost.`,
       reasons,
       // Content beats the machine signals in the label: a pitch that also
       // happened to trip the rate limit is still a pitch, and logging it as a

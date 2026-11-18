@@ -1,6 +1,6 @@
 import { clientIp } from './rate-limit';
 import { decideLead } from './lead-decision';
-import { resolveReviewDestination } from './review-destination';
+import { REVIEW_RECIPIENT, reviewInboxGetsClientMail } from './review-destination';
 import type { LeadPayload, SendLeadEmailOptions } from './email';
 
 /**
@@ -15,17 +15,18 @@ import type { LeadPayload, SendLeadEmailOptions } from './email';
  *
  * What happens to a submission is decided by lib/lead-decision.ts:
  *   'drop'    → honeypot was filled. Nothing sent. The only discard path.
- *   'review'  → scored as a solicitation. Goes to OUR review mailbox only —
- *               never the client, never GoHighLevel.
+ *   'review'  → scored as a pitch (or a likely bot). Goes to Dave only, as
+ *               "[Filtered: pitch]" — never the client, never GoHighLevel.
  *   'deliver' → real lead: client email + GoHighLevel. Borderline ones are
- *               delivered tagged "[Check]" with a copy to review.
+ *               delivered tagged "[Check]", with a copy to Dave unless he is
+ *               already on the client's notification list.
  *
  * Two rules this file exists to hold:
  *
- *  1. Review mail goes to an address resolved by lib/review-destination.ts,
- *     never to the client's LEAD_NOTIFY_EMAIL. Before Nov 2026 a filtered
- *     pitch fell back to the client's own inbox, so the filter relabelled
- *     solicitations instead of taking them off their desk.
+ *  1. Review mail goes to REVIEW_RECIPIENT (lib/review-destination.ts), a
+ *     constant, never to the client's LEAD_NOTIFY_EMAIL. Before Nov 2026 a
+ *     filtered pitch fell back to the client's own inbox, so the filter
+ *     relabelled solicitations instead of taking them off their desk.
  *
  *  2. A filtered submission is only reported as accepted if the review
  *     mailbox actually took it. There is no database here, so that one email
@@ -122,19 +123,7 @@ export async function handleLead(
     return { status: 200, body: { ok: true, email: false, ghl: false, filtered: true } };
   }
 
-  // --- Where a filtered submission is allowed to go -------------------------
-  // Resolved, not trusted: the configured value is never used verbatim and is
-  // never logged. Only the source label and the counts are.
-  const review = resolveReviewDestination(
-    env.LEAD_SPAM_NOTIFY_EMAIL,
-    env.LEAD_NOTIFY_EMAIL
-  );
-  if (review.source !== 'configured') {
-    log.warn(
-      `[lead] review destination: source=${review.source} accepted=${review.accepted} ` +
-        `rejected=${review.rejected} (${review.reasons.join('; ')})`
-    );
-  }
+  // A filtered submission goes to REVIEW_RECIPIENT and nowhere else.
   const reviewConfigured = Boolean(env.RESEND_API_KEY);
 
   if (decision.action === 'review') {
@@ -144,7 +133,7 @@ export async function handleLead(
     if (reviewConfigured) {
       try {
         reviewSent = await channels.sendEmail(lead, {
-          to: review.to,
+          to: REVIEW_RECIPIENT,
           subjectPrefix: decision.subjectPrefix,
           note: decision.note,
         });
@@ -169,8 +158,7 @@ export async function handleLead(
     // kept, and it did not take it. Say so: the forms show the phone number.
     log.error(
       '[lead] REVIEW SEND FAILED — submission not preserved anywhere. ' +
-        `verdict=${decision.verdict} source=${lead.source} ` +
-        `destination=${review.source} configured=${reviewConfigured}`
+        `verdict=${decision.verdict} source=${lead.source} configured=${reviewConfigured}`
     );
     return {
       status: 503,
@@ -202,11 +190,13 @@ export async function handleLead(
     channels.createGhl(lead),
   ]);
 
-  if (decision.toReview) {
+  // Skipped when the review inbox is already on LEAD_NOTIFY_EMAIL: it just got
+  // the "[Check]" email above, and a second copy would only be a duplicate.
+  if (decision.toReview && !reviewInboxGetsClientMail(env.LEAD_NOTIFY_EMAIL)) {
     channels.defer(() =>
       channels
         .sendEmail(lead, {
-          to: review.to,
+          to: REVIEW_RECIPIENT,
           subjectPrefix: '[Check — copy] ',
           note: decision.note,
         })
