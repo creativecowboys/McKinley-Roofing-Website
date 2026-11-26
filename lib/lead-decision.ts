@@ -2,6 +2,7 @@ import type { LeadPayload } from './email';
 import { assessLead, type SpamMeta } from './spam';
 import { screenPitch } from './pitch';
 import { readsLikeCustomerRelay, screenTradePitch } from './trade-pitch';
+import { hasRoofingCustomerIntent } from './roofing-intent';
 
 /**
  * One place that decides what happens to a form submission.
@@ -14,17 +15,14 @@ import { readsLikeCustomerRelay, screenTradePitch } from './trade-pitch';
  *   'drop'    — a bot filled the honeypot. Nothing sent anywhere. This is the
  *               only path that discards a submission, and it needs a hard
  *               machine signal, never a content guess.
- *   'review'  — a solicitation. Goes to OUR review mailbox only, never to the
+ *   'review'  — a solicitation, unclear inquiry or non-roofing request. Goes to OUR review mailbox only, never to the
  *               client, and never to GoHighLevel. Kept, not deleted, so a
  *               false positive can still be rescued.
- *   'deliver' — a real lead. Client email + GoHighLevel, as before. Borderline
- *               cases are delivered with a "[Check]" subject AND copied to
- *               review, because a missed roofing lead costs more than a tagged
- *               one the client glances at.
+ *   'deliver' — a clear roofing customer request. Client email + GoHighLevel.
  *
- * The bias is deliberate: confident solicitations are taken off the client's
- * desk, uncertain ones stay on it. Nothing is silently thrown away except a
- * filled honeypot.
+ * Only clear roofing customer intent reaches the client. Dave reviews all
+ * uncertainty, including possible false positives. Nothing is silently thrown
+ * away except a filled honeypot.
  */
 
 export type LeadAction = 'drop' | 'review' | 'deliver';
@@ -122,8 +120,7 @@ export function decideLead(lead: LeadPayload, meta: DecideMeta = {}): LeadDecisi
   // vendor would ("a guy knocked on my door about canvassing for roofing
   // companies — I want a real inspection on my roof"), and the keyword screens
   // cannot hear who is speaking. When the relay reading holds, a confident
-  // pitch is downgraded to borderline: the client still gets it, tagged, with
-  // a copy to us. Only the keyword screens are softened — lib/spam.ts's own
+  // pitch is downgraded to borderline for Dave's review. Only the keyword screens are softened — lib/spam.ts's own
   // 'spam' verdict (links, payloads, gibberish) is left alone.
   const pitched = generic.verdict === 'pitch' || trade.verdict === 'pitch';
   const relay = pitched ? readsLikeCustomerRelay([message, address]) : { relayed: false, reasons: [] };
@@ -156,7 +153,7 @@ export function decideLead(lead: LeadPayload, meta: DecideMeta = {}): LeadDecisi
         `Held back from McKinley's inbox: the website scored this as a ` +
         `${solicitation ? 'sales pitch' : 'possible bot'} rather than a customer (${why}). ` +
         `McKinley did not get it and it was NOT added to GoHighLevel. If it is a real ` +
-        `roofing or siding lead, forward it to McKinley so it is not lost.`,
+        `roofing lead, forward it to McKinley so it is not lost.`,
       reasons,
       // Content beats the machine signals in the label: a pitch that also
       // happened to trip the rate limit is still a pitch, and logging it as a
@@ -166,17 +163,37 @@ export function decideLead(lead: LeadPayload, meta: DecideMeta = {}): LeadDecisi
   }
 
   // --- Borderline -----------------------------------------------------------
-  // Something hit, but not enough to be confident. The client still gets it.
+  // Any uncertainty stays with Dave; it must not create a client email or CRM lead.
   if (generic.verdict === 'check' || trade.verdict === 'check' || demoted) {
     const why = reasons.join('; ');
     return {
-      action: 'deliver',
-      toClient: true,
+      action: 'review',
+      toClient: false,
       toReview: true,
-      toGhl: true,
+      toGhl: false,
       subjectPrefix: '[Check] ',
-      note: `The website flagged this for a second look (${why}). It may well be a real inquiry.`,
+      note: `Held for Dave's review because the website flagged uncertainty (${why}). McKinley did not get it and it was NOT added to GoHighLevel. If this is a real roofing customer, forward it to McKinley.`,
       reasons,
+      verdict: 'check',
+    };
+  }
+
+  // Clean content is not enough: only a positive roofing customer request is
+  // delivered. The dedicated inspection form can establish that request with
+  // a property address, contact details and empty optional notes; no source or
+  // newClient value alone can satisfy this gate or bypass the screens above.
+  if (!hasRoofingCustomerIntent(message, truncate(address), {
+    source: str(lead.source),
+    hasContact: Boolean(str(lead.email).trim() || str(lead.phone).trim()),
+  })) {
+    return {
+      action: 'review',
+      toClient: false,
+      toReview: true,
+      toGhl: false,
+      subjectPrefix: '[Review: roofing intent unclear] ',
+      note: `Held for Dave's review: this submission does not clearly ask for roofing work or follow up on a roofing job. McKinley did not get it and it was NOT added to GoHighLevel. Forward it to McKinley if it is a real roofing customer.`,
+      reasons: ['no clear roofing customer request'],
       verdict: 'check',
     };
   }

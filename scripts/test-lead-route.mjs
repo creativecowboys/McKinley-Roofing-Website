@@ -21,7 +21,7 @@ const CLIENT_NOTIFY = "mckinleyrandr@gmail.com";
 const SOLICITATION =
   "We generate exclusive roofing leads for contractors in Georgia. $75 per qualified storm damage appointment, no contracts. Want 20 this month?";
 const GENUINE = "Roof is leaking over the kitchen in Villa Rica. Need a quote.";
-/** Scores borderline: delivered to the client, tagged, copied to review. */
+/** Scores borderline: now preserved for Dave only, even with roof wording. */
 const BORDERLINE =
   "My company does commercial cleaning for contractors. Our office building needs a new roof.";
 
@@ -306,50 +306,78 @@ test("nothing configured at all is a graceful local success", async () => {
   assert.equal(res.body.ok, true);
 });
 
-// ===================================================== the borderline copy ==
+// ======================================================= Dave-only review ==
 
-test("a borderline lead reaches the client tagged, and the review copy is deferred", async () => {
-  const { res, sent, ghlCalls, deferred } = await post(BORDERLINE);
+const REVIEW_ONLY = [
+  BORDERLINE,
+  "Hi", "Call me", "Estimate please", "Need gutters", "Need siding",
+  "We offer reporting dashboards and business analytics. Reply STOP to opt out.",
+  "A salesman offered storm leads for roofing contractors. I need my roof inspected.",
+  "I can repair roofs for your company. Let me know if you need help.",
+  "I am a roofer looking for work.", "Looking for a job repairing roofs.",
+  "My kitchen sink is leaking. Can you repair it?",
+  "My driveway was damaged in the storm. Can you repair it?",
+  "We do not need a new roof. I want to discuss a charity sponsorship.",
+];
 
-  assert.equal(res.body.ok, true);
-  assert.equal(res.body.filtered, false, "borderline leads are delivered, not filtered");
-  assert.equal(ghlCalls.length, 1);
-
-  const toClient = sent.find((s) => s.options.to === undefined);
-  assert.ok(toClient, "the client did not get the borderline lead");
-  assert.equal(toClient.options.subjectPrefix, "[Check] ");
-
-  assert.equal(deferred.length, 1, "the review copy was abandoned instead of deferred");
-  await Promise.all(deferred);
-
-  const copy = sent.find((s) => s.options.subjectPrefix === "[Check — copy] ");
-  assert.ok(copy, "no review copy was sent");
-  assert.equal(copy.options.to, REVIEW_RECIPIENT);
+test("all uncertain/non-roofing requests go to Dave only, including the former [Check] path", async () => {
+  for (const message of REVIEW_ONLY) {
+    const { res, sent, ghlCalls, deferred } = await post(message, {}, { newClient: "no" });
+    assert.equal(res.status, 200, message);
+    assert.equal(res.body.filtered, true, message);
+    assert.equal(res.body.ghl, false, message);
+    assert.equal(sent.length, 1, message);
+    assert.equal(sent[0].options.to, REVIEW_RECIPIENT, message);
+    assert.equal(ghlCalls.length, 0, message);
+    assert.equal(deferred.length, 0, "review preservation must complete before success");
+  }
 });
 
-test("no duplicate review copy when Dave is already on the client's notification list", async () => {
-  const { res, sent, deferred } = await post(BORDERLINE, {
-    env: { LEAD_NOTIFY_EMAIL: "mckinleyrandr@gmail.com, Dave Collum <Dave@CreativeCowboys.co>" },
-  });
-  assert.equal(res.body.ok, true);
-  assert.equal(deferred.length, 0, "Dave already has the [Check] email");
+test("a reporting-software opt-out pitch on the former [Check] path is Dave-only", async () => {
+  const { res, sent, ghlCalls } = await post(
+    "Our reporting dashboards make business analytics easier. You may opt out.",
+    {}, { newClient: "no" }
+  );
+  assert.equal(res.body.filtered, true);
   assert.equal(sent.length, 1);
-  assert.equal(sent[0].options.to, undefined, "the client still gets it via LEAD_NOTIFY_EMAIL");
   assert.equal(sent[0].options.subjectPrefix, "[Check] ");
+  assert.equal(sent[0].options.to, REVIEW_RECIPIENT);
+  assert.equal(ghlCalls.length, 0);
 });
 
-test("a failing review copy never fails a real lead", async () => {
-  let call = 0;
-  const { res, deferred, logs } = await post(BORDERLINE, {
-    sendEmail: async () => {
-      call += 1;
-      if (call === 1) return true; // the client's copy
-      throw new Error("resend down"); // the review copy
-    },
+test("Dave already on client list does not send uncertain leads to the client", async () => {
+  const { sent, ghlCalls } = await post(BORDERLINE, {
+    env: { LEAD_NOTIFY_EMAIL: "client@example.test, Dave <Dave@CreativeCowboys.co>" },
   });
-  assert.equal(res.body.ok, true);
-  await Promise.all(deferred);
-  assert.ok(logs.error.join("\n").includes("review copy failed"));
+  assert.equal(sent.length, 1);
+  assert.equal(sent[0].options.to, REVIEW_RECIPIENT);
+  assert.equal(ghlCalls.length, 0);
+});
+
+test("newly held generic and borderline requests retain retryable review failures", async () => {
+  for (const message of REVIEW_ONLY) {
+    const { res, ghlCalls, deferred } = await post(message, { sendEmail: async () => false });
+    assert.equal(res.status, 503, message);
+    assert.equal(res.body.ok, false, message);
+    assert.equal(res.body.retryable, true, message);
+    assert.equal(ghlCalls.length, 0, message);
+    assert.equal(deferred.length, 0, message);
+  }
+});
+
+test("the dedicated inspection request delivers, but never bypasses a substantive message", async () => {
+  for (const message of ["", "No additional notes."]) {
+    const { res, sent, ghlCalls } = await post(message, {}, { source: "inspection-modal", address: "123 Example Lane" });
+    assert.equal(res.body.filtered, false);
+    assert.equal(sent[0].options.to, undefined);
+    assert.equal(ghlCalls.length, 1);
+  }
+  for (const message of [SOLICITATION, "Need gutters", "Call me"]) {
+    const { res, sent, ghlCalls } = await post(message, {}, { source: "inspection-modal", address: "123 Example Lane" });
+    assert.equal(res.body.filtered, true, message);
+    assert.equal(sent[0].options.to, REVIEW_RECIPIENT, message);
+    assert.equal(ghlCalls.length, 0, message);
+  }
 });
 
 // ================================================================== bots ====
