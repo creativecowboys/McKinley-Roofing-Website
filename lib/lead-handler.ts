@@ -15,11 +15,9 @@ import type { LeadPayload, SendLeadEmailOptions } from './email';
  *
  * What happens to a submission is decided by lib/lead-decision.ts:
  *   'drop'    → honeypot was filled. Nothing sent. The only discard path.
- *   'review'  → scored as a pitch (or a likely bot). Goes to Dave only, as
- *               "[Filtered: pitch]" — never the client, never GoHighLevel.
- *   'deliver' → real lead: client email + GoHighLevel. Borderline ones are
- *               delivered tagged "[Check]", with a copy to Dave unless he is
- *               already on the client's notification list.
+ *   'review'  → pitch, likely bot, unclear or non-roofing request. Goes to
+ *               Dave only — never the client, never GoHighLevel.
+ *   'deliver' → clear roofing customer: client email + GoHighLevel.
  *
  * Two rules this file exists to hold:
  *
@@ -179,9 +177,7 @@ export async function handleLead(
   const ghlConfigured = Boolean(env.GHL_API_TOKEN && env.GHL_LOCATION_ID);
 
   // Two INDEPENDENT side effects under allSettled so one failing never blocks
-  // the other. The review copy of a borderline lead is a third, best-effort
-  // one — deferred, not fire-and-forget, so the platform does not freeze the
-  // function out from under it the moment this response is returned.
+  // the other. Only clear roofing customers reach this delivery path.
   const [emailResult, ghlResult] = await Promise.allSettled([
     channels.sendEmail(lead, {
       subjectPrefix: decision.subjectPrefix,
@@ -190,8 +186,9 @@ export async function handleLead(
     channels.createGhl(lead),
   ]);
 
-  // Skipped when the review inbox is already on LEAD_NOTIFY_EMAIL: it just got
-  // the "[Check]" email above, and a second copy would only be a duplicate.
+  // Defensive support for a delivery policy that requests a review copy.
+  // The current roofing-only policy holds all uncertain cases above, so it
+  // never uses this branch or treats preservation as a best-effort copy.
   if (decision.toReview && !reviewInboxGetsClientMail(env.LEAD_NOTIFY_EMAIL)) {
     channels.defer(() =>
       channels

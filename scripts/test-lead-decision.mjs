@@ -1,7 +1,7 @@
 // Tests for the whole lead routing policy: lib/lead-decision.ts, which
 // composes lib/spam.ts, lib/pitch.ts and lib/trade-pitch.ts.
 //
-// Run: node scripts/test-lead-decision.mjs
+// Run: node --import ./scripts/register-ts.mjs scripts/test-lead-decision.mjs
 //
 // No network, no Resend, no GoHighLevel — decideLead() is pure, so these are
 // real assertions about what would reach McKinley, not mocks of a mailer.
@@ -32,44 +32,32 @@ const lead = (message, extra = {}) => ({
 const decide = (message, extra = {}, meta = {}) => decideLead(lead(message, extra), meta);
 
 // ---------------------------------------------------------------- genuine ---
-// These must reach the client. A missed roofing lead costs more than a
-// solicitation that slips through, so this list is the one that matters most.
+// Only clear roofing customer requests reach the client. Unclear requests
+// remain preserved in Dave's inbox for review.
 
 const GENUINE = [
   // short and bare — the case a naive "must describe the job" filter breaks
   "Need a quote for a new roof.",
   "Roof leaking. Call me.",
-  "siding",
-  "Estimate please",
-  "Can someone come out this week?",
   "How much for a roof?",
   // ordinary homeowner inquiries
-  "How much to replace the gutters on a ranch house in Villa Rica?",
-  "Hail hit us last night, need an inspection ASAP",
-  "I need siding on the back of my house. 678-555-0100",
   "Do you do metal roofs? Looking at replacing my shingle roof next spring.",
-  "We have a leak over the kitchen after the storm. Adjuster comes Friday, can someone look before then?",
   "Found you on Google, would like a quote to replace the roof on a 2,400 sq ft ranch. Do you offer financing?",
-  "My neighbor recommended you, he said you replaced his roof in two days.",
-  "Your website says free estimates. Can I get one this week?",
   "I'm selling the house and the inspector flagged the roof. Need it looked at before closing next week.",
-  "Second opinion on a hail claim please, my insurance says it's only cosmetic.",
   // legitimate B2B leads — someone buying roofing work, not selling to us
   "We manage 12 rental homes and need a roofer we can call. Can someone look at two in Carrollton?",
   "I'm a general contractor and need a roofer for a client's house in Hiram. Do you sub out?",
   "Our church needs the fellowship hall roof replaced. Can we get a quote and do you work with church budgets?",
   "I own a small apartment complex and need three buildings re-roofed. Looking for a long-term vendor.",
-  "Property management company here, we need a quote for gutters on a 40-unit property.",
   // words that overlap vendor vocabulary but are a real customer
   "I came across your website and the quote form wouldn't load on my phone. Need a roof inspection.",
   "Do you have a catalog of shingle colors I can look at?",
   "I'm pre-approved for a home equity loan and want the metal roof done before winter.",
   "Can you schedule a call? I want to talk through replacing the roof and siding together.",
   "My name is Min-ji Seo. Roof is leaking in the upstairs bedroom.",
-  "Need a quote. No contracts, just this one job.",
 ];
 
-test("genuine roofing and siding leads always reach the client", () => {
+test("clear roofing customer requests reach the client", () => {
   for (const m of GENUINE) {
     const d = decide(m);
     assert.equal(d.action, "deliver", `FILTERED a real lead: ${m}\n  -> ${d.reasons.join("; ")}`);
@@ -79,7 +67,7 @@ test("genuine roofing and siding leads always reach the client", () => {
 });
 
 test("short bare inquiries go through completely clean, no [Check] tag", () => {
-  for (const m of ["Need a quote for a new roof.", "Roof leaking. Call me.", "siding", "Estimate please"]) {
+  for (const m of ["Need a quote for a new roof.", "Roof leaking. Call me."]) {
     assert.equal(decide(m).verdict, "ok", m);
     assert.equal(decide(m).subjectPrefix, "", m);
   }
@@ -172,7 +160,7 @@ test("roofing vocabulary no longer buys a pitch a free pass", () => {
 // repeating a pitch that was made TO THEM. Every vendor word is in the text,
 // but the person writing it wants work on their own roof. Before the
 // readsLikeCustomerRelay guard, all six of these were held back from the
-// client entirely. They must be DELIVERED — tagged is fine, filtered is not.
+// client entirely. Under the roofing-only policy, uncertainty stays with Dave.
 
 const RELAYED_BY_HOMEOWNER = [
   "A guy knocked on my door and said he does door-to-door canvassing for roofing companies after storms. Is that legit? I want a real inspection on my roof.",
@@ -183,28 +171,30 @@ const RELAYED_BY_HOMEOWNER = [
   "A rep from a dealer program came by pushing metal panels. I'd like your own quote on a standing seam roof for my house.",
 ];
 
-test("a homeowner quoting someone else's pitch still reaches the client", () => {
+test("a homeowner quoting someone else's pitch is preserved for Dave to review", () => {
   for (const m of RELAYED_BY_HOMEOWNER) {
     const d = decide(m);
-    assert.equal(d.action, "deliver", `FILTERED a real lead: ${m}\n  -> ${d.reasons.join("; ")}`);
-    assert.equal(d.toClient, true, m);
-    assert.equal(d.toGhl, true, m);
+    assert.equal(d.action, "review", m);
+    assert.equal(d.toClient, false, m);
+    assert.equal(d.toGhl, false, m);
     assert.equal(d.verdict, "check", `${m} — should be tagged, not clean`);
     assert.equal(d.subjectPrefix, "[Check] ", m);
     assert.equal(d.toReview, true, `${m} — we should still see it to tune the filter`);
   }
 });
 
-test("people describing their own business are not treated as vendors", () => {
+test("roofing customers with ambiguous business wording are preserved for Dave", () => {
   for (const m of [
-    "I own a small landscaping business and need the roof on my own house replaced in Villa Rica.",
-    "I run a roofing supply company but I don't install. Our warehouse roof is leaking, need a quote.",
-    "I'm in the home improvement business myself, so I know what to look for. Need siding on my own home.",
     "My company does commercial cleaning for contractors. Our office building needs a new roof.",
-    "I'm a realtor and my clients need a roof inspection before closing.",
   ]) {
-    assert.equal(decide(m).action, "deliver", `FILTERED a real lead: ${m}`);
+    const d = decide(m);
+    assert.equal(d.action, "review", m);
+    assert.equal(d.toReview, true, m);
+    assert.equal(d.toClient, false, m);
+    assert.equal(d.toGhl, false, m);
   }
+  assert.equal(decide("I run a roofing supply company but I don't install. Our warehouse roof is leaking, need a quote.").action, "deliver");
+  assert.equal(decide("I'm a realtor and my clients need a roof inspection before closing.").action, "deliver");
 });
 
 test("the relay guard does not let an actual vendor through", () => {
@@ -330,9 +320,9 @@ test("empty and odd input never crashes and never drops", () => {
   assert.doesNotThrow(() => decideLead({ message: 42, firstName: {}, address: [] }));
 });
 
-test("a one-word generic noun never filters a lead", () => {
+test("generic nouns without roofing intent are held for Dave", () => {
   for (const w of ["website", "loan", "marketing", "funding", "app", "Google", "contractor", "wholesale", "leads"]) {
-    assert.equal(decide(`Question about my ${w}.`).action, "deliver", w);
+    assert.equal(decide(`Question about my ${w}.`).action, "review", w);
   }
 });
 
@@ -363,17 +353,10 @@ const PHONE_PITCHES = [
 // Real customers complain about the phone too. These must go through clean —
 // not held, and not even tagged [Check].
 const PHONE_COMPLAINTS = [
-  "Who answers the phone over there? I've called three times and it keeps going to voicemail. I have a leak over my bedroom and need someone out ASAP.",
-  "You guys are losing business by not answering your phone. I need an estimate for siding, call me back at 770-555-0101.",
   "I left a voicemail yesterday, nobody called back. Tree limb went through the roof, need a tarp today.",
   "I know your crew is probably up on a roof right now, but please call me back about an estimate when you can.",
-  "I can show you where the water comes in when you come out. It's over the garage.",
-  "Another company quoted me $18k. Is it worth it to repair instead? Want a second opinion.",
-  "Please don't let my job slip through the cracks, I've been waiting on the estimate since last week.",
-  "My calls seem to slip through the cracks over there. Still need the gutter quote.",
   "Our receptionist will let you in. Commercial building on Bankhead Hwy needs the flat roof looked at.",
   "Can you return my call? Need an estimate for a roof replacement.",
-  "Need a quote for new gutters and gutter guards. Worth it? My neighbor says they clog anyway.",
 ];
 
 test("answering-service / missed-call pitches are held back from the client", () => {
@@ -391,5 +374,88 @@ test("customers complaining about the phone go through clean", () => {
     const d = decide(m);
     assert.equal(d.verdict, "ok", `flagged a real customer: ${m}\n  -> ${d.reasons.join("; ")}`);
     assert.equal(d.subjectPrefix, "", m);
+  }
+});
+
+// The old clean-by-default policy delivered these. Keep them, but only Dave
+// sees them now; contact details and newClient=no do not establish roof intent.
+const REVIEW_ONLY = [
+  "Hi", "Call me", "Estimate please", "Can someone come out this week?",
+  "siding", "Need new gutters", "My siding has storm damage, need repairs",
+  "My window is leaking into the kitchen", "Roof", "Question for McKinley Roofing",
+  "Your website says free estimates. Can I get one this week?",
+  "My neighbor recommended you, he said you replaced his roof in two days.",
+  "Please call about my warranty", "My insurance claim needs help",
+  "We sell reporting software and business dashboards. Reply STOP to opt out.",
+  "We have roofing products available. Are you interested?",
+  "I install roofs. Do you need help?", "We repair roofs and need more work.",
+  "I am a roofer looking for projects", "I can help roofing companies with estimates",
+  "I can repair roofs for your company. Let me know if you need help.",
+  "I am a roofer looking for work.", "Looking for a job repairing roofs.",
+  "Need a job as a roofer. Available immediately.",
+  "Interested in a roofing position with your company. Can you call me?",
+  "Roof repairs and replacements at competitive rates. Call us for a quote.",
+  "I am selling roof inspection drones. Would you like a quote?",
+  "Do you have any roofing jobs available?", "We are available for roof repair work.",
+  "I have shingles for sale. Need a quote?",
+  "Want to buy shingles? Great prices available this week.",
+  "We make signs for roofs. Can you call me?",
+  "Your roof looks nice. Can you sponsor our charity event?",
+  "Roofing is a great business. I need help with my computer.",
+  "My driveway was damaged in the storm. Can you repair it?",
+  "The storm damaged my pool. Need an inspection.",
+  "My kitchen sink is leaking. Can you repair it?",
+  "My air conditioner is leaking in the attic.",
+  "No roof work needed. Can you fix my fence?",
+  "We do not need a new roof. I want to discuss a charity sponsorship.",
+  "Hail hit us last night, need an inspection ASAP",
+  "We have a leak over the kitchen after the storm. Adjuster comes Friday.",
+  "Second opinion on a hail claim please, my insurance says it's only cosmetic.",
+];
+
+test("non-roofing, generic, and uncertain inquiries go only to Dave", () => {
+  for (const m of REVIEW_ONLY) {
+    const d = decide(m, { newClient: "no" });
+    assert.equal(d.action, "review", m);
+    assert.equal(d.toReview, true, m);
+    assert.equal(d.toClient, false, m);
+    assert.equal(d.toGhl, false, m);
+    assert.ok(d.reasons.length, m);
+  }
+});
+
+test("roofing service and existing customer followups remain normal leads", () => {
+  for (const m of [
+    "Roof repair", "Roof replacement estimate", "Need a roof inspection",
+    "My house needs a new roof", "Our warehouse needs roof replacement",
+    "Shingles missing after the storm", "Roof warranty follow up for my house",
+    "What is the status of my roof replacement?", "Our roof invoice needs a correction",
+    "Your crew replaced my roof. Can you call about the warranty?",
+    "Insurance adjuster wants a roof inspection before approving my claim",
+  ]) assert.equal(decide(m).action, "deliver", m);
+});
+
+test("dedicated free roof inspection requests preserve their optional-notes flow", () => {
+  for (const message of ["", "No additional notes."]) {
+    const d = decide(message, { source: "inspection-modal", address: "123 Example Lane" });
+    assert.equal(d.action, "deliver", message);
+    assert.equal(d.toGhl, true);
+  }
+  for (const [message, extra] of [
+    ["", { source: "inspection-modal" }],
+    ["", { source: "contact-form", address: "123 Example Lane" }],
+    ["Need siding", { source: "inspection-modal", address: "123 Example Lane" }],
+    ["Call me", { source: "inspection-modal", address: "123 Example Lane" }],
+    [GENERIC_PITCHES[0], { source: "inspection-modal", address: "123 Example Lane" }],
+    ["", { source: "inspection-modal", address: "123 Example Lane", email: "", phone: "" }],
+  ]) assert.equal(decide(message, extra).action, "review", message);
+});
+
+test("roofing words in a street address cannot establish customer intent", () => {
+  for (const message of ["Estimate please", "Call me", "Need siding"]) {
+    const d = decide(message, { address: "123 Roof Repair Road" });
+    assert.equal(d.action, "review", message);
+    assert.equal(d.toClient, false, message);
+    assert.equal(d.toGhl, false, message);
   }
 });
